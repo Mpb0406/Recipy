@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const User = require('../../Models/User');
 const {
   check,
   validationRequest,
@@ -8,13 +9,6 @@ const {
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
-
-//@route    POST api/auth
-//@desc     Get user info
-//@access   Private
-router.get("/", auth, async (req, res) => {
-  res.send("Success");
-});
 
 //@route    POST api/auth
 //@desc     Login User
@@ -71,5 +65,19 @@ router.post(
     }
   }
 );
+
+
+//@route    GET api/auth
+//@desc     Get User Info
+//@access   Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+})
 
 module.exports = router;
