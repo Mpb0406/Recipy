@@ -17,6 +17,7 @@ app.get('/', (req, res) => res.send('API Running'))
 //Define Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/recipes', require('./routes/api/recipe'));
 
 const Port = process.env.PORT || 5000;
 app.listen(Port, () => console.log(`Server Running on port ${Port}`));
