@@ -31,11 +31,19 @@ router.post(
     if (ingredients) recipeFields.ingredients = ingredients;
     if (procedures) recipeFields.procedures = procedures;
 
-    //Build Ingredients
-    const { amount, unit, item } = req.body;
+    //Grab Ingredients from Req
+    const recipeIngredients = req.body.ingredients;
 
-    recipeFields.ingredients = {};
-    recipeFields.ingredients.amount = amount;
+    //Map Over Each Ingredient Obj in Req and Push to Ingredients Array
+    recipeFields.ingredients = [];
+    recipeIngredients.map(ingredient => recipeFields.ingredients.push(ingredient));
+
+    //Grab Procedures from Req
+    const recipeProcedures = req.body.procedures;
+
+    //Map Over Each Ingredient Obj in Req and Push to Ingredients Array
+    recipeFields.procedures = [];
+    recipeProcedures.map(procedure => recipeFields.procedures.push(procedure));
 
     // Assign recipe object to new Recipe model and save & return
     try {
