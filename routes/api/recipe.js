@@ -3,6 +3,7 @@ const router = express.Router();
 const Recipe = require("../../Models/Recipe");
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
+const { findById } = require("../../Models/Recipe");
 
 //@route    POST api/recipes
 //@desc     Post a recipe (title & description) to user account
@@ -21,7 +22,7 @@ router.post(
     if (!errors.isEmpty()) res.status(400).json({ errors: errors.array() });
 
     // Destructure all elements in model
-    const { title, description, ingredients, procedures } = req.body;
+    const { title, description, ingredients, procedures, yield, preptime, cooktime, pairswith, tags } = req.body;
 
     // Build a recipe object with all elements available in request
     const recipeFields = {};
@@ -30,6 +31,11 @@ router.post(
     if (description) recipeFields.description = description;
     if (ingredients) recipeFields.ingredients = ingredients;
     if (procedures) recipeFields.procedures = procedures;
+    if (yield) recipeFields.yield = yield;
+    if (preptime) recipeFields.preptime = preptime;
+    if (cooktime) recipeFields.cooktime = cooktime;
+    if (pairswith) recipeFields.pairswith = pairswith;
+    if (tags) recipeFields.tags = tags;
 
     //Grab Ingredients from Req
     const recipeIngredients = req.body.ingredients;
@@ -56,5 +62,15 @@ router.post(
     }
   }
 );
+
+
+//@route    GET api/recipes/:id
+//@desc     Get all recipes for a user
+//@access   Private
+router.get('/myrecipes', auth, async (req, res) => {
+  const userPosts = await Recipe.find({ 'user': req.user.id });
+
+  res.send(userPosts);
+})
 
 module.exports = router;

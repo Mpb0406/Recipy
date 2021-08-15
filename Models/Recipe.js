@@ -12,7 +12,17 @@ const recipeSchema = mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        required: true,
+        max: 500
+    },
+    yield: {
+        type: Number
+    },
+    preptime: {
+        type: Number
+    },
+    cooktime: {
+        type: Number
     },
     ingredients: [
         {
@@ -27,6 +37,9 @@ const recipeSchema = mongoose.Schema({
             item: {
                 type: String,
                 required: true
+            },
+            alternate: {
+                type: String
             }
         }
     ],
@@ -38,6 +51,12 @@ const recipeSchema = mongoose.Schema({
             }
         }
     ],
+    pairswith: {
+        type: String
+    },
+    tags: {
+        type: [String]
+    },
     likes: [
         {
             user: {
