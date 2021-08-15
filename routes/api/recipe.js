@@ -135,7 +135,19 @@ router.put('/:id', auth, async (req, res) => {
 //@desc     Delete a recipe
 //@access   Private
 router.delete('/:id', auth, async (req, res) => {
-  res.send('Delete Recipe');
+  try {
+    const recipe = await Recipe.findById(req.params.id);
+
+    if (!recipe) return res.status(400).send('Recipe not found');
+
+    if (recipe.user.toString() !== req.user.id) return res.status(401).send('Not authorized');
+
+    await recipe.remove();
+    res.json('Recipe Removed');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
 })
 
 
