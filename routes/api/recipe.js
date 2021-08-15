@@ -148,7 +148,31 @@ router.delete('/:id', auth, async (req, res) => {
     console.error(err);
     res.status(500).send('Server Error');
   }
-})
+});
+
+
+
+//@route    PUT api/recipes/like/:id
+//@desc     Like a recipe
+//@access   Private
+router.put('/like/:id', auth, async (req, res) => {
+  try {
+    const recipe = await Recipe.findById(req.params.id);
+
+    //Check if recipe already liked by this user
+    if (recipe.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+      return res.status(400).json({ msg: 'Post already liked' });
+    }
+
+    recipe.likes.unshift({ user: req.user.id });
+    await recipe.save();
+
+    res.json(recipe.likes);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
 
 
 module.exports = router;
