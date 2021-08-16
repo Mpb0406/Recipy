@@ -205,7 +205,6 @@ router.put("/like/:id", auth, async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 //@route    PUT api/recipes/unlike/:id
 //@desc     Unlike a recipe
 //@access   Private
@@ -229,31 +228,31 @@ router.put("/unlike/:id", auth, async (req, res) => {
       .indexOf(req.user.id);
     //Remove the like from the array of likes by index
     recipe.likes.splice(removeIndex, 1);
-=======
 
+    //@route    PUT api/recipes/like/:id
+    //@desc     Like a recipe
+    //@access   Private
+    router.put("/like/:id", auth, async (req, res) => {
+      try {
+        const recipe = await Recipe.findById(req.params.id);
 
-//@route    PUT api/recipes/like/:id
-//@desc     Like a recipe
-//@access   Private
-router.put('/like/:id', auth, async (req, res) => {
-  try {
-    const recipe = await Recipe.findById(req.params.id);
+        //Check if recipe already liked by this user
+        if (
+          recipe.likes.filter((like) => like.user.toString() === req.user.id)
+            .length > 0
+        ) {
+          return res.status(400).json({ msg: "Post already liked" });
+        }
 
-    //Check if recipe already liked by this user
-    if (recipe.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-      return res.status(400).json({ msg: 'Post already liked' });
-    }
+        recipe.likes.unshift({ user: req.user.id });
+        await recipe.save();
 
-    recipe.likes.unshift({ user: req.user.id });
-    await recipe.save();
-
-    res.json(recipe.likes);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Server Error');
-  }
-});
->>>>>>> 799cd690efc5cd55b71106d444fcf2946415357d
+        res.json(recipe.likes);
+      } catch (err) {
+        console.error(err);
+        res.status(500).send("Server Error");
+      }
+    });
 
     await recipe.save();
 
