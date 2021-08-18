@@ -16,6 +16,20 @@ const GlobalStyle = createGlobalStyle`
         font-family: Poppins;
     }
 
+    button {
+        padding: 1rem;
+        font-weight: 500;
+        font-size: 1.2rem;
+        border-radius: 5rem;
+        cursor: pointer;
+        box-shadow: 0px 5px 40px rgba(0, 0, 0, .25);
+    }
+
+    h1 {
+        font-size: 3.8rem;
+        font-weight: 700;
+    }
+
 `;
 
 export default GlobalStyle;
