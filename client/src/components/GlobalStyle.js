@@ -8,6 +8,14 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    body {
+        background-color: #F0F7FF;
+    }
+
+    html {
+        font-family: Poppins;
+    }
+
 `;
 
 export default GlobalStyle;

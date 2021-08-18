@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import recipylogo from '../img/recipylogo.png';
+import user from '../img/user.png'
 
 const Nav = () => {
     return (
         <StyledNav>
-            <img src={recipylogo} alt="" />
+            <Logo src={recipylogo} alt="" />
             <NavItems>
                 <li><StyledAnchor href="#">Home</StyledAnchor></li>
                 <li><StyledAnchor href="#">Browse</StyledAnchor></li>
                 <li><StyledAnchor href="#">My Recipes</StyledAnchor></li>
-                <li><StyledAnchor href="#">Profile</StyledAnchor></li>
+                <li><Profile src={user} alt="" /></li>
             </NavItems>
         </StyledNav>
     )
@@ -21,6 +22,8 @@ const StyledNav = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 10vh;
+    margin: 0 3rem;
 `;
 
 const NavItems = styled.ul`
@@ -29,10 +32,33 @@ const NavItems = styled.ul`
     justify-content: space-evenly;
     width: 50%;
     list-style: none;
+
+    &::after {
+        content: '';
+        height: 0.4rem;
+        width: 3.5rem;
+        background-color: #3B7C0B;
+        top: 7.5%;
+        right: 40.45%;
+        position: absolute;
+    }
 `;
 
 const StyledAnchor = styled.a`
     text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #343036;
+`;
+
+const Logo = styled.img`
+    height: 3.5rem;
+    cursor: pointer;
+`;
+
+const Profile = styled.img`
+    height: 1.8rem;
+    cursor: pointer;
 `;
 
 export default Nav
