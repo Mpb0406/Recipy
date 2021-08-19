@@ -2,13 +2,18 @@ import React from 'react'
 import styled from 'styled-components';
 import Hero from '../components/Hero';
 import HeroText from '../components/HeroText';
+import Categories from '../components/Categories';
 
 const Home = () => {
     return (
-        <StyledMain>
-            <HeroText />
-            <Hero />
-        </StyledMain>
+        <div>
+            <StyledMain>
+                <HeroText />
+                <Hero />
+            </StyledMain>
+            <Categories />
+        </div>
+
     )
 };
 

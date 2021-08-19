@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     button {
         padding: 1rem;
         font-weight: 500;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         border-radius: 5rem;
         cursor: pointer;
     }

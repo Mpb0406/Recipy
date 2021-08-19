@@ -28,3 +28,12 @@ export const SecondButton = styled.button`
         color: #fff;
     }
 `;
+
+export const CategoryImg = styled.img`
+    height: 10rem;
+
+    /* &:hover {
+        border: 5px solid blue;
+        border-radius: 50%;
+    } */
+`;

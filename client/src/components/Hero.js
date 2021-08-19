@@ -22,6 +22,15 @@ const StyledDiv = styled.div`
 const HeroImage = styled.img`
     height: 25rem;
     filter: drop-shadow(0 5px 40px rgba(0, 0, 0, 0.25));
+    /* animation: spin 1s ease alternate;
+
+    @keyframes spin {
+        from {
+            transform: rotateZ(0deg);
+        } to {
+            transform: rotateZ(360deg);
+        }
+    } */
 `;
 
 export default Hero
