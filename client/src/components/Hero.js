@@ -1,12 +1,27 @@
 import React from 'react';
+import styled from 'styled-components';
 import heroImage from '../img/hero-image.png';
 
 const Hero = () => {
     return (
-        <div>
-            <img src={heroImage} alt="" />
-        </div>
+        <StyledDiv>
+            <HeroImage src={heroImage} alt="" />
+        </StyledDiv>
     )
-}
+};
+
+//Styled Components
+const StyledDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 90vh;
+`;
+
+const HeroImage = styled.img`
+    height: 25rem;
+    filter: drop-shadow(0 5px 40px rgba(0, 0, 0, 0.25));
+`;
 
 export default Hero

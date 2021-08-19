@@ -22,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
         font-size: 1.2rem;
         border-radius: 5rem;
         cursor: pointer;
-        box-shadow: 0px 5px 40px rgba(0, 0, 0, .25);
     }
 
     h1 {
