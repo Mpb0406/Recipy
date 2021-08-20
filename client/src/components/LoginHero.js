@@ -7,10 +7,8 @@ const LoginHero = () => {
   return (
     <StyledDiv>
       <div className="container">
-        <div>
-          <Fade></Fade>
-          <StyledImage src={login} alt="" />
-        </div>
+        <Fade></Fade>
+        <StyledImage src={login} alt="" />
       </div>
     </StyledDiv>
   );
