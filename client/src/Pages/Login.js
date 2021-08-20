@@ -17,7 +17,6 @@ const Login = () => {
 const StyledDiv = styled.div`
   display: flex;
   justify-content: start;
-  height: 90vh;
 `;
 
 export default Login;
