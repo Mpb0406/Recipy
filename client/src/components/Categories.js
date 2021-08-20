@@ -52,6 +52,14 @@ const StyledDiv = styled.div`
         width: 90vw;
         border-radius: 1rem;
         background-color: #fff;
+        border-radius: 2rem;
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+            align-self: center;
+            margin: 0.5rem auto 2rem;
+        }
     }
 `;
 
@@ -66,6 +74,9 @@ const CategoryContainer = styled.div`
         flex-direction: column;
         align-items: center;
         cursor: pointer;
+        margin: 0.5rem 8rem;
+
+        flex-grow: 1;
     }
 `;
 
