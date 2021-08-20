@@ -1,0 +1,43 @@
+import React from 'react'
+import styled from 'styled-components';
+import { MainButton } from '../Styles'
+
+const LoginForm = () => {
+    return (
+        <div>
+            <StyledForm action="" className="login">
+                <h1>Hello, Welcome Back</h1>
+                <div className="input-container">
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                </div>
+                <h4>Forgot your password?</h4>
+                <MainButton>Login</MainButton>
+                <h4>Don't have an account? <a href="#">Sign Up</a></h4>
+            </StyledForm>
+        </div>
+    )
+};
+
+//Styled Components
+
+const StyledForm = styled.form`
+    margin-top: 6.5rem;
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 5rem;
+
+        input {
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            width: 50%;
+        }
+    }
+`;
+
+
+export default LoginForm
