@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { MainButton } from "../Styles";
 
 const LoginForm = () => {
@@ -7,15 +8,17 @@ const LoginForm = () => {
     <StyledDiv>
       <StyledForm action="" className="login">
         <h1>Hello, Welcome Back</h1>
-        <div className="input-container">
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+        <div className="form">
+          <div className="input-container">
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+          </div>
+          <Link to="/" className="forgotPassword">Forgot your password?</Link>
+          <MainButton>Login</MainButton>
+          <h4 className="signUp">
+            Don't have an account? <Link to="/signup">Sign Up</Link>
+          </h4>
         </div>
-        <h4>Forgot your password?</h4>
-        <MainButton>Login</MainButton>
-        <h4>
-          Don't have an account? <a href="#">Sign Up</a>
-        </h4>
       </StyledForm>
     </StyledDiv>
   );
@@ -29,11 +32,14 @@ const StyledDiv = styled.div`
 `;
 
 const StyledForm = styled.form`
-  margin-top: 6.5rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   h1 {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
   }
 
   .input-container {
@@ -41,13 +47,42 @@ const StyledForm = styled.form`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 10rem;
+    height: 8rem;
 
     input {
       padding: 0.5rem;
       font-size: 1.2rem;
-      width: 50%;
+      width: 100%;
     }
+  }
+  .forgotPassword {
+    text-align: end;
+    color: #969696;
+    font-weight: 600;
+    display: block;
+  }
+
+  .signUp {
+    text-align: center;
+    color: #969696;
+    font-weight: 500;
+
+    a {
+      color: #3B7C0B;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  }
+
+  button {
+    align-items: center;
+    margin: 3rem 0;
+    width: 100%;
+    height: 4rem;
+  }
+
+  .form {
+    width: 60%;
   }
 `;
 

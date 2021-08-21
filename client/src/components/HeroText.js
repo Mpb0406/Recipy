@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { MainButton, SecondButton } from '../Styles';
 
 const HeroText = () => {
@@ -7,7 +8,7 @@ const HeroText = () => {
         <StyledDiv>
             <StyledText>Store all your <br /> favorite recipes <br /> right here!</StyledText>
             <div className="button-container">
-                <MainButton>Login</MainButton>
+                <MainButton><Link to="/login">Login</Link></MainButton>
                 <SecondButton>Sign Up</SecondButton>
             </div>
         </StyledDiv>
@@ -26,7 +27,15 @@ const StyledDiv = styled.div`
         display: flex;
         justify-content: center;
         width: 100%;
-        /* background-color: blue; */
+        
+        a {
+            text-decoration: none;
+            color: white;
+            padding: 2.5rem;
+            &:hover {
+                color: #3B7C0B;
+            }
+        }
     }
 `;
 
