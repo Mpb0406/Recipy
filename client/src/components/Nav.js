@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import recipylogo from '../img/recipylogo.png';
 import user from '../img/user.png'
@@ -8,9 +9,9 @@ const Nav = () => {
         <StyledNav>
             <Logo src={recipylogo} alt="" />
             <NavItems>
-                <li><StyledAnchor href="#">Home</StyledAnchor></li>
-                <li><StyledAnchor href="#">Browse</StyledAnchor></li>
-                <li><StyledAnchor href="#">My Recipes</StyledAnchor></li>
+                <li><StyledAnchor href="/">Home</StyledAnchor></li>
+                <li><StyledAnchor href="/browse">Browse</StyledAnchor></li>
+                <li><StyledAnchor href="/myrecipes">My Recipes</StyledAnchor></li>
                 <li><Profile src={user} alt="" /></li>
             </NavItems>
         </StyledNav>
@@ -41,6 +42,10 @@ const NavItems = styled.ul`
         top: 7.5%;
         right: 40.45%;
         position: absolute;
+    }
+
+    a {
+
     }
 `;
 
