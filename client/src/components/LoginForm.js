@@ -7,7 +7,7 @@ const LoginForm = () => {
   return (
     <StyledDiv>
       <StyledForm action="" className="login">
-        <h1>Hello, Welcome Back</h1>
+        <h1>Hello, <br /> Welcome Back</h1>
         <div className="form">
           <div className="input-container">
             <input type="email" placeholder="Email" />
@@ -39,7 +39,8 @@ const StyledForm = styled.form`
 
   h1 {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    line-height: 4.5rem;
   }
 
   .input-container {

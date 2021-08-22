@@ -1,41 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CategoryImg } from '../Styles';
+import RecipeCard from './RecipeCard';
 //Images
-import breakfast from '../img/breakfast.png';
-import lunch from '../img/lunch.png';
-import dinner from '../img/dinner.png';
-import dessert from '../img/dessert.png';
-import drinks from '../img/drinks.png'
 
 const Categories = () => {
     return (
         <StyledDiv>
-            <div className="container">
-                <h1>Browse By Category</h1>
-                <CategoryContainer>
-                    <div className="category">
-                        <CategoryImg src={breakfast} alt="" />
-                        <h3>Breakfast</h3>
-                    </div>
-                    <div className="category">
-                        <CategoryImg src={lunch} alt="" />
-                        <h3>Lunch</h3>
-                    </div>
-                    <div className="category">
-                        <CategoryImg src={dinner} alt="" />
-                        <h3>Dinner</h3>
-                    </div>
-                    <div className="category">
-                        <CategoryImg src={dessert} alt="" />
-                        <h3>Dessert</h3>
-                    </div>
-                    <div className="category">
-                        <CategoryImg src={drinks} alt="" />
-                        <h3>Drinks</h3>
-                    </div>
-                </CategoryContainer>
-            </div>
+            <h1>Browse By Category</h1>
+            <CategoryContainer>
+                <div className="categories">
+                    <h3 className="breakfast">Breakfast</h3>
+                    <h3 className="lunch">Lunch</h3>
+                    <h3 className="active">Dinner</h3>
+                    <h3 className="dessert">Dessert</h3>
+                    <h3 className="drinks">Drinks</h3>
+                </div>
+            </CategoryContainer>
+            <RecipeSlider>
+                <RecipeCard />
+            </RecipeSlider>
         </StyledDiv>
     )
 };
@@ -44,40 +27,54 @@ const Categories = () => {
 const StyledDiv = styled.div`
     height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-
-    .container {
-        height: 90vh;
-        width: 90vw;
-        border-radius: 1rem;
-        background-color: #fff;
-        border-radius: 2rem;
-        display: flex;
-        flex-direction: column;
-
-        h1 {
-            align-self: center;
-            margin: 0.5rem auto 2rem;
-        }
-    }
+    margin: 1.5rem 0;
 `;
 
 const CategoryContainer = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-
-    .category {
+    margin: 2rem 0;
+    width: 60%;
+    
+    .categories {
+        position: relative;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        cursor: pointer;
-        margin: 0.5rem 8rem;
+        justify-content: space-evenly;
 
-        flex-grow: 1;
+        h3 {
+            padding: 1rem;
+            position: relative;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            height: 0.1rem;
+            width: 100%;
+            background-color: #848185;
+        }
     }
+
+    .active::after {
+        content: "";
+        position: absolute;
+        height: 0.25rem;
+        width: 8rem;
+        background-color: #3B7C0B;
+        top: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+`;
+
+const RecipeSlider = styled.div`
+    width: 95%;
+    height: 50vh;
+    background-color: black;
+    overflow-x: scroll;
 `;
 
 export default Categories;

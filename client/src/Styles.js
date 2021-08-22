@@ -11,6 +11,7 @@ export const MainButton = styled.button`
     &:hover {
         background-color: transparent;
         border: 3px solid #3B7C0B;
+        color: #3B7C0B
     }
 `;
 
@@ -21,9 +22,10 @@ export const SecondButton = styled.button`
     width: 25%;
     margin: 0 2rem;
     transition: all 0.3s ease-in-out;
-
+    color: #3B7C0B;
     &:hover {
         background-color: #3B7C0B;
+        color: #fff;
     }
 `;
 
