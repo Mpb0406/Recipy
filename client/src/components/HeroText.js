@@ -19,9 +19,11 @@ const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: yellow; */
+    position: absolute;
     justify-content: center;
     height: 90vh;
+    color: #fff;
+    z-index: 2;
 
     .button-container {
         display: flex;
@@ -30,21 +32,15 @@ const StyledDiv = styled.div`
         
         .login {
             text-decoration: none;
-            color: white;
+            color: #fff;
             padding: 2.5rem;
-            &:hover {
-                color: #3B7C0B;
             }
         }
         .signUp {
             text-decoration: none;
-            color: #3B7C0B;
+            color: #fff;
             padding: 1.6rem 1.82rem;
-            &:hover {
-                color: #fff;
-            }
         }
-    }
 `;
 
 const StyledText = styled.h1`

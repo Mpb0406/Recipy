@@ -1,36 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
-import heroImage from '../img/hero-image.png';
+import hero from '../img/hero.png';
 
 const Hero = () => {
     return (
         <StyledDiv>
-            <HeroImage src={heroImage} alt="" />
+            <Fade></Fade>
+            <HeroImage src={hero} alt="" />
         </StyledDiv>
     )
 };
 
 //Styled Components
 const StyledDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40vw;
-    height: 90vh;
+margin-top: 1rem;
+position: relative;
+height: 80vh;
+`;
+
+const Fade = styled.div`
+    background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.6));
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 0.6;
+    border-radius: 1rem;
 `;
 
 const HeroImage = styled.img`
-    height: 25rem;
-    filter: drop-shadow(0 5px 40px rgba(0, 0, 0, 0.25));
-    /* animation: spin 1s ease alternate;
-
-    @keyframes spin {
-        from {
-            transform: rotateZ(0deg);
-        } to {
-            transform: rotateZ(360deg);
-        }
-    } */
+    height: 100%;
+    width: 95vw;
+    border-radius: 1rem;
+    object-fit: cover;
 `;
 
 export default Hero

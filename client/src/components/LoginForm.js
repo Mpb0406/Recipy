@@ -39,7 +39,7 @@ const StyledForm = styled.form`
 
   h1 {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 
   .input-container {

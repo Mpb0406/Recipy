@@ -22,7 +22,7 @@ const Home = () => {
 const StyledMain = styled.main`
     display: flex;
     align-items: center;
-    margin: 0 3rem;
+    justify-content: center;
 `;
 
 export default Home
