@@ -18,6 +18,20 @@ const Categories = () => {
             </CategoryContainer>
             <RecipeSlider>
                 <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
             </RecipeSlider>
         </StyledDiv>
     )
@@ -33,7 +47,7 @@ const StyledDiv = styled.div`
 `;
 
 const CategoryContainer = styled.div`
-    margin: 2rem 0;
+    margin: 1.2rem 0;
     width: 60%;
     
     .categories {
@@ -45,6 +59,7 @@ const CategoryContainer = styled.div`
         h3 {
             padding: 1rem;
             position: relative;
+            cursor: pointer;
         }
 
         &::after {
@@ -67,14 +82,17 @@ const CategoryContainer = styled.div`
         top: 95%;
         left: 50%;
         transform: translateX(-50%);
+        z-index: 2;
     }
 `;
 
 const RecipeSlider = styled.div`
     width: 95%;
-    height: 50vh;
-    background-color: black;
+    height: 60vh;
+
     overflow-x: scroll;
+    display: flex;
+    align-items: center;
 `;
 
 export default Categories;
