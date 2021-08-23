@@ -6,7 +6,7 @@ import { MainButton, SecondButton } from '../Styles';
 const HeroText = () => {
     return (
         <StyledDiv>
-            <StyledText>Store all your <br /> favorite recipes <br /> right here!</StyledText>
+            <StyledText>Store all your <br /> favorite recipes right here!</StyledText>
             <div className="button-container">
                 <MainButton><Link className="login" to="/login">Login</Link></MainButton>
                 <SecondButton><Link className="signUp" to="/signup">Sign Up</Link></SecondButton>
@@ -45,6 +45,8 @@ const StyledDiv = styled.div`
 
 const StyledText = styled.h1`
     margin: 0 6rem 4rem;
+    color: #ddd;
+    text-align: center;
 `;
 
 export default HeroText

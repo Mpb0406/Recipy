@@ -27,6 +27,24 @@ const GlobalStyle = createGlobalStyle`
     h1 {
         font-size: 3.8rem;
         font-weight: 700;
+        color: #343036;
+    }
+
+    body::-webkit-scrollbar {
+        width: 0.6rem;
+        background-color: transparent;
+        margin-right: 0.2rem;
+    }
+
+    body::-webkit-scrollbar-track {
+        background-color: transparent;
+        margin-right: 0.2rem;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background-color: #343036;
+        border-radius: 1rem;
+        padding-right: 0.2rem;
     }
 
 `;

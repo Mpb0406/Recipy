@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import RecipeCard from './RecipeCard';
 //Images
+import forward from '../img/forward.png';
+import backward from '../img/backward.png';
 
 const Categories = () => {
     return (
@@ -17,6 +19,9 @@ const Categories = () => {
                 </div>
             </CategoryContainer>
             <RecipeSlider>
+                <BackButton>
+                    <img src={backward} alt="" />
+                </BackButton>
                 <RecipeCard />
                 <RecipeCard />
                 <RecipeCard />
@@ -32,6 +37,9 @@ const Categories = () => {
                 <RecipeCard />
                 <RecipeCard />
                 <RecipeCard />
+                <ForwardButton>
+                    <img src={forward} alt="" />
+                </ForwardButton>
             </RecipeSlider>
         </StyledDiv>
     )
@@ -93,6 +101,73 @@ const RecipeSlider = styled.div`
     overflow-x: scroll;
     display: flex;
     align-items: center;
+
+    &::-webkit-scrollbar {
+        height: 0.6rem;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 1rem;
+        padding: 0.5rem;
+        transition: all 1s ease;
+
+        &:hover {
+            background-color: #343036;
+        }
+    }
+`;
+
+const BackButton = styled.div`
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.8;
+    position: absolute;
+    margin-left: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    img {
+        height: 1rem;
+        margin: 1.5rem 1.2rem;
+        opacity: 0.6;
+    }
+`;
+
+const ForwardButton = styled.div`
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.8;
+    position: absolute;
+    right: 3rem;
+    margin-left: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    img {
+        height: 1rem;
+        margin: 1.5rem 1.2rem;
+        opacity: 0.6;
+    }
 `;
 
 export default Categories;

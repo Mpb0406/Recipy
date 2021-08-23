@@ -34,17 +34,37 @@ const StyledDiv = styled.div`
 const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
-    width: 50%;
+    align-items: center;
+    width: 34%;
+    margin-top: 1.5rem;
+
+    .name-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        input {
+            width: 48%;
+        }
+    }
 
     input {
-        width: 40%;
+        width: 100%;
         padding: 0.5rem;
+        font-size: 1.2rem;
+        margin: 0.6rem 0;
     }
 
     button {
         margin: 3rem 0;
         width: 100%;
         height: 4rem;
+    }
+
+    a {
+        color: #969696;
+        text-decoration: none;
+        font-weight: 500;
     }
 `;
 

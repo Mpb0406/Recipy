@@ -16,7 +16,7 @@ const RecipeCard = () => {
                     <Like src={likeempty} alt="" />
                     <h3>25 Likes</h3>
                 </div>
-                <Like className="bookmark" src={bookmarkempty} alt="" />
+                <Bookmark src={bookmarkempty} alt="" />
             </Interactions>
 
         </StyledDiv>
@@ -81,17 +81,16 @@ const Interactions = styled.div`
         margin: 0 0.5rem;
         justify-self: start;
     }
-
-    .bookmark {
-        
-    }
-    
 `;
 
 const Like = styled.img`
     height: 1.6rem;
+    cursor: pointer;
+`;
 
-    
+const Bookmark = styled.img`
+    height: 1.6rem;
+    cursor: pointer;
 `;
 
 export default RecipeCard
