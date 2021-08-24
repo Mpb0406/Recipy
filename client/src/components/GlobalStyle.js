@@ -31,20 +31,23 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body::-webkit-scrollbar {
-        width: 0.6rem;
+        width: 1rem;
         background-color: transparent;
-        margin-right: 0.2rem;
     }
 
     body::-webkit-scrollbar-track {
         background-color: transparent;
-        margin-right: 0.2rem;
+        border: 2px solid transparent;
     }
 
     body::-webkit-scrollbar-thumb {
-        background-color: #343036;
-        border-radius: 1rem;
-        padding-right: 0.2rem;
+        border: 4px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+        border-radius: 9999px;
+        background-color: #696969;
+        &:hover {
+            background-color: #343036;
+        }
     }
 
 `;

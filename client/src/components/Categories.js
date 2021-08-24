@@ -103,7 +103,7 @@ const RecipeSlider = styled.div`
     align-items: center;
 
     &::-webkit-scrollbar {
-        height: 0.6rem;
+        height: 1rem;
         background-color: transparent;
     }
 
@@ -112,10 +112,11 @@ const RecipeSlider = styled.div`
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: transparent;
+        background-color: #696969;
         border-radius: 1rem;
         padding: 0.5rem;
-        transition: all 1s ease;
+        border: 4px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
 
         &:hover {
             background-color: #343036;
