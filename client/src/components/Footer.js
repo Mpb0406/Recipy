@@ -60,9 +60,9 @@ const StyledFooter = styled.footer`
         content: '';
         position: absolute;
         top: 30%;
-        left: 0;
+        left: 2.5%;
         height: 0.1rem;
-        width: 100%;
+        width: 95%;
         background-color: #bbb;
     }
 `;
