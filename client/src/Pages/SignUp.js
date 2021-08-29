@@ -29,6 +29,7 @@ const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 90vh;
 `;
 
 const StyledForm = styled.form`
@@ -64,7 +65,7 @@ const StyledForm = styled.form`
     a {
         color: #969696;
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 500;   
     }
 `;
 
