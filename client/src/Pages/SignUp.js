@@ -22,7 +22,7 @@ const SignUp = ({ displayAlert }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (password !== password2) {
-      displayAlert("Passwords do not match", "warning");
+      displayAlert("Passwords do not match (yikes!)", "warning");
     }
   };
 

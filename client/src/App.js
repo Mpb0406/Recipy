@@ -3,6 +3,7 @@ import Nav from "./components/Nav";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
+import Alert from "./components/Alert";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Redux
@@ -16,6 +17,7 @@ function App() {
         <GlobalStyle />
         <Nav />
         <Router>
+          <Alert />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/login" component={Login} />
