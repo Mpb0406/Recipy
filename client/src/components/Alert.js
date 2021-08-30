@@ -23,11 +23,15 @@ const AlertBody = styled.div`
   color: #fff;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 2rem;
   border-radius: 0.5rem;
   font-weight: 400;
   font-size: 1.2rem;
+
+  .fa-times {
+    cursor: pointer;
+  }
 `;
 
 export default connect(mapStateToProps)(Alert);
