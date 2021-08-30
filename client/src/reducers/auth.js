@@ -1,7 +1,7 @@
 import { REGISTER_SUCCESS, REGISTER_FAIL } from "../actions/types";
 
 const initialState = {
-  token: localStaorage.getItem("token"),
+  token: localStorage.getItem("token"),
   isAuthenticated: false,
   loading: true,
   user: null,
@@ -28,5 +28,7 @@ export default function (state = initialState, action) {
         isAuthenticated: false,
         loading: false,
       };
+    default:
+      return state;
   }
 }

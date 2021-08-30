@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { MainButton } from "../Styles";
 import { connect } from "react-redux";
 import { displayAlert } from "../actions/alert";
+import { register } from "../actions/auth";
 
-const SignUp = ({ displayAlert }) => {
+const SignUp = ({ displayAlert, register }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,10 +20,13 @@ const SignUp = ({ displayAlert }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   console.log(formData);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
       displayAlert("Passwords do not match (yikes!)", "warning");
+    } else {
+      register({ name, email, password });
+      displayAlert("Registration Success!", "success");
     }
   };
 
@@ -110,4 +114,4 @@ const StyledForm = styled.form`
   }
 `;
 
-export default connect(null, { displayAlert })(SignUp);
+export default connect(null, { displayAlert, register })(SignUp);
