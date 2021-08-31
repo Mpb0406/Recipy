@@ -83,6 +83,10 @@ export const login =
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+
+      dispatch(displayAlert("Successfully Logged In", "success"));
+
+      dispatch(loadUser());
     } catch (err) {
       const errors = err.response.data.errors;
 
