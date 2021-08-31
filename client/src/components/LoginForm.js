@@ -1,20 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MainButton } from "../Styles";
+import { connect } from "react-redux";
+import { login } from "../actions/auth";
 
-const LoginForm = () => {
+const LoginForm = ({ login }) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  console.log(formData);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    login({ email, password });
+  };
+
   return (
     <StyledDiv>
-      <StyledForm action="" className="login">
-        <h1>Hello, <br /> Welcome Back</h1>
+      <StyledForm action="" onSubmit={(e) => onSubmit(e)} className="login">
+        <h1>
+          Hello, <br /> Welcome Back
+        </h1>
         <div className="form">
           <div className="input-container">
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={(e) => onChange(e)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={(e) => onChange(e)}
+            />
           </div>
-          <Link to="/" className="forgotPassword">Forgot your password?</Link>
-          <MainButton>Login</MainButton>
+          <Link to="/" className="forgotPassword">
+            Forgot your password?
+          </Link>
+          <MainButton type="submit">Login</MainButton>
           <h4 className="signUp">
             Don't have an account? <Link to="/signup">Sign Up</Link>
           </h4>
@@ -69,7 +104,7 @@ const StyledForm = styled.form`
     font-weight: 500;
 
     a {
-      color: #3B7C0B;
+      color: #3b7c0b;
       text-decoration: none;
       font-weight: 700;
     }
@@ -87,4 +122,4 @@ const StyledForm = styled.form`
   }
 `;
 
-export default LoginForm;
+export default connect(null, { login })(LoginForm);
