@@ -15,10 +15,10 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
         </StyledAnchor>
       </li>
       <li>
-        <StyledAnchor href="/myrecipes">Login</StyledAnchor>
+        <StyledAnchor href="/login">Login</StyledAnchor>
       </li>
       <li>
-        <StyledAnchor href="/myrecipes">Sign Up</StyledAnchor>
+        <StyledAnchor href="/signup">Sign Up</StyledAnchor>
       </li>
     </>
   );
@@ -34,7 +34,7 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
         <StyledAnchor href="/myrecipes">My Recipes</StyledAnchor>
       </li>
       <li>
-        <StyledAnchor onClick={logout} href="/">
+        <StyledAnchor onClick={logout} href="/dashboard">
           Logout
         </StyledAnchor>
       </li>
