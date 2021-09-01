@@ -5,7 +5,7 @@ import { MainButton } from "../Styles";
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
 
-const LoginForm = ({ login }) => {
+const LoginForm = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,6 +22,8 @@ const LoginForm = ({ login }) => {
     e.preventDefault();
     login({ email, password });
   };
+
+  // Redirect if Logged in
 
   return (
     <StyledDiv>
@@ -58,6 +60,10 @@ const LoginForm = ({ login }) => {
     </StyledDiv>
   );
 };
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
 //Styled Components
 
@@ -122,4 +128,4 @@ const StyledForm = styled.form`
   }
 `;
 
-export default connect(null, { login })(LoginForm);
+export default connect(mapStateToProps, { login })(LoginForm);

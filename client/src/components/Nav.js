@@ -1,69 +1,107 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import recipylogo from '../img/recipylogo.png';
-import user from '../img/user.png'
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import recipylogo from "../img/recipylogo.png";
+import user from "../img/user.png";
+import { connect } from "react-redux";
+import { logout } from "../actions/auth";
 
-const Nav = () => {
-    return (
-        <StyledNav>
-            <Logo src={recipylogo} alt="" />
-            <NavItems>
-                <li><StyledAnchor href="/">Home</StyledAnchor></li>
-                <li><StyledAnchor href="/browse">Browse</StyledAnchor></li>
-                <li><StyledAnchor href="/myrecipes">My Recipes</StyledAnchor></li>
-                <li><Profile src={user} alt="" /></li>
-            </NavItems>
-        </StyledNav>
-    )
+const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const guestLinks = (
+    <>
+      <li>
+        <StyledAnchor href="/" className="active">
+          Home
+        </StyledAnchor>
+      </li>
+      <li>
+        <StyledAnchor href="/myrecipes">Login</StyledAnchor>
+      </li>
+      <li>
+        <StyledAnchor href="/myrecipes">Sign Up</StyledAnchor>
+      </li>
+    </>
+  );
+
+  const authLinks = (
+    <>
+      <li>
+        <StyledAnchor href="/" className="active">
+          Home
+        </StyledAnchor>
+      </li>
+      <li>
+        <StyledAnchor href="/myrecipes">My Recipes</StyledAnchor>
+      </li>
+      <li>
+        <StyledAnchor onClick={logout} href="/">
+          Logout
+        </StyledAnchor>
+      </li>
+      <li>
+        <Profile src={user} alt="" />
+      </li>
+    </>
+  );
+
+  return (
+    <StyledNav>
+      <Logo src={recipylogo} alt="" />
+
+      {!loading && (
+        <NavItems> {isAuthenticated ? authLinks : guestLinks} </NavItems>
+      )}
+    </StyledNav>
+  );
 };
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
 
 //Styled Components
 const StyledNav = styled.nav`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 10vh;
-    margin: 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10vh;
+  margin: 0 3rem;
 `;
 
 const NavItems = styled.ul`
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 50%;
-    list-style: none;
-
-    &::after {
-        content: '';
-        height: 0.4rem;
-        width: 3.5rem;
-        background-color: #3B7C0B;
-        top: 7.5%;
-        right: 40.45%;
-        position: absolute;
-    }
-
-    a {
-
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  list-style: none;
+  .active::after {
+    content: "";
+    position: absolute;
+    height: 0.4rem;
+    width: 120%;
+    background-color: #3b7c0b;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `;
 
 const StyledAnchor = styled.a`
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #343036;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #343036;
+  position: relative;
 `;
 
 const Logo = styled.img`
-    height: 3.5rem;
-    cursor: pointer;
+  height: 3.5rem;
+  cursor: pointer;
 `;
 
 const Profile = styled.img`
-    height: 1.8rem;
-    cursor: pointer;
+  height: 1.8rem;
+  cursor: pointer;
 `;
 
-export default Nav
+export default connect(mapStateToProps, { logout })(Nav);
