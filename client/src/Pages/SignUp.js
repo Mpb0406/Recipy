@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { MainButton } from "../Styles";
 import { connect } from "react-redux";
 import { displayAlert } from "../actions/alert";
 import { register } from "../actions/auth";
 
-const SignUp = ({ displayAlert, register }) => {
+const SignUp = ({ displayAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,6 +29,12 @@ const SignUp = ({ displayAlert, register }) => {
       displayAlert("Registration Success!", "success");
     }
   };
+
+  if (isAuthenticated) {
+    setTimeout(() => {
+      return <Redirect to="/" />;
+    }, 5000);
+  }
 
   return (
     <StyledDiv>
@@ -67,6 +73,10 @@ const SignUp = ({ displayAlert, register }) => {
     </StyledDiv>
   );
 };
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
 // Styled Components
 
@@ -114,4 +124,4 @@ const StyledForm = styled.form`
   }
 `;
 
-export default connect(null, { displayAlert, register })(SignUp);
+export default connect(mapStateToProps, { displayAlert, register })(SignUp);

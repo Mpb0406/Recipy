@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { MainButton } from "../Styles";
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
@@ -24,6 +24,9 @@ const LoginForm = ({ login, isAuthenticated }) => {
   };
 
   // Redirect if Logged in
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <StyledDiv>
