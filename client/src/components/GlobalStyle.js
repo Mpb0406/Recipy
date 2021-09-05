@@ -30,6 +30,15 @@ const GlobalStyle = createGlobalStyle`
         color: #343036;
     }
 
+    span {
+        color: #3B7C0B;
+    }
+
+    p {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
     body::-webkit-scrollbar {
         width: 1rem;
         background-color: transparent;

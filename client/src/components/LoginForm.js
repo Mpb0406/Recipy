@@ -25,7 +25,7 @@ const LoginForm = ({ login, isAuthenticated }) => {
 
   // Redirect if Logged in
   if (isAuthenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/myrecipes" />;
   }
 
   return (
