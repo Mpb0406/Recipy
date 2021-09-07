@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import recipylogo from "../img/recipylogo.png";
-import user from "../img/user.png";
+import recipeNavIcon from "../img/recipe-nav-icon.png";
+import userNavIcon from "../img/user-nav-icon.png";
+import logoutNavIcon from "../img/logout-nav-icon.png";
 import { connect } from "react-redux";
 import { logout } from "../actions/auth";
 
@@ -25,21 +27,19 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const authLinks = (
     <>
-      <li>
-        <StyledAnchor href="/" className="active">
-          Home
-        </StyledAnchor>
+      <li className="active">
+        <img className="nav-icon" src={recipeNavIcon} alt="" />
+        <StyledAnchor href="/">My Recipes</StyledAnchor>
       </li>
       <li>
-        <StyledAnchor href="/myrecipes">My Recipes</StyledAnchor>
+        <img className="nav-icon" src={userNavIcon} alt="" />
+        <StyledAnchor href="/myrecipes">Profile</StyledAnchor>
       </li>
       <li>
+        <img className="nav-icon" src={logoutNavIcon} alt="" />
         <StyledAnchor onClick={logout} href="/dashboard">
           Logout
         </StyledAnchor>
-      </li>
-      <li>
-        <Profile src={user} alt="" />
       </li>
     </>
   );
@@ -74,15 +74,22 @@ const NavItems = styled.ul`
   justify-content: space-evenly;
   width: 50%;
   list-style: none;
+  position: relative;
+
   .active::after {
     content: "";
     position: absolute;
     height: 0.4rem;
-    width: 120%;
+    width: 30%;
     background-color: #3b7c0b;
-    top: 100%;
+    top: 105%;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  li {
+    display: flex;
+    align-items: center;
   }
 `;
 

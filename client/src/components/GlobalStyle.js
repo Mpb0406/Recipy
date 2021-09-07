@@ -39,6 +39,11 @@ const GlobalStyle = createGlobalStyle`
         font-weight: 500;
     }
 
+    .nav-icon {
+        height: 1.5rem;
+        margin-right: 0.5rem;
+    }
+
     body::-webkit-scrollbar {
         width: 1rem;
         background-color: transparent;
