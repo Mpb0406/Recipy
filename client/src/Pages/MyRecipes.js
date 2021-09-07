@@ -30,6 +30,7 @@ const StyledSection = styled.section`
   button {
     margin: 2rem 3rem;
     height: 4rem;
+    width: 15%;
   }
 `;
 
