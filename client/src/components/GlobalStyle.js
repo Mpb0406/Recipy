@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -42,6 +41,49 @@ const GlobalStyle = createGlobalStyle`
     .nav-icon {
         height: 1.5rem;
         margin-right: 0.5rem;
+    }
+
+    .link-button {
+        color: #fff;
+        font-size: 1.3rem;
+        font-weight: 400;
+        text-decoration: none;
+        padding: .8rem 1.5rem;
+        border-radius: 5rem;
+        background-color: #3B7C0B;
+        border: 3px solid #3B7C0B;
+        margin: 3rem;
+        transition: all 0.5s ease;
+        
+        &:hover {
+            background-color: transparent;
+            border: 3px solid #3B7C0B;
+            color: #3B7C0B
+        }
+    }
+
+    .text-input {
+        padding: 0.3rem;
+        font-size: 1.2rem;
+        font-family: Poppins;
+    }
+
+    label {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #969696;
+        margin: 0.3rem 0 1.2rem;
+    }
+
+    textarea {
+        font-family: Poppins;
+        padding: 0.3rem;
+        font-size: 1.2rem;
+    }
+
+    .form-title {
+        margin: 1rem 3rem;
+        font-size: 3rem;
     }
 
     body::-webkit-scrollbar {

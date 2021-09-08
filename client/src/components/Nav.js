@@ -26,10 +26,12 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   const authLinks = (
-    <>
-      <li className="active">
+    <div className="navContainer">
+      <li>
         <img className="nav-icon" src={recipeNavIcon} alt="" />
-        <StyledAnchor href="/">My Recipes</StyledAnchor>
+        <StyledAnchor className="active" href="/myrecipes">
+          My Recipes
+        </StyledAnchor>
       </li>
       <li>
         <img className="nav-icon" src={userNavIcon} alt="" />
@@ -41,7 +43,7 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
           Logout
         </StyledAnchor>
       </li>
-    </>
+    </div>
   );
 
   return (
@@ -74,13 +76,19 @@ const NavItems = styled.ul`
   justify-content: space-evenly;
   width: 50%;
   list-style: none;
-  position: relative;
+
+  .navContainer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 
   .active::after {
     content: "";
     position: absolute;
     height: 0.4rem;
-    width: 30%;
+    width: 100%;
     background-color: #3b7c0b;
     top: 105%;
     left: 50%;

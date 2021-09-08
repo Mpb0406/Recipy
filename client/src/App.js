@@ -6,6 +6,7 @@ import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import Alert from "./components/Alert";
 import Footer from "./components/Footer";
+import CreateRecipe from "./components/CreateRecipe";
 import setAuthToken from "./utils/setAuthToken";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             <PrivateRoute path="/myrecipes" component={MyRecipes} />
+            <PrivateRoute path="/create-recipe" component={CreateRecipe} />
           </Switch>
         </Router>
         <Footer />
