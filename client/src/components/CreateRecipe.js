@@ -31,6 +31,13 @@ const CreateRecipe = () => {
       ...ingredients.slice(index + 1),
     ]);
   };
+
+  const [procedures, setProcedures] = useState([]);
+
+  const addProcedure = (e) => {
+    console.log("Hi");
+    setProcedures([...procedures, 1]);
+  };
   return (
     <>
       <h1 className="form-title">
@@ -165,7 +172,7 @@ const CreateRecipe = () => {
             rows="2"
             placeholder="Add a procedure*"
           ></textarea>
-          <i className="fas fa-times"></i>
+          <i className="fas fa-times blank"></i>
         </div>
         <div className="procedure">
           <h3 className="step">Step 2.</h3>
@@ -179,7 +186,21 @@ const CreateRecipe = () => {
           <i className="fas fa-times"></i>
         </div>
 
-        <div className="add-ingredient">
+        {procedures.map((procedure, idx) => (
+          <div className="procedure">
+            <h3 className="step">Step {idx + 3}</h3>
+            <textarea
+              name="procedure"
+              className="procedure-text"
+              cols="50"
+              rows="2"
+              placeholder="Add a procedure*"
+            ></textarea>
+            <i className="fas fa-times"></i>
+          </div>
+        ))}
+
+        <div className="add-ingredient" onClick={(e) => addProcedure(e)}>
           <img src={addNew} className="add-item" alt="" />
           <p>Add another step</p>
         </div>
@@ -331,6 +352,16 @@ const StyledForm = styled.form`
 
     h3 {
       color: #969696;
+    }
+
+    i {
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .blank {
+      opacity: 0;
+      pointer-events: none;
     }
   }
 
