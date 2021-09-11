@@ -13,14 +13,24 @@ const CreateRecipe = () => {
       e.target.value = "";
     }
   };
-
   const removeTag = (e) => {
     console.log(e.target);
     const index = tags.indexOf(e.target.parentElement.firstChild.innerText);
     setTags([...tags.slice(0, index), ...tags.slice(index + 1)]);
     console.log(index);
   };
-
+  const [ingredients, setIngredients] = useState([]);
+  const addIngredient = (e) => {
+    setIngredients([...ingredients, 1]);
+  };
+  const removeIngredient = (e) => {
+    const index = e.target.parentElement.id;
+    console.log(index);
+    setIngredients([
+      ...ingredients.slice(0, index),
+      ...ingredients.slice(index + 1),
+    ]);
+  };
   return (
     <>
       <h1 className="form-title">
@@ -29,6 +39,7 @@ const CreateRecipe = () => {
       <StyledForm>
         <input
           type="text"
+          required="true"
           autoCapitalize="words"
           className="text-input"
           name="title"
@@ -102,32 +113,44 @@ const CreateRecipe = () => {
             placeholder="Alt Ingredient"
           />
         </div>
-        <div className="ingredient">
-          <input type="text" className="text-input amount" placeholder="Amt*" />
-          <select
-            name="unit"
-            className="text-input unit"
-            id=""
-            placeholder="unit*"
-          >
-            <option value="tbsp">Tbsp</option>
-            <option value="tsp">Tsp</option>
-            <option value="oz">oz.</option>
-            <option value="cup">cup</option>
-          </select>
-          <input
-            type="text"
-            className="text-input ingredient-input"
-            placeholder="Ingredient*"
-          />
-          <input
-            type="text"
-            className="text-input alt-input"
-            placeholder="Alt Ingredient"
-          />
-        </div>
 
-        <div className="add-ingredient">
+        {/* Conditional Render Ingredient Entry */}
+        {ingredients.map((ingredient, idx) => (
+          <div className="ingredient" id={idx}>
+            <input
+              type="text"
+              className="text-input amount"
+              placeholder="Amt*"
+            />
+            <select
+              name="unit"
+              className="text-input unit"
+              id=""
+              placeholder="unit*"
+            >
+              <option value="tbsp">Tbsp</option>
+              <option value="tsp">Tsp</option>
+              <option value="oz">oz.</option>
+              <option value="cup">cup</option>
+            </select>
+            <input
+              type="text"
+              className="text-input ingredient-input"
+              placeholder="Ingredient*"
+            />
+            <input
+              type="text"
+              className="text-input alt-input"
+              placeholder="Alt Ingredient"
+            />
+            <i
+              onClick={(e) => removeIngredient(e)}
+              className="fas fa-times"
+            ></i>
+          </div>
+        ))}
+
+        <div className="add-ingredient" onClick={(e) => addIngredient(e)}>
           <img src={addNew} className="add-item" alt="" />
           <p>Add another ingredient</p>
         </div>
@@ -142,6 +165,7 @@ const CreateRecipe = () => {
             rows="2"
             placeholder="Add a procedure*"
           ></textarea>
+          <i className="fas fa-times"></i>
         </div>
         <div className="procedure">
           <h3 className="step">Step 2.</h3>
@@ -152,6 +176,7 @@ const CreateRecipe = () => {
             rows="2"
             placeholder="Add a procedure"
           ></textarea>
+          <i className="fas fa-times"></i>
         </div>
 
         <div className="add-ingredient">
@@ -238,6 +263,7 @@ const StyledForm = styled.form`
   .ingredient {
     margin: 0.5rem 0;
     display: flex;
+    align-items: center;
 
     .amount {
       width: 15%;
@@ -256,22 +282,24 @@ const StyledForm = styled.form`
     .alt-input {
       flex: 3 1;
     }
+
+    .fa-times {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
   }
 
   .add-ingredient {
     display: flex;
-    align-items: center;
+    align-self: center;
     justify-content: center;
     margin: 1rem;
-
-    img {
-      cursor: pointer;
-    }
+    cursor: pointer;
 
     p {
       margin-left: 0.8rem;
       color: #969696;
-      cursor: pointer;
     }
   }
 
