@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import addNew from "../img/add-new.svg";
 import { MainButton } from "../Styles";
 
 const CreateRecipe = () => {
+  const [tags, setTags] = useState([]);
+  const createTag = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setTags([...tags, e.target.value]);
+      console.log(tags);
+      e.target.value = "";
+    }
+  };
+
+  const removeTag = (e) => {
+    console.log(e.target);
+    const index = tags.indexOf(e.target.parentElement.firstChild.innerText);
+    setTags([...tags.slice(0, index), ...tags.slice(index + 1)]);
+    console.log(index);
+  };
+
   return (
     <>
       <h1 className="form-title">
@@ -12,9 +29,11 @@ const CreateRecipe = () => {
       <StyledForm>
         <input
           type="text"
+          autoCapitalize="words"
           className="text-input"
           name="title"
           placeholder="Title*"
+          autoComplete="off"
         />
         <label htmlFor="title">Give your recipe a title</label>
 
@@ -141,8 +160,26 @@ const CreateRecipe = () => {
         </div>
 
         <h2 className="tags-header">Add Tags</h2>
-        <div className="tag-container">
-          <input className="tag-input" type="text" placeholder="Add a tag" />
+        <div className="container">
+          <div className="tag-container">
+            {tags.map((tag, idx) => (
+              <div className="tag">
+                <span className="tag-text">{tag}</span>
+                <i
+                  onClick={(e) => removeTag(e)}
+                  dataValue={idx}
+                  className="fas fa-times"
+                ></i>
+              </div>
+            ))}
+
+            <input
+              type="text"
+              className="tag-input"
+              placeholder="Type tag and press Enter"
+              onKeyPress={(e) => createTag(e)}
+            />
+          </div>
         </div>
 
         <MainButton>Submit</MainButton>
@@ -286,17 +323,47 @@ const StyledForm = styled.form`
     }
   }
 
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
   .tag-container {
-    height: 5rem;
-    width: 100%;
-    background-color: #fff;
     border: 1px solid black;
+    padding: 0.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    flex: 1 1 1.5rem;
+  }
+
+  .tag {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid black;
+    margin: 0.25rem;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    background-color: #3b7c0b;
+
+    span {
+      color: #fff;
+    }
+
+    i {
+      margin-left: 0.5rem;
+      cursor: pointer;
+      color: #fff;
+    }
   }
 
   .tag-input {
-    font-size: 1.3rem;
+    flex: 1;
+    padding: 0.25rem;
+    font-size: 1.2rem;
     outline: none;
     border: none;
+    background-color: transparent;
   }
 `;
 export default CreateRecipe;
