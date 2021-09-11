@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         background-color: #F0F7FF;
+        font-family: Poppins;
     }
 
     html {
@@ -41,6 +42,10 @@ const GlobalStyle = createGlobalStyle`
     .nav-icon {
         height: 1.5rem;
         margin-right: 0.5rem;
+    }
+
+    .add-item {
+        height: 2rem;
     }
 
     .link-button {
