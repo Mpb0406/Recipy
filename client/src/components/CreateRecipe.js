@@ -14,19 +14,13 @@ const CreateRecipe = () => {
     tags: [],
   });
 
-  const {
-    title,
-    description,
-    preptime,
-    cooktime,
-    ingredients,
-    procedures,
-    tags,
-  } = formData;
+  const { title, description, preptime, cooktime, procedures, tags } = formData;
 
   const onChange = (e) => {
-    e.preventDefault();
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  console.log(formData);
 
   const [tag, setTags] = useState([]);
   const createTag = (e) => {
@@ -156,6 +150,8 @@ const CreateRecipe = () => {
               type="text"
               className="text-input amount"
               placeholder="Amt*"
+              name="ingredients"
+              onChange={(e) => onChange(e)}
             />
             <select
               name="unit"
@@ -240,7 +236,7 @@ const CreateRecipe = () => {
               <div className="tag">
                 <span className="tag-text">{item}</span>
                 <i
-                  onClick={(e) => removeTag(e)}
+                  onClick={(e) => removeTag([e])}
                   dataValue={idx}
                   className="fas fa-times"
                 ></i>
@@ -315,7 +311,7 @@ const StyledForm = styled.form`
     align-items: center;
 
     .amount {
-      width: 15%;
+      width: 10vh;
       margin-right: 1rem;
     }
 
