@@ -4,39 +4,60 @@ import addNew from "../img/add-new.svg";
 import { MainButton } from "../Styles";
 
 const CreateRecipe = () => {
-  const [tags, setTags] = useState([]);
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    preptime: "",
+    cooktime: "",
+    ingredients: [],
+    procedures: [],
+    tags: [],
+  });
+
+  const {
+    title,
+    description,
+    preptime,
+    cooktime,
+    ingredients,
+    procedures,
+    tags,
+  } = formData;
+
+  const onChange = (e) => {
+    e.preventDefault();
+  };
+
+  const [tag, setTags] = useState([]);
   const createTag = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      setTags([...tags, e.target.value]);
-      console.log(tags);
+      setTags([...tag, e.target.value]);
       e.target.value = "";
     }
   };
   const removeTag = (e) => {
     console.log(e.target);
-    const index = tags.indexOf(e.target.parentElement.firstChild.innerText);
-    setTags([...tags.slice(0, index), ...tags.slice(index + 1)]);
-    console.log(index);
+    const index = tag.indexOf(e.target.parentElement.firstChild.innerText);
+    setTags([...tag.slice(0, index), ...tag.slice(index + 1)]);
   };
-  const [ingredients, setIngredients] = useState([]);
+  const [ingredient, setIngredients] = useState([]);
   const addIngredient = (e) => {
-    setIngredients([...ingredients, 1]);
+    setIngredients([...ingredient, 1]);
   };
   const removeIngredient = (e) => {
     const index = e.target.parentElement.id;
     console.log(index);
     setIngredients([
-      ...ingredients.slice(0, index),
-      ...ingredients.slice(index + 1),
+      ...ingredient.slice(0, index),
+      ...ingredient.slice(index + 1),
     ]);
   };
 
-  const [procedures, setProcedures] = useState([]);
+  const [procedure, setProcedures] = useState([]);
 
   const addProcedure = (e) => {
-    console.log("Hi");
-    setProcedures([...procedures, 1]);
+    setProcedures([...procedure, 1]);
   };
   return (
     <>
@@ -49,18 +70,22 @@ const CreateRecipe = () => {
           required="true"
           autoCapitalize="words"
           className="text-input"
-          name="title"
           placeholder="Title*"
           autoComplete="off"
+          name="title"
+          value={title}
+          onChange={(e) => onChange(e)}
         />
         <label htmlFor="title">Give your recipe a title</label>
 
         <textarea
-          name="description"
           id=""
           cols="50"
           rows="5"
           placeholder="Description"
+          name="description"
+          value={description}
+          onChange={(e) => onChange(e)}
         ></textarea>
         <label htmlFor="description">Max 500 characters</label>
 
@@ -68,8 +93,7 @@ const CreateRecipe = () => {
           <div className="yield">
             <input
               type="text"
-              className="text-input yield-inout"
-              name="yield"
+              className="text-input yield-input"
               placeholder="Yield"
             />
             <label htmlFor="yield">How many does this recipe serve</label>
@@ -78,8 +102,10 @@ const CreateRecipe = () => {
             <input
               type="text"
               className="text-input"
-              name="prep-time"
               placeholder="Prep time"
+              name="preptime"
+              value={preptime}
+              onChange={(e) => onChange(e)}
             />
             <p>min</p>
           </div>
@@ -88,8 +114,10 @@ const CreateRecipe = () => {
             <input
               type="text"
               className="text-input"
-              name="cook-time"
               placeholder="Cook time"
+              name="cooktime"
+              value={cooktime}
+              onChange={(e) => onChange(e)}
             />
             <p>min</p>
           </div>
@@ -122,7 +150,7 @@ const CreateRecipe = () => {
         </div>
 
         {/* Conditional Render Ingredient Entry */}
-        {ingredients.map((ingredient, idx) => (
+        {ingredient.map((item, idx) => (
           <div className="ingredient" id={idx}>
             <input
               type="text"
@@ -186,9 +214,9 @@ const CreateRecipe = () => {
           <i className="fas fa-times"></i>
         </div>
 
-        {procedures.map((procedure, idx) => (
+        {procedure.map((item, idx) => (
           <div className="procedure">
-            <h3 className="step">Step {idx + 3}</h3>
+            <h3 className="step">{`Step ${idx + 3}.`}</h3>
             <textarea
               name="procedure"
               className="procedure-text"
@@ -208,9 +236,9 @@ const CreateRecipe = () => {
         <h2 className="tags-header">Add Tags</h2>
         <div className="container">
           <div className="tag-container">
-            {tags.map((tag, idx) => (
+            {tag.map((item, idx) => (
               <div className="tag">
-                <span className="tag-text">{tag}</span>
+                <span className="tag-text">{item}</span>
                 <i
                   onClick={(e) => removeTag(e)}
                   dataValue={idx}

@@ -102,7 +102,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body::-webkit-scrollbar-thumb {
-        border: 4px solid rgba(0, 0, 0, 0);
+        border: 3px solid rgba(0, 0, 0, 0);
         background-clip: padding-box;
         border-radius: 9999px;
         background-color: #696969;
