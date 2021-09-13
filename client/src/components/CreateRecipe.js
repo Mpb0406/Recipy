@@ -20,12 +20,15 @@ const CreateRecipe = () => {
     { id: 1, amount: "2", unit: "tbsp", ingredient: "butter" },
   ]);
 
+  const [steps, setSteps] = useState([{ id: 1, step: "Cook the food" }]);
+
   useEffect(() => {
     setFormData({
       ...formData,
       ingredients: ings,
+      procedures: steps,
     });
-  }, [ings]);
+  }, [ings, steps]);
 
   const {
     title,
@@ -280,33 +283,55 @@ const CreateRecipe = () => {
           ></textarea>
           <i className="fas fa-times blank"></i>
         </div>
-        <div className="procedure">
-          <h3 className="step">Step 2.</h3>
-          <textarea
-            name="procedure"
-            className="procedure-text"
-            cols="50"
-            rows="2"
-            placeholder="Add a procedure"
-          ></textarea>
-          <i className="fas fa-times"></i>
-        </div>
 
-        {procedure.map((item, idx) => (
-          <div className="procedure">
-            <h3 className="step">{`Step ${idx + 3}.`}</h3>
-            <textarea
-              name="procedure"
-              className="procedure-text"
-              cols="50"
-              rows="2"
-              placeholder="Add a procedure*"
-            ></textarea>
-            <i className="fas fa-times"></i>
-          </div>
-        ))}
+        {steps.map((step, idx) => {
+          return (
+            <div className="procedure">
+              <h3 className="step">Step 1.</h3>
+              <textarea
+                name="procedure"
+                className="procedure-text"
+                cols="50"
+                rows="2"
+                placeholder="Add a procedure*"
+                value={step.step}
+                onChange={(e) => {
+                  const step = e.target.value;
+                  setFormData({
+                    ...formData,
+                    procedures: steps,
+                  });
+                  setSteps((currentStep) =>
+                    produce(currentStep, (value) => {
+                      value[idx].step = step;
+                    })
+                  );
+                }}
+              ></textarea>
+              <i
+                className="fas fa-times"
+                onClick={() => {
+                  setSteps((currentStep) =>
+                    currentStep.filter((x) => x.id !== step.id)
+                  );
+                }}
+              ></i>
+            </div>
+          );
+        })}
 
-        <div className="add-ingredient" onClick={(e) => addProcedure(e)}>
+        <div
+          className="add-ingredient"
+          onClick={() =>
+            setSteps((currentStep) => [
+              ...currentStep,
+              {
+                id: uuidv4(),
+                step: "",
+              },
+            ])
+          }
+        >
           <img src={addNew} className="add-item" alt="" />
           <p>Add another step</p>
         </div>
@@ -318,7 +343,7 @@ const CreateRecipe = () => {
               <div className="tag">
                 <span className="tag-text">{item}</span>
                 <i
-                  onClick={(e) => removeTag([e])}
+                  onClick={(e) => removeTag(e)}
                   dataValue={idx}
                   className="fas fa-times"
                 ></i>
@@ -333,9 +358,10 @@ const CreateRecipe = () => {
             />
           </div>
         </div>
-        <button>Test</button>
 
         <MainButton>Submit</MainButton>
+
+        <div>{JSON.stringify(formData)}</div>
       </StyledForm>
     </>
   );
