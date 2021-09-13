@@ -16,19 +16,28 @@ const CreateRecipe = () => {
     tags: [],
   });
 
-  const [ings, setIngs] = useState([
-    { id: 1, amount: "2", unit: "tbsp", ingredient: "butter" },
-  ]);
+  const [ings, setIngs] = useState([]);
 
-  const [steps, setSteps] = useState([{ id: 1, step: "Cook the food" }]);
+  const [steps, setSteps] = useState([]);
+
+  const [tag, setTags] = useState([]);
+  const createTag = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setTags([...tag, e.target.value]);
+      e.target.value = "";
+    }
+  };
 
   useEffect(() => {
     setFormData({
       ...formData,
       ingredients: ings,
       procedures: steps,
+      tags: tag,
     });
-  }, [ings, steps]);
+    console.log(tag);
+  }, [ings, steps, tag]);
 
   const {
     title,
@@ -44,31 +53,9 @@ const CreateRecipe = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const [tag, setTags] = useState([]);
-  const createTag = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      setTags([...tag, e.target.value]);
-      e.target.value = "";
-    }
-  };
   const removeTag = (e) => {
     const index = tag.indexOf(e.target.parentElement.firstChild.innerText);
     setTags([...tag.slice(0, index), ...tag.slice(index + 1)]);
-  };
-  const [item, setIngredients] = useState([]);
-  const addIngredient = (e) => {
-    setIngredients([...item, 1]);
-  };
-  const removeIngredient = (e) => {
-    const index = e.target.parentElement.id;
-    setIngredients([...item.slice(0, index), ...item.slice(index + 1)]);
-  };
-
-  const [procedure, setProcedures] = useState([]);
-
-  const addProcedure = (e) => {
-    setProcedures([...procedure, 1]);
   };
 
   // Console.logs
@@ -138,30 +125,6 @@ const CreateRecipe = () => {
         </div>
 
         <h2 className="ingredient-header">Add Ingredients</h2>
-        <div className="ingredient">
-          <input type="text" className="text-input amount" placeholder="Amt*" />
-          <select
-            name="unit"
-            className="text-input unit"
-            id=""
-            placeholder="unit*"
-          >
-            <option value="tbsp">Tbsp</option>
-            <option value="tsp">Tsp</option>
-            <option value="oz">oz.</option>
-            <option value="cup">cup</option>
-          </select>
-          <input
-            type="text"
-            className="text-input ingredient-input"
-            placeholder="Ingredient*"
-          />
-          <input
-            type="text"
-            className="text-input alt-input"
-            placeholder="Alt Ingredient"
-          />
-        </div>
 
         <div>
           {ings.map((ing, idx) => {
@@ -267,22 +230,25 @@ const CreateRecipe = () => {
             ])
           }
         >
-          <img src={addNew} className="add-item" alt="" />
-          <p>Add another ingredient</p>
+          <i
+            className="fas fa-plus-square add-item"
+            alt=""
+            style={
+              ings.length === 0 ? { color: "#3b7c0b" } : { color: "#969696" }
+            }
+          />
+          <p
+            style={
+              ings.length === 0
+                ? { color: "#3b7c0b", fontWeight: "600" }
+                : { color: "#969696" }
+            }
+          >
+            {ings.length === 0 ? "Add an ingredient" : "Add another ingredient"}
+          </p>
         </div>
 
         <h2 className="add-procedure">Add Procedures</h2>
-        <div className="procedure">
-          <h3 className="step">Step 1.</h3>
-          <textarea
-            name="procedure"
-            className="procedure-text"
-            cols="50"
-            rows="2"
-            placeholder="Add a procedure*"
-          ></textarea>
-          <i className="fas fa-times blank"></i>
-        </div>
 
         {steps.map((step, idx) => {
           return (
@@ -332,8 +298,22 @@ const CreateRecipe = () => {
             ])
           }
         >
-          <img src={addNew} className="add-item" alt="" />
-          <p>Add another step</p>
+          <i
+            className="fas fa-plus-square add-item"
+            alt=""
+            style={
+              steps.length === 0 ? { color: "#3b7c0b" } : { color: "#969696" }
+            }
+          />
+          <p
+            style={
+              steps.length === 0
+                ? { color: "#3b7c0b", fontWeight: "600" }
+                : { color: "#969696" }
+            }
+          >
+            {steps.length === 0 ? "Add a step" : "Add another step"}
+          </p>
         </div>
 
         <h2 className="tags-header">Add Tags</h2>
@@ -353,7 +333,7 @@ const CreateRecipe = () => {
             <input
               type="text"
               className="tag-input"
-              placeholder="Type tag and press Enter"
+              placeholder="Type tag and press 'Enter'"
               onKeyPress={(e) => createTag(e)}
             />
           </div>
@@ -448,8 +428,13 @@ const StyledForm = styled.form`
     display: flex;
     align-self: center;
     justify-content: center;
+    align-items: center;
     margin: 1rem;
     cursor: pointer;
+
+    .fa-plus-square {
+      font-size: 2rem;
+    }
 
     p {
       margin-left: 0.8rem;
