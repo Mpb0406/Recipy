@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import addNew from "../img/add-new.svg";
 import { MainButton } from "../Styles";
@@ -20,6 +20,13 @@ const CreateRecipe = () => {
     { id: 1, amount: "2", unit: "tbsp", ingredient: "butter" },
   ]);
 
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      ingredients: ings,
+    });
+  }, [ings]);
+
   const {
     title,
     description,
@@ -34,9 +41,6 @@ const CreateRecipe = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  console.log(ings);
-  console.log(formData);
-
   const [tag, setTags] = useState([]);
   const createTag = (e) => {
     if (e.key === "Enter") {
@@ -46,7 +50,6 @@ const CreateRecipe = () => {
     }
   };
   const removeTag = (e) => {
-    console.log(e.target);
     const index = tag.indexOf(e.target.parentElement.firstChild.innerText);
     setTags([...tag.slice(0, index), ...tag.slice(index + 1)]);
   };
@@ -56,7 +59,6 @@ const CreateRecipe = () => {
   };
   const removeIngredient = (e) => {
     const index = e.target.parentElement.id;
-    console.log(index);
     setIngredients([...item.slice(0, index), ...item.slice(index + 1)]);
   };
 
@@ -65,6 +67,9 @@ const CreateRecipe = () => {
   const addProcedure = (e) => {
     setProcedures([...procedure, 1]);
   };
+
+  // Console.logs
+  console.log(formData);
   return (
     <>
       <h1 className="form-title">
@@ -155,69 +160,27 @@ const CreateRecipe = () => {
           />
         </div>
 
-        {/* Conditional Render Ingredient Entry */}
-        {/* {item.map((item, idx) => (
-          <div className="ingredient" id={idx}>
-            <input
-              type="text"
-              className="text-input amount"
-              placeholder="Amt*"
-              name="ingredients"
-              onChange={(e) => onChange(e)}
-            />
-            <select
-              name="unit"
-              className="text-input unit"
-              id=""
-              placeholder="unit*"
-            >
-              <option value="tbsp">Tbsp</option>
-              <option value="tsp">Tsp</option>
-              <option value="oz">oz.</option>
-              <option value="cup">cup</option>
-            </select>
-            <input
-              type="text"
-              className="text-input ingredient-input"
-              placeholder="Ingredient*"
-            />
-            <input
-              type="text"
-              className="text-input alt-input"
-              placeholder="Alt Ingredient"
-            />
-            <i
-              onClick={(e) => removeIngredient(e)}
-              className="fas fa-times"
-            ></i>
-          </div>
-        ))} */}
-
-        {/* Ingredient Form */}
         <div>
-          {ings.map((ing, index) => {
+          {ings.map((ing, idx) => {
             return (
-              <div key={ing.id}>
+              <div className="ingredient" key={ing.id}>
                 <input
                   type="text"
                   placeholder="Amount"
+                  className="text-input amount"
                   value={ing.amount}
                   onChange={(e) => {
                     const amount = e.target.value;
-                    setFormData({
-                      ...formData,
-                      ingredients: ings,
-                    });
                     setIngs((currentIngredient) =>
                       produce(currentIngredient, (value) => {
-                        value[index].amount = amount;
+                        value[idx].amount = amount;
                       })
                     );
                   }}
                 />
-                <input
-                  type="text"
+                <select
                   placeholder="Unit"
+                  className="text-input unit"
                   value={ing.unit}
                   onChange={(e) => {
                     const unit = e.target.value;
@@ -231,10 +194,16 @@ const CreateRecipe = () => {
                       })
                     );
                   }}
-                />
+                >
+                  <option value="tbsp">Tbsp</option>
+                  <option value="tsp">Tsp</option>
+                  <option value="oz">Oz</option>
+                  <option value="cup">Cup</option>
+                </select>
                 <input
                   type="text"
                   placeholder="Ingredient"
+                  className="text-input ingredient-input"
                   value={ing.ingredient}
                   onChange={(e) => {
                     const ingredient = e.target.value;
@@ -252,6 +221,7 @@ const CreateRecipe = () => {
                 <input
                   type="text"
                   placeholder="Alt-Ingredient"
+                  className="text-input alt-input"
                   value={ing.alternate}
                   onChange={(e) => {
                     const alternate = e.target.value;
@@ -266,6 +236,14 @@ const CreateRecipe = () => {
                     );
                   }}
                 />
+                <i
+                  className="fas fa-times"
+                  onClick={() => {
+                    setIngs((currentIngredient) =>
+                      currentIngredient.filter((x) => x.id !== ing.id)
+                    );
+                  }}
+                ></i>
               </div>
             );
           })}
