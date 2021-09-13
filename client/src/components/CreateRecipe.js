@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import addNew from "../img/add-new.svg";
 import { MainButton } from "../Styles";
+import { produce } from "immer";
+import { v4 as uuidv4 } from "uuid";
 
 const CreateRecipe = () => {
   const [formData, setFormData] = useState({
@@ -9,17 +11,30 @@ const CreateRecipe = () => {
     description: "",
     preptime: "",
     cooktime: "",
-    ingredients: [],
+    ingredients: "",
     procedures: [],
     tags: [],
   });
 
-  const { title, description, preptime, cooktime, procedures, tags } = formData;
+  const [ings, setIngs] = useState([
+    { id: 1, amount: "2", unit: "tbsp", ingredient: "butter" },
+  ]);
+
+  const {
+    title,
+    description,
+    preptime,
+    cooktime,
+    ingredients,
+    procedures,
+    tags,
+  } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  console.log(ings);
   console.log(formData);
 
   const [tag, setTags] = useState([]);
@@ -35,17 +50,14 @@ const CreateRecipe = () => {
     const index = tag.indexOf(e.target.parentElement.firstChild.innerText);
     setTags([...tag.slice(0, index), ...tag.slice(index + 1)]);
   };
-  const [ingredient, setIngredients] = useState([]);
+  const [item, setIngredients] = useState([]);
   const addIngredient = (e) => {
-    setIngredients([...ingredient, 1]);
+    setIngredients([...item, 1]);
   };
   const removeIngredient = (e) => {
     const index = e.target.parentElement.id;
     console.log(index);
-    setIngredients([
-      ...ingredient.slice(0, index),
-      ...ingredient.slice(index + 1),
-    ]);
+    setIngredients([...item.slice(0, index), ...item.slice(index + 1)]);
   };
 
   const [procedure, setProcedures] = useState([]);
@@ -144,7 +156,7 @@ const CreateRecipe = () => {
         </div>
 
         {/* Conditional Render Ingredient Entry */}
-        {ingredient.map((item, idx) => (
+        {/* {item.map((item, idx) => (
           <div className="ingredient" id={idx}>
             <input
               type="text"
@@ -179,9 +191,101 @@ const CreateRecipe = () => {
               className="fas fa-times"
             ></i>
           </div>
-        ))}
+        ))} */}
 
-        <div className="add-ingredient" onClick={(e) => addIngredient(e)}>
+        {/* Ingredient Form */}
+        <div>
+          {ings.map((ing, index) => {
+            return (
+              <div key={ing.id}>
+                <input
+                  type="text"
+                  placeholder="Amount"
+                  value={ing.amount}
+                  onChange={(e) => {
+                    const amount = e.target.value;
+                    setFormData({
+                      ...formData,
+                      ingredients: ings,
+                    });
+                    setIngs((currentIngredient) =>
+                      produce(currentIngredient, (value) => {
+                        value[index].amount = amount;
+                      })
+                    );
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="Unit"
+                  value={ing.unit}
+                  onChange={(e) => {
+                    const unit = e.target.value;
+                    setFormData({
+                      ...formData,
+                      ingredients: ings,
+                    });
+                    setIngs((currentIngredient) =>
+                      produce(currentIngredient, (value) => {
+                        value[idx].unit = unit;
+                      })
+                    );
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="Ingredient"
+                  value={ing.ingredient}
+                  onChange={(e) => {
+                    const ingredient = e.target.value;
+                    setFormData({
+                      ...formData,
+                      ingredients: ings,
+                    });
+                    setIngs((currentIngredient) =>
+                      produce(currentIngredient, (value) => {
+                        value[idx].ingredient = ingredient;
+                      })
+                    );
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="Alt-Ingredient"
+                  value={ing.alternate}
+                  onChange={(e) => {
+                    const alternate = e.target.value;
+                    setFormData({
+                      ...formData,
+                      ingredients: ings,
+                    });
+                    setIngs((currentIngredient) =>
+                      produce(currentIngredient, (value) => {
+                        value[idx].alternate = alternate;
+                      })
+                    );
+                  }}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        <div
+          className="add-ingredient"
+          onClick={() =>
+            setIngs((currentIngredient) => [
+              ...currentIngredient,
+              {
+                id: uuidv4(),
+                amount: "",
+                unit: "",
+                ingredient: "",
+                alternate: "",
+              },
+            ])
+          }
+        >
           <img src={addNew} className="add-item" alt="" />
           <p>Add another ingredient</p>
         </div>

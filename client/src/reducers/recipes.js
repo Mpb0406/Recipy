@@ -1,7 +1,7 @@
 import { ADD_RECIPE } from "../actions/types";
 
 const initialState = {
-  recipe: [],
+  recipe: null,
   loading: false,
   error: {},
 };
