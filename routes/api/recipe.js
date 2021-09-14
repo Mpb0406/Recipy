@@ -27,7 +27,7 @@ router.post(
       description,
       ingredients,
       procedures,
-      yield,
+      serves,
       preptime,
       cooktime,
       pairswith,
@@ -41,7 +41,7 @@ router.post(
     if (description) recipeFields.description = description;
     if (ingredients) recipeFields.ingredients = ingredients;
     if (procedures) recipeFields.procedures = procedures;
-    if (yield) recipeFields.yield = yield;
+    if (serves) recipeFields.serves = serves;
     if (preptime) recipeFields.preptime = preptime;
     if (cooktime) recipeFields.cooktime = cooktime;
     if (pairswith) recipeFields.pairswith = pairswith;
@@ -101,7 +101,7 @@ router.put("/:id", auth, async (req, res) => {
     description,
     ingredients,
     procedures,
-    yield,
+    serves,
     preptime,
     cooktime,
     pairswith,
@@ -115,7 +115,7 @@ router.put("/:id", auth, async (req, res) => {
   if (description) recipeFields.description = description;
   if (ingredients) recipeFields.ingredients = ingredients;
   if (procedures) recipeFields.procedures = procedures;
-  if (yield) recipeFields.yield = yield;
+  if (serves) recipeFields.serves = serves;
   if (preptime) recipeFields.preptime = preptime;
   if (cooktime) recipeFields.cooktime = cooktime;
   if (pairswith) recipeFields.pairswith = pairswith;

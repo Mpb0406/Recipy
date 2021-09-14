@@ -41,16 +41,7 @@ const CreateRecipe = ({ addRecipe, history }) => {
     console.log(tag);
   }, [ings, steps, tag]);
 
-  const {
-    title,
-    description,
-    serves,
-    preptime,
-    cooktime,
-    ingredients,
-    procedures,
-    tags,
-  } = formData;
+  const { title, description, serves, preptime, cooktime } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
