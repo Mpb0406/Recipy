@@ -3,11 +3,14 @@ import styled from "styled-components";
 import { MainButton } from "../Styles";
 import { produce } from "immer";
 import { v4 as uuidv4 } from "uuid";
+import { connect } from "react-redux";
+import { addRecipe } from "../actions/recipes";
 
-const CreateRecipe = () => {
+const CreateRecipe = ({ addRecipe, history }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
+    serves: "",
     preptime: "",
     cooktime: "",
     ingredients: "",
@@ -41,6 +44,7 @@ const CreateRecipe = () => {
   const {
     title,
     description,
+    serves,
     preptime,
     cooktime,
     ingredients,
@@ -57,6 +61,11 @@ const CreateRecipe = () => {
     setTags([...tag.slice(0, index), ...tag.slice(index + 1)]);
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    addRecipe(formData, history);
+  };
+
   // Console.logs
   console.log(formData);
   return (
@@ -64,7 +73,7 @@ const CreateRecipe = () => {
       <h1 className="form-title">
         Create Your <span>Recipe</span>
       </h1>
-      <StyledForm>
+      <StyledForm onSubmit={(e) => onSubmit(e)}>
         <input
           type="text"
           required="true"
@@ -95,6 +104,9 @@ const CreateRecipe = () => {
               type="text"
               className="text-input yield-input"
               placeholder="Yield"
+              name="serves"
+              value={serves}
+              onChange={(e) => onChange(e)}
             />
             <label htmlFor="yield">How many does this recipe serve</label>
           </div>
@@ -169,16 +181,16 @@ const CreateRecipe = () => {
                   type="text"
                   placeholder="Ingredient"
                   className="text-input ingredient-input"
-                  value={ing.ingredient}
+                  value={ing.item}
                   onChange={(e) => {
-                    const ingredient = e.target.value;
+                    const item = e.target.value;
                     setFormData({
                       ...formData,
                       ingredients: ings,
                     });
                     setIngs((currentIngredient) =>
                       produce(currentIngredient, (value) => {
-                        value[idx].ingredient = ingredient;
+                        value[idx].item = item;
                       })
                     );
                   }}
@@ -223,7 +235,7 @@ const CreateRecipe = () => {
                 id: uuidv4(),
                 amount: "",
                 unit: "",
-                ingredient: "",
+                item: "",
                 alternate: "",
               },
             ])
@@ -338,7 +350,7 @@ const CreateRecipe = () => {
           </div>
         </div>
 
-        <MainButton>Submit</MainButton>
+        <MainButton type="submit">Submit</MainButton>
 
         <div>{JSON.stringify(formData)}</div>
       </StyledForm>
@@ -542,4 +554,4 @@ const StyledForm = styled.form`
     background-color: transparent;
   }
 `;
-export default CreateRecipe;
+export default connect(null, { addRecipe })(CreateRecipe);
