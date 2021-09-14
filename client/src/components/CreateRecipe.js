@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import addNew from "../img/add-new.svg";
 import { MainButton } from "../Styles";
 import { produce } from "immer";
 import { v4 as uuidv4 } from "uuid";
@@ -253,7 +252,7 @@ const CreateRecipe = () => {
         {steps.map((step, idx) => {
           return (
             <div className="procedure">
-              <h3 className="step">Step 1.</h3>
+              <h3 className="step">Step {idx + 1}.</h3>
               <textarea
                 name="procedure"
                 className="procedure-text"
