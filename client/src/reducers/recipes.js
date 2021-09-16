@@ -14,6 +14,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         recipe: payload,
+        recipes: [payload],
         loading: false,
       };
     case RECIPE_ERROR:
