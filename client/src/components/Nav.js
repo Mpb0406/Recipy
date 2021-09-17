@@ -48,7 +48,9 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   return (
     <StyledNav>
-      <Logo src={recipylogo} alt="" />
+      <a href="/">
+        <Logo src={recipylogo} alt="" />
+      </a>
 
       {!loading && (
         <NavItems> {isAuthenticated ? authLinks : guestLinks} </NavItems>
