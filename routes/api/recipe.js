@@ -82,8 +82,8 @@ router.post(
 //@access   Private
 router.get("/myrecipes", auth, async (req, res) => {
   try {
-    const userPosts = await Recipe.find({ user: req.user.id });
-    res.send(userPosts);
+    const userRecipes = await Recipe.find({ user: req.user.id });
+    res.send(userRecipes);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");

@@ -1,17 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import notebookBg from "../img/notebook-bg.png";
 import { connect } from "react-redux";
+import { getRecipes } from "../actions/recipes";
 import { Link } from "react-router-dom";
+import RecipeCard from "../components/RecipeCard";
 
-const MyRecipes = () => {
+const MyRecipes = ({ recipes: { recipes }, getRecipes }) => {
+  useEffect(() => {
+    getRecipes();
+  }, []);
   return (
     <StyledSection>
       <div>
         <h1 className="form-title">
           My <span>Recipes</span>
         </h1>
-        <p>You don't have any recipes yet...</p>
+
+        {recipes.length === 0 ? (
+          <p>You don't have any recipes yet...</p>
+        ) : (
+          <div>
+            <p>These are your recipes</p>
+            <div>
+              {recipes.map((recipe) => (
+                <div className="flex">
+                  <h3>{recipe.title}</h3>
+                  <p>{recipe.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <Link to="/create-recipe" className="link-button">
           Add Recipe
         </Link>
@@ -20,6 +40,10 @@ const MyRecipes = () => {
     </StyledSection>
   );
 };
+
+const mapStateToProps = (state) => ({
+  recipes: state.recipes,
+});
 
 //Styled Components
 const StyledSection = styled.section`
@@ -42,7 +66,11 @@ const StyledSection = styled.section`
     height: 4rem;
     width: 15%;
   }
+
+  .flex {
+    display: flex;
+  }
 `;
 
 // Import Recipes State - If User Has Recipes Render Them, Else Render 'You Do Not Have Recipes'
-export default connect(null)(MyRecipes);
+export default connect(mapStateToProps, { getRecipes })(MyRecipes);
