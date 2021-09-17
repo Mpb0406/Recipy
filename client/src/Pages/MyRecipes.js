@@ -5,13 +5,14 @@ import { connect } from "react-redux";
 import { getRecipes } from "../actions/recipes";
 import { Link } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
+import Loading from "../components/Loading";
 
 const MyRecipes = ({ recipes: { recipes }, getRecipes }) => {
   useEffect(() => {
     getRecipes();
   });
   return recipes.length === 0 ? (
-    <p>Loading</p>
+    <Loading />
   ) : (
     <StyledSection>
       <div>
