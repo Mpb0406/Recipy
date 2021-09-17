@@ -20,16 +20,13 @@ const MyRecipes = ({ recipes: { recipes }, getRecipes }) => {
         {recipes.length === 0 ? (
           <p>You don't have any recipes yet...</p>
         ) : (
-          <div>
-            <p>These are your recipes</p>
-            <div className="flex">
-              {recipes.map((recipe) => (
-                <div>
-                  <h3>{recipe.title}</h3>
-                  <p>{recipe.description}</p>
-                </div>
-              ))}
-            </div>
+          <div className="flex">
+            {recipes.map((recipe) => (
+              <div>
+                <h3>{recipe.title}</h3>
+                <p>{recipe.description}</p>
+              </div>
+            ))}
           </div>
         )}
         <Link to="/create-recipe" className="link-button">
@@ -71,6 +68,7 @@ const StyledSection = styled.section`
     right: 0;
     top: 0;
     width: 30%;
+    z-index: -1;
   }
 
   .flex {
