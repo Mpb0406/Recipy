@@ -22,9 +22,9 @@ const MyRecipes = ({ recipes: { recipes }, getRecipes }) => {
         ) : (
           <div>
             <p>These are your recipes</p>
-            <div>
+            <div className="flex">
               {recipes.map((recipe) => (
-                <div className="flex">
+                <div>
                   <h3>{recipe.title}</h3>
                   <p>{recipe.description}</p>
                 </div>
@@ -65,6 +65,12 @@ const StyledSection = styled.section`
     margin: 2rem 3rem;
     height: 4rem;
     width: 15%;
+  }
+  img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30%;
   }
 
   .flex {
