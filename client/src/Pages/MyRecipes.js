@@ -9,8 +9,10 @@ import RecipeCard from "../components/RecipeCard";
 const MyRecipes = ({ recipes: { recipes }, getRecipes }) => {
   useEffect(() => {
     getRecipes();
-  }, []);
-  return (
+  });
+  return recipes.length === 0 ? (
+    <p>Loading</p>
+  ) : (
     <StyledSection>
       <div>
         <h1 className="form-title">
