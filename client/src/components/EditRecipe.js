@@ -33,7 +33,7 @@ const EditRecipe = ({ addRecipe, history }) => {
   };
 
   useEffect(() => {
-    getRecipes();
+    getOneRecipe();
 
     setFormData({
       title: loading || !recipes.title ? "" : recipe.title,

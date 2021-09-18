@@ -110,7 +110,7 @@ const CreateRecipe = ({ addRecipe, history }) => {
               value={preptime}
               onChange={(e) => onChange(e)}
             />
-            <p>min</p>
+            <label for="preptime">Time in mins</label>
           </div>
 
           <div className="time">
@@ -122,7 +122,7 @@ const CreateRecipe = ({ addRecipe, history }) => {
               value={cooktime}
               onChange={(e) => onChange(e)}
             />
-            <p>min</p>
+            <label for="cooktime">Time in mins</label>
           </div>
         </div>
 
@@ -342,8 +342,6 @@ const CreateRecipe = ({ addRecipe, history }) => {
         </div>
 
         <MainButton type="submit">Submit</MainButton>
-
-        <div>{JSON.stringify(formData)}</div>
       </StyledForm>
     </>
   );
@@ -375,8 +373,15 @@ const StyledForm = styled.form`
     margin-right: 1rem;
   }
 
-  p {
-    display: inline-block;
+  .time {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    input {
+      flex: 1;
+      width: 90%;
+    }
   }
 
   .ingredient-header {
