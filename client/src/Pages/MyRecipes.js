@@ -2,15 +2,19 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import notebookBg from "../img/notebook-bg.png";
 import { connect } from "react-redux";
-import { getRecipes } from "../actions/recipes";
+import { getOneRecipe, getRecipes } from "../actions/recipes";
 import { Link } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
 import Loading from "../components/Loading";
 
-const MyRecipes = ({ recipes: { recipes }, getRecipes }) => {
+const MyRecipes = ({ recipes: { recipes }, getRecipes, getOneRecipe }) => {
   useEffect(() => {
     getRecipes();
   });
+
+  const setRecipe = (recipe) => {
+    getOneRecipe(recipe._id);
+  };
   return recipes.length === 0 ? (
     <Loading />
   ) : (
@@ -25,7 +29,7 @@ const MyRecipes = ({ recipes: { recipes }, getRecipes }) => {
         ) : (
           <div className="flex">
             {recipes.map((recipe) => (
-              <div>
+              <div onClick={() => setRecipe(recipe)}>
                 <h3>{recipe.title}</h3>
                 <p>{recipe.description}</p>
               </div>
@@ -80,4 +84,6 @@ const StyledSection = styled.section`
 `;
 
 // Import Recipes State - If User Has Recipes Render Them, Else Render 'You Do Not Have Recipes'
-export default connect(mapStateToProps, { getRecipes })(MyRecipes);
+export default connect(mapStateToProps, { getRecipes, getOneRecipe })(
+  MyRecipes
+);
