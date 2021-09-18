@@ -1,4 +1,4 @@
-import { ADD_RECIPE, GET_RECIPES, RECIPE_ERROR } from "./types";
+import { ADD_RECIPE, GET_RECIPE, GET_RECIPES, RECIPE_ERROR } from "./types";
 import axios from "axios";
 import { displayAlert } from "./alert";
 
@@ -15,6 +15,23 @@ export const getRecipes = () => async (dispatch) => {
     dispatch({
       type: RECIPE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Get Recipe By ID
+export const getOneRecipe = (recipeID) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/recipes/myrecipes/${recipeID}`);
+
+    dispatch({
+      type: GET_RECIPE,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: RECIPE_ERROR,
+      payload: { msg: err.response },
     });
   }
 };
