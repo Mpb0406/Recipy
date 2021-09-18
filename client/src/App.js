@@ -15,6 +15,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/auth";
 import MyRecipes from "./Pages/MyRecipes";
+import DisplayRecipe from "./Pages/DisplayRecipe";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -38,6 +39,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <PrivateRoute path="/myrecipes" component={MyRecipes} />
             <PrivateRoute path="/create-recipe" component={CreateRecipe} />
+            <PrivateRoute path="/recipes/:id" exact component={DisplayRecipe} />
           </Switch>
         </Router>
         <Footer />
