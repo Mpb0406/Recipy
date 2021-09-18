@@ -90,6 +90,23 @@ router.get("/myrecipes", auth, async (req, res) => {
   }
 });
 
+//@route    GET api/recipes/myrecipes/:id
+//@desc     Get a user's recipe by recipe ID
+//@access   Private
+router.get("/myrecipes/:id", auth, async (req, res) => {
+  try {
+    const userRecipe = await Recipe.findById(req.params.id);
+    if (!userRecipe) {
+      res.status(400).send("Recipe Not Found");
+    } else {
+      res.send(userRecipe);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
 //@route    PUT api/recipes/:id
 //@desc     Update a recipe
 //@access   Private

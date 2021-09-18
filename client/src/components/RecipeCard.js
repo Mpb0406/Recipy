@@ -10,7 +10,7 @@ const RecipeCard = ({ title }) => {
     <StyledDiv>
       <RecipeImg src={shrimpstirfry} alt="" />
       <User>Mike Bolloskis</User>
-      <Title>{title}</Title>
+      <Title>{"Shrimp Stir-Fry" || title}</Title>
       <Interactions>
         <div className="likes">
           <Like src={likeempty} alt="" />

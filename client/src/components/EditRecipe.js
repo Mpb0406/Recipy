@@ -4,7 +4,8 @@ import { MainButton } from "../Styles";
 import { produce } from "immer";
 import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
-import { addRecipe } from "../actions/recipes";
+import { addRecipe, getRecipes } from "../actions/recipes";
+import recipes from "../reducers/recipes";
 
 const EditRecipe = ({ addRecipe, history }) => {
   const [formData, setFormData] = useState({
@@ -32,15 +33,10 @@ const EditRecipe = ({ addRecipe, history }) => {
   };
 
   useEffect(() => {
+    getRecipes();
+
     setFormData({
-      title: "",
-      description: "",
-      serves: "",
-      preptime: "",
-      cooktime: "",
-      ingredients: "",
-      procedures: [],
-      tags: [],
+      title: loading || !recipes.title ? "" : recipe.title,
     });
   }, []);
 
@@ -558,4 +554,4 @@ const StyledForm = styled.form`
     background-color: transparent;
   }
 `;
-export default connect(null, { addRecipe })(EditRecipe);
+export default connect(null, { addRecipe, getRecipes })(EditRecipe);
