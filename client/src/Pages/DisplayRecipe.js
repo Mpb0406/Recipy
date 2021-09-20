@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import pizzaHeader from "../img/pizza-header.png";
+import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
+import { getOneRecipe } from "../actions/recipes";
 
-const DisplayRecipe = () => {
+const DisplayRecipe = ({ getOneRecipe }) => {
+  const { id } = useParams();
+  useEffect(() => {
+    getOneRecipe(id);
+  }, []);
   return (
     <StyledDiv>
       <div className="header-container">
@@ -73,4 +80,4 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default DisplayRecipe;
+export default connect(null, { getOneRecipe })(DisplayRecipe);
