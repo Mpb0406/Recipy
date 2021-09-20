@@ -6,6 +6,7 @@ import { getOneRecipe, getRecipes } from "../actions/recipes";
 import { Link } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
 import Loading from "../components/Loading";
+import DisplayRecipe from "./DisplayRecipe";
 
 const MyRecipes = ({ recipes: { recipes }, getRecipes, getOneRecipe }) => {
   useEffect(() => {
@@ -30,8 +31,10 @@ const MyRecipes = ({ recipes: { recipes }, getRecipes, getOneRecipe }) => {
           <div className="flex">
             {recipes.map((recipe) => (
               <div onClick={() => setRecipe(recipe)}>
-                <h3>{recipe.title}</h3>
-                <p>{recipe.description}</p>
+                <Link to={`"/recipes/${recipe._id}`}>
+                  <h3>{recipe.title}</h3>
+                  <p>{recipe.description}</p>
+                </Link>
               </div>
             ))}
           </div>

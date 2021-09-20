@@ -39,7 +39,11 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <PrivateRoute path="/myrecipes" component={MyRecipes} />
             <PrivateRoute path="/create-recipe" component={CreateRecipe} />
-            <PrivateRoute path="/recipes/:id" exact component={DisplayRecipe} />
+            <PrivateRoute
+              path="/recipes/displayrecipe"
+              exact
+              component={DisplayRecipe}
+            />
           </Switch>
         </Router>
         <Footer />
