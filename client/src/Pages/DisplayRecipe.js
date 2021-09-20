@@ -4,13 +4,16 @@ import pizzaHeader from "../img/pizza-header.png";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOneRecipe } from "../actions/recipes";
+import Loading from "../components/Loading";
 
-const DisplayRecipe = ({ getOneRecipe, recipe: { recipe } }) => {
+const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
   const { id } = useParams();
   useEffect(() => {
     getOneRecipe(id);
   }, []);
-  return (
+  return recipe === null ? (
+    <Loading />
+  ) : (
     <StyledDiv>
       <div className="header-container">
         <img src={pizzaHeader} alt="" />

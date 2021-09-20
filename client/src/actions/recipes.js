@@ -1,4 +1,10 @@
-import { ADD_RECIPE, GET_RECIPE, GET_RECIPES, RECIPE_ERROR } from "./types";
+import {
+  ADD_RECIPE,
+  CLEAR_RECIPE,
+  GET_RECIPE,
+  GET_RECIPES,
+  RECIPE_ERROR,
+} from "./types";
 import axios from "axios";
 import { displayAlert } from "./alert";
 

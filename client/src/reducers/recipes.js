@@ -1,5 +1,6 @@
 import {
   ADD_RECIPE,
+  CLEAR_RECIPE,
   GET_RECIPE,
   GET_RECIPES,
   RECIPE_ERROR,
@@ -25,6 +26,7 @@ export default function (state = initialState, action) {
     case GET_RECIPES:
       return {
         ...state,
+        recipe: null,
         recipes: payload,
         loading: false,
       };

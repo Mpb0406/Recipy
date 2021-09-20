@@ -11,3 +11,4 @@ export const ADD_RECIPE = "ADD_RECIPE";
 export const GET_RECIPES = "GET_RECIPES";
 export const GET_RECIPE = "GET_RECIPE";
 export const RECIPE_ERROR = "RECIPE_ERROR";
+export const CLEAR_RECIPE = "CLEAR_RECIPE";
