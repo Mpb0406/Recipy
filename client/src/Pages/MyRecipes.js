@@ -31,7 +31,7 @@ const MyRecipes = ({ recipes: { recipes }, getRecipes, getOneRecipe }) => {
           <div className="flex">
             {recipes.map((recipe) => (
               <div onClick={() => setRecipe(recipe)}>
-                <Link to={`"/recipes/${recipe._id}`}>
+                <Link to={`/recipes/${recipe._id}`}>
                   <h3>{recipe.title}</h3>
                   <p>{recipe.description}</p>
                 </Link>

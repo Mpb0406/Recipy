@@ -10,11 +10,24 @@ const DisplayRecipe = () => {
         <div className="darken"></div>
       </div>
       <div className="title-card">
-        <h1>NY Pizza</h1>
-        <p>
-          This is a recipe for NY-Style pizza. It is a thin crust pizza with a
-          nice crisp. It is relatively easy to make.
-        </p>
+        <div className="title-desc">
+          <h1>NY Pizza</h1>
+          <p>
+            This is a recipe for NY-Style pizza. It is a thin crust pizza with a
+            nice crisp. It is relatively easy to make.
+          </p>
+        </div>
+        <div className="interactions">
+          <i className="far fa-clock"></i>
+          <div className="time">
+            <p>Prep: 90 min</p>
+            <p>Cook: 10 min</p>
+          </div>
+          <i className="far fa-bookmark">
+            <span>Bookmark</span>
+          </i>
+          <i className="far fa-thumbs-up">Like</i>
+        </div>
       </div>
       <div className="recipe"></div>
     </StyledDiv>
