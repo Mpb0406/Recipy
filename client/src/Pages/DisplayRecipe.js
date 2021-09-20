@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOneRecipe } from "../actions/recipes";
 
-const DisplayRecipe = ({ getOneRecipe }) => {
+const DisplayRecipe = ({ getOneRecipe, recipe: { recipe } }) => {
   const { id } = useParams();
   useEffect(() => {
     getOneRecipe(id);
@@ -18,11 +18,8 @@ const DisplayRecipe = ({ getOneRecipe }) => {
       </div>
       <div className="title-card">
         <div className="title-desc">
-          <h1>NY Pizza</h1>
-          <p>
-            This is a recipe for NY-Style pizza. It is a thin crust pizza with a
-            nice crisp. It is relatively easy to make.
-          </p>
+          <h1>{recipe.title}</h1>
+          <p>{recipe.description}</p>
         </div>
         <div className="interactions">
           <i className="far fa-clock"></i>
@@ -40,6 +37,10 @@ const DisplayRecipe = ({ getOneRecipe }) => {
     </StyledDiv>
   );
 };
+
+const mapStateToProps = (state) => ({
+  recipe: state.recipes,
+});
 
 // Styled Components
 
@@ -80,4 +81,4 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default connect(null, { getOneRecipe })(DisplayRecipe);
+export default connect(mapStateToProps, { getOneRecipe })(DisplayRecipe);
