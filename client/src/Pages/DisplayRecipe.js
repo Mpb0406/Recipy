@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOneRecipe } from "../actions/recipes";
 import Loading from "../components/Loading";
+import man from "../img/man.jpg";
 
 const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
   const { id } = useParams();
@@ -20,20 +21,28 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
         <div className="darken"></div>
       </div>
       <div className="title-card">
-        <div className="title-desc">
-          <h1>{recipe.title}</h1>
-          <p>{recipe.description}</p>
-        </div>
-        <div className="interactions">
-          <i className="far fa-clock"></i>
-          <div className="time">
-            <p>Prep: 90 min</p>
-            <p>Cook: 10 min</p>
+        <div className="flex-container-1">
+          <div className="title-desc">
+            <h1>{recipe.title}</h1>
+            <p>{recipe.description}</p>
           </div>
-          <i className="far fa-bookmark">
-            <span>Bookmark</span>
-          </i>
-          <i className="far fa-thumbs-up">Like</i>
+          <div className="interactions">
+            <i className="far fa-clock"></i>
+            <div className="time">
+              <p>Prep: 90 min</p>
+              <p>Cook: 10 min</p>
+            </div>
+            <i className="far fa-bookmark">
+              <span>Bookmark</span>
+            </i>
+            <i className="far fa-thumbs-up">
+              <span>Like</span>{" "}
+            </i>
+          </div>
+        </div>
+        <div className="profile-pic">
+          <img src={man} alt="" />
+          <h3>Mike Bolloskis</h3>
         </div>
       </div>
       <div className="recipe"></div>
@@ -77,10 +86,31 @@ const StyledDiv = styled.div`
     position: absolute;
     top: 40%;
     left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .interactions {
+      display: flex;
+    }
   }
 
   .recipe {
     height: 200vh;
+  }
+
+  .profile-pic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 12rem;
+      height: 12rem;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid #3b7c0b;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
   }
 `;
 
