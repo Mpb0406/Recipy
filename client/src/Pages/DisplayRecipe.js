@@ -27,10 +27,12 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
             <p>{recipe.description}</p>
           </div>
           <div className="interactions">
-            <i className="far fa-clock"></i>
-            <div className="time">
-              <p>Prep: 90 min</p>
-              <p>Cook: 10 min</p>
+            <div className="time-container">
+              <i className="far fa-clock"></i>
+              <div className="time">
+                <p>Prep: 90 min</p>
+                <p>Cook: 10 min</p>
+              </div>
             </div>
             <i className="far fa-bookmark">
               <span>Bookmark</span>
@@ -45,7 +47,42 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
           <h3>Mike Bolloskis</h3>
         </div>
       </div>
-      <div className="recipe"></div>
+      <div className="ingredients">
+        <h3>Ingredients</h3>
+        <span>Serves:</span>
+        <input type="text" placeholder="3" />
+        <div className="ingredients-list">
+          <p>5 oz Bread Flour</p>
+          <p>1 Tbsp Instant Yeast</p>
+          <p>1.5 cup warm water</p>
+          <p>1 Tbsp Sugar</p>
+        </div>
+      </div>
+      <div className="procedures">
+        <h3>Procedures</h3>
+        <div className="procedures-list">
+          <div className="step">
+            <div className="circle">1.</div>
+            <p>
+              Mix flour and yeast mixture together until all flour is
+              incorporated and just dry enough to work with your hands
+            </p>
+          </div>
+          <div className="step">
+            <div className="circle">2.</div>
+            <p>
+              Let dough rise for at least an hour or double its original size
+            </p>
+          </div>
+          <div className="step">
+            <div className="circle">3.</div>
+            <p>
+              Lightly flour a work surface and roll out dough into circle about
+              1/4” thick
+            </p>
+          </div>
+        </div>
+      </div>
     </StyledDiv>
   );
 };
@@ -76,7 +113,7 @@ const StyledDiv = styled.div`
   }
 
   .title-card {
-    height: 60vh;
+    height: 50vh;
     width: 90%;
     border-radius: 1rem;
     background: linear-gradient(to bottom, #e1f2d5, #fff);
@@ -90,8 +127,43 @@ const StyledDiv = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    .interactions {
-      display: flex;
+    .flex-container-1 {
+      margin: 0 3rem;
+      height: 85%;
+
+      .title-desc {
+        margin-bottom: 2rem;
+      }
+
+      .interactions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 55vw;
+        margin-top: 5.2rem;
+
+        i {
+          margin-right: 1rem;
+          font-size: 2.2rem;
+          color: #343036;
+          text-align: center;
+          display: flex;
+          align-items: center;
+        }
+
+        span {
+          font-size: 1.2rem;
+          font-family: "Poppins", sans-serif;
+          font-weight: 500;
+          margin-left: 1rem;
+          color: #343036;
+        }
+
+        .time-container {
+          display: flex;
+          align-items: center;
+        }
+      }
     }
   }
 
@@ -103,6 +175,7 @@ const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 3rem;
     img {
       width: 12rem;
       height: 12rem;
@@ -110,6 +183,11 @@ const StyledDiv = styled.div`
       border-radius: 50%;
       border: 6px solid #3b7c0b;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      margin-top: 1rem;
     }
   }
 `;
