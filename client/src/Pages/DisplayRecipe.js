@@ -48,7 +48,7 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
         </div>
       </div>
       <div className="ingredients">
-        <h3>Ingredients</h3>
+        <h3 className="title">Ingredients</h3>
         <span>Serves:</span>
         <input type="text" placeholder="3" />
         <div className="ingredients-list">
@@ -59,23 +59,29 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
         </div>
       </div>
       <div className="procedures">
-        <h3>Procedures</h3>
+        <h3 className="title">Procedures</h3>
         <div className="procedures-list">
           <div className="step">
-            <div className="circle">1.</div>
+            <div className="circle">
+              <span>1</span>
+            </div>
             <p>
               Mix flour and yeast mixture together until all flour is
               incorporated and just dry enough to work with your hands
             </p>
           </div>
           <div className="step">
-            <div className="circle">2.</div>
+            <div className="circle">
+              <span>2</span>
+            </div>
             <p>
               Let dough rise for at least an hour or double its original size
             </p>
           </div>
           <div className="step">
-            <div className="circle">3.</div>
+            <div className="circle">
+              <span>3</span>
+            </div>
             <p>
               Lightly flour a work surface and roll out dough into circle about
               1/4” thick
@@ -112,6 +118,7 @@ const StyledDiv = styled.div`
     }
   }
 
+  //Title Card Section
   .title-card {
     height: 50vh;
     width: 90%;
@@ -188,6 +195,47 @@ const StyledDiv = styled.div`
     h3 {
       font-size: 1.3rem;
       margin-top: 1rem;
+    }
+  }
+
+  //Ingredients and Procedures
+  .title {
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+
+    &::before,
+    &::after {
+      content: "";
+      height: 0.1rem;
+      width: 5rem;
+      background-color: gray;
+      margin: 0 1rem;
+    }
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    margin: 2.5rem 0;
+  }
+
+  .circle {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: #3b7c0b;
+    position: relative;
+    margin-right: 1rem;
+
+    span {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 `;
