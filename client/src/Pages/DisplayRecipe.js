@@ -47,45 +47,49 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
           <h3>Mike Bolloskis</h3>
         </div>
       </div>
-      <div className="ingredients">
-        <h3 className="title">Ingredients</h3>
-        <span>Serves:</span>
-        <input type="text" placeholder="3" />
-        <div className="ingredients-list">
-          <p>5 oz Bread Flour</p>
-          <p>1 Tbsp Instant Yeast</p>
-          <p>1.5 cup warm water</p>
-          <p>1 Tbsp Sugar</p>
+      <div className="recipe-container">
+        <div className="ingredients">
+          <h3 className="ingredients-title title">Ingredients</h3>
+          <div className="serves">
+            <h4>Serves:</h4>
+            <input type="text" placeholder="3" />
+          </div>
+          <div className="ingredients-list">
+            <p>5 oz Bread Flour</p>
+            <p>1 Tbsp Instant Yeast</p>
+            <p>1.5 cup warm water</p>
+            <p>1 Tbsp Sugar</p>
+          </div>
         </div>
-      </div>
-      <div className="procedures">
-        <h3 className="title">Procedures</h3>
-        <div className="procedures-list">
-          <div className="step">
-            <div className="circle">
-              <span>1</span>
+        <div className="procedures">
+          <h3 className="procedures-title title">Procedures</h3>
+          <div className="procedures-list">
+            <div className="step">
+              <div className="circle">
+                <span>1</span>
+              </div>
+              <p>
+                Mix flour and yeast mixture together until all flour is
+                incorporated and just dry enough to work with your hands
+              </p>
             </div>
-            <p>
-              Mix flour and yeast mixture together until all flour is
-              incorporated and just dry enough to work with your hands
-            </p>
-          </div>
-          <div className="step">
-            <div className="circle">
-              <span>2</span>
+            <div className="step">
+              <div className="circle">
+                <span>2</span>
+              </div>
+              <p>
+                Let dough rise for at least an hour or double its original size
+              </p>
             </div>
-            <p>
-              Let dough rise for at least an hour or double its original size
-            </p>
-          </div>
-          <div className="step">
-            <div className="circle">
-              <span>3</span>
+            <div className="step">
+              <div className="circle">
+                <span>3</span>
+              </div>
+              <p>
+                Lightly flour a work surface and roll out dough into circle
+                about 1/4” thick
+              </p>
             </div>
-            <p>
-              Lightly flour a work surface and roll out dough into circle about
-              1/4” thick
-            </p>
           </div>
         </div>
       </div>
@@ -199,25 +203,99 @@ const StyledDiv = styled.div`
   }
 
   //Ingredients and Procedures
+
+  .recipe-container {
+    display: flex;
+    margin-top: 25vh;
+  }
+
+  .ingredients {
+    flex: 2;
+  }
+
   .title {
     font-size: 1.6rem;
     display: flex;
     align-items: center;
+    justify-content: center;
+  }
 
+  .ingredients-title {
     &::before,
     &::after {
       content: "";
       height: 0.1rem;
-      width: 5rem;
+      width: 15%;
       background-color: gray;
       margin: 0 1rem;
     }
+  }
+
+  .procedures-title {
+    &::before,
+    &::after {
+      content: "";
+      height: 0.1rem;
+      width: 30%;
+      background-color: gray;
+      margin: 0 1rem;
+    }
+  }
+
+  .serves {
+    margin: 1.5rem 10rem;
+    display: flex;
+    align-items: center;
+
+    h4 {
+      margin-right: 1rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    input {
+      width: 2.5rem;
+      padding: 0.5rem;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+  }
+
+  .ingredients-list {
+    margin: 1.5rem 5rem;
+
+    p {
+      margin: 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 150%;
+        left: 20%;
+        height: 0.1rem;
+        width: 40%;
+        background-color: #969696;
+      }
+    }
+  }
+
+  .procedures {
+    flex: 3;
   }
 
   .step {
     display: flex;
     align-items: center;
     margin: 2.5rem 0;
+
+    p {
+      flex: 3;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
   }
 
   .circle {
