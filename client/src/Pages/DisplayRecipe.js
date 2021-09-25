@@ -93,6 +93,15 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
           </div>
         </div>
       </div>
+      <div className="tags-section">
+        <h3 className="tags-title title">Tags</h3>
+        <div className="tags-container">
+          <div className="tag">
+            <p>italian</p>
+            <p>pizza</p>
+          </div>
+        </div>
+      </div>
     </StyledDiv>
   );
 };
