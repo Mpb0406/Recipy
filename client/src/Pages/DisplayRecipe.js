@@ -47,6 +47,59 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
           <h3>Mike Bolloskis</h3>
         </div>
       </div>
+      <div className="tags-section">
+        <div className="tag">
+          <span>italian</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+        <div className="tag">
+          <span>pizza</span>
+        </div>
+      </div>
       <div className="recipe-container">
         <div className="ingredients">
           <h3 className="ingredients-title title">Ingredients</h3>
@@ -90,15 +143,6 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
                 about 1/4” thick
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="tags-section">
-        <h3 className="tags-title title">Tags</h3>
-        <div className="tags-container">
-          <div className="tag">
-            <p>italian</p>
-            <p>pizza</p>
           </div>
         </div>
       </div>
@@ -215,7 +259,7 @@ const StyledDiv = styled.div`
 
   .recipe-container {
     display: flex;
-    margin-top: 25vh;
+    margin-top: 1rem;
   }
 
   .ingredients {
@@ -323,6 +367,44 @@ const StyledDiv = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+  }
+
+  .tags-title {
+    position: relative;
+    margin-top: 5rem;
+    &::before,
+    &::after {
+      content: "";
+      height: 0.1rem;
+      width: 30%;
+      background-color: gray;
+      margin: 0 1rem;
+    }
+  }
+
+  .tags-section {
+    margin: 1rem 3rem;
+    display: flex;
+    margin-top: 22vh;
+    background-color: firebrick;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tag {
+    margin: 1rem 0.5rem;
+    background-color: #3b7c0b;
+    padding: 0.5rem 1rem;
+    border-radius: 2.5rem;
+
+    span {
+      color: #fff;
     }
   }
 `;
