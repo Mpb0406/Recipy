@@ -34,10 +34,10 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
                 <p>Cook: 10 min</p>
               </div>
             </div>
-            <i className="far fa-bookmark">
+            <i className="far fa-bookmark bookmark">
               <span>Bookmark</span>
             </i>
-            <i className="far fa-thumbs-up">
+            <i className="far fa-thumbs-up like">
               <span>Like</span>{" "}
             </i>
           </div>
@@ -212,8 +212,8 @@ const StyledDiv = styled.div`
         margin-top: 5.2rem;
 
         i {
-          margin-right: 1rem;
-          font-size: 2.2rem;
+          margin-right: 0.5rem;
+          font-size: 2rem;
           color: #343036;
           text-align: center;
           display: flex;
@@ -224,8 +224,18 @@ const StyledDiv = styled.div`
           font-size: 1.2rem;
           font-family: "Poppins", sans-serif;
           font-weight: 500;
-          margin-left: 1rem;
+          margin-left: 0.5rem;
           color: #343036;
+        }
+
+        .bookmark, .like {
+          transition: all 0.2s ease;
+          cursor: pointer;
+          &:hover {
+            color: #3B7C0B;
+            font-weight: 600;
+          }
+          
         }
 
         .time-container {
