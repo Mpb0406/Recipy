@@ -47,57 +47,62 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
           <h3>Mike Bolloskis</h3>
         </div>
       </div>
-      <div className="tags-section">
-        <div className="tag">
-          <span>italian</span>
+      <div className="arrow-container">
+        <div className="tags-section">
+          <div className="tag">
+            <span>italian</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
+          <div className="tag">
+            <span>pizza</span>
+          </div>
         </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
-        </div>
-        <div className="tag">
-          <span>pizza</span>
+        <div className="scroll-right">
+          <i className="fas fa-chevron-right"></i>
         </div>
       </div>
       <div className="recipe-container">
@@ -383,11 +388,42 @@ const StyledDiv = styled.div`
     }
   }
 
-  .tags-section {
+  .arrow-container {
     margin: 1rem 3rem;
+    position: relative;
+  }
+
+  .scroll-right {
     display: flex;
+      position: absolute;
+      top: 50%;
+      right: -1%;
+      transform: translateY(-50%);
+      background: #fff;
+      height: 4rem;
+      width: 4rem;
+      border-radius: 50%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      padding: 1rem ;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #3b7c0b;
+        color: #fff;
+      }
+
+      i {
+        font-size: 2rem;
+        transform: translateX(35%);
+      }
+    }
+  }
+
+  .tags-section {
+    display: flex;
+
     margin-top: 22vh;
-    background-color: firebrick;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -395,7 +431,8 @@ const StyledDiv = styled.div`
     &::-webkit-scrollbar {
       display: none;
     }
-  }
+
+
 
   .tag {
     margin: 1rem 0.5rem;
