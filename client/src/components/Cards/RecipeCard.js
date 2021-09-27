@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 // Images
-import shrimpstirfry from "../img/shrimp-stir-fry.png";
-import likeempty from "../img/like-empty.png";
-import bookmarkempty from "../img/bookmark-empty.png";
+import shrimpstirfry from "../../img/shrimp-stir-fry.png";
+import likeempty from "../../img/like-empty.png";
+import bookmarkempty from "../../img/bookmark-empty.png";
 
 const RecipeCard = ({ title }) => {
   return (

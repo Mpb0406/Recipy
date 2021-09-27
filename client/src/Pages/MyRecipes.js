@@ -4,9 +4,9 @@ import notebookBg from "../img/notebook-bg.png";
 import { connect } from "react-redux";
 import { getRecipes } from "../actions/recipes";
 import { Link } from "react-router-dom";
-import RecipeCard from "../components/RecipeCard";
 import Loading from "../components/Loading";
 import DisplayRecipe from "./DisplayRecipe";
+import MyRecipesCard from "../components/Cards/MyRecipesCard";
 
 const MyRecipes = ({
   recipes: { recipes, loading },
@@ -31,9 +31,8 @@ const MyRecipes = ({
           <div className="flex">
             {recipes.map((recipe) => (
               <div>
-                <Link to={`/recipes/${recipe._id}`}>
-                  <h3>{recipe.title}</h3>
-                  <p>{recipe.description}</p>
+                <Link className="recipe-link" to={`/recipes/${recipe._id}`}>
+                  <MyRecipesCard />
                 </Link>
               </div>
             ))}
@@ -43,7 +42,7 @@ const MyRecipes = ({
           Add Recipe
         </Link>
       </div>
-      <img src={notebookBg} alt="" />
+      <img className="bg-img" src={notebookBg} alt="" />
     </StyledSection>
   );
 };
@@ -57,24 +56,18 @@ const StyledSection = styled.section`
   height: 90vh;
   display: flex;
 
-  div {
-    width: 100%;
-  }
-  h1 {
-    margin: 1rem 0 2rem 3rem;
+  .recipe-link {
+    text-decoration: none;
+
+    h3,
+    p,
+    i {
+      color: #343036;
+    }
   }
 
-  p {
-    margin: 1rem 3rem 4rem;
-  }
-
-  button {
-    margin: 2rem 3rem;
-    height: 4rem;
-    width: 15%;
-  }
-  img {
-    position: absolute;
+  .bg-img {
+    position: fixed;
     right: 0;
     top: 0;
     width: 30%;
