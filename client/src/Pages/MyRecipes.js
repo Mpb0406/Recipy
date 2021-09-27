@@ -8,11 +8,15 @@ import RecipeCard from "../components/RecipeCard";
 import Loading from "../components/Loading";
 import DisplayRecipe from "./DisplayRecipe";
 
-const MyRecipes = ({ recipes: { recipes }, getRecipes, getOneRecipe }) => {
+const MyRecipes = ({
+  recipes: { recipes, loading },
+  getRecipes,
+  getOneRecipe,
+}) => {
   useEffect(() => {
     getRecipes();
   });
-  return recipes.length === 0 ? (
+  return recipes.length === 0 && loading ? (
     <Loading />
   ) : (
     <StyledSection>

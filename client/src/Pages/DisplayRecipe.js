@@ -49,68 +49,25 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
       </div>
       <div className="arrow-container">
         <div className="tags-section">
-          <div className="tag">
-            <span>italian</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
-          <div className="tag">
-            <span>pizza</span>
-          </div>
+          {recipe.tags.map((tag) => (
+            <div className="tag">
+              <span>{tag}</span>
+            </div>
+          ))}
         </div>
-        <div className="scroll-right">
-          <i className="fas fa-chevron-right"></i>
-        </div>
+
+        {recipe.tags.length > 0 && (
+          <div className="scroll-right">
+            <i className="fas fa-chevron-right"></i>
+          </div>
+        )}
       </div>
       <div className="recipe-container">
         <div className="ingredients">
           <h3 className="ingredients-title title">Ingredients</h3>
           <div className="serves">
             <h4>Serves:</h4>
-            <input type="text" placeholder="3" />
+            <input type="text" placeholder={recipe.serves} />
             <i className="fas fa-redo-alt"></i>
           </div>
           <div className="ingredients-list">
@@ -118,9 +75,23 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
               <div>
                 <p>
                   {ingredient.amount} {ingredient.unit} {ingredient.item}
+                  <br />
+                  {ingredient.alternate && (
+                    <span className="optional">
+                      optionally: {ingredient.alternate}
+                    </span>
+                  )}
                 </p>
               </div>
             ))}
+            {/* <div className="full-ingredient">
+              <p>
+                4 oz low-moisture shredded mozzarella <br />
+                <span className="optional">
+                  optionally: part-skim mozzarella
+                </span>
+              </p>
+            </div> */}
           </div>
         </div>
         <div className="procedures">
@@ -285,6 +256,13 @@ const StyledDiv = styled.div`
     }
   }
 
+  .optional {
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 500;
+    color: #808080;
+  }
+
   .procedures-title {
     &::before,
     &::after {
@@ -308,7 +286,7 @@ const StyledDiv = styled.div`
     }
 
     input {
-      width: 2.5rem;
+      width: 3rem;
       padding: 0.5rem;
       font-size: 1.3rem;
       text-align: center;
@@ -438,12 +416,27 @@ const StyledDiv = styled.div`
 
   .tag {
     margin: 1rem 0.5rem;
+    padding: 0.4rem 0.2rem;
     background-color: #3b7c0b;
-    padding: 0.5rem 1rem;
     border-radius: 2.5rem;
+    border: 2px solid #3b7c0b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: transparent;
+      color: #3b7c0b;
+      border: 2px solid #3b7c0b;
+    }
 
     span {
       color: #fff;
+      font-weight: 600;
+      padding: 0.6rem 1.3rem;
+
+      &:hover {
+        color: #3b7c0b;
+      }
     }
   }
 `;
