@@ -30,8 +30,8 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
             <div className="time-container">
               <i className="far fa-clock"></i>
               <div className="time">
-                <p>Prep: 90 min</p>
-                <p>Cook: 10 min</p>
+                <p>Prep: {recipe.preptime} min</p>
+                <p>Cook: {recipe.cooktime} min</p>
               </div>
             </div>
             <i className="far fa-bookmark bookmark">
@@ -111,43 +111,29 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
           <div className="serves">
             <h4>Serves:</h4>
             <input type="text" placeholder="3" />
+            <i className="fas fa-redo-alt"></i>
           </div>
           <div className="ingredients-list">
-            <p>5 oz Bread Flour</p>
-            <p>1 Tbsp Instant Yeast</p>
-            <p>1.5 cup warm water</p>
-            <p>1 Tbsp Sugar</p>
+            {recipe.ingredients.map((ingredient) => (
+              <div>
+                <p>
+                  {ingredient.amount} {ingredient.unit} {ingredient.item}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
         <div className="procedures">
           <h3 className="procedures-title title">Procedures</h3>
           <div className="procedures-list">
-            <div className="step">
-              <div className="circle">
-                <span>1</span>
+            {recipe.procedures.map((procedure, idx) => (
+              <div className="step">
+                <div className="circle">
+                  <span>{idx + 1}</span>
+                </div>
+                <p>{procedure.step}</p>
               </div>
-              <p>
-                Mix flour and yeast mixture together until all flour is
-                incorporated and just dry enough to work with your hands
-              </p>
-            </div>
-            <div className="step">
-              <div className="circle">
-                <span>2</span>
-              </div>
-              <p>
-                Let dough rise for at least an hour or double its original size
-              </p>
-            </div>
-            <div className="step">
-              <div className="circle">
-                <span>3</span>
-              </div>
-              <p>
-                Lightly flour a work surface and roll out dough into circle
-                about 1/4” thick
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -229,7 +215,7 @@ const StyledDiv = styled.div`
         }
 
         .bookmark, .like {
-          transition: all 0.2s ease;
+          transition: all 0.3s ease;
           cursor: pointer;
           &:hover {
             color: #3B7C0B;
@@ -326,6 +312,12 @@ const StyledDiv = styled.div`
       padding: 0.5rem;
       font-size: 1.3rem;
       text-align: center;
+      margin-right: 0.75rem;
+    }
+
+    i {
+      font-size: 1.3rem;
+      cursor: pointer;
     }
   }
 
