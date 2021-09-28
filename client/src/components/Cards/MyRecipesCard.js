@@ -28,7 +28,7 @@ const MyRecipesCard = ({ title, description }) => {
 //Styled Components
 const StyledDiv = styled.div`
   height: 50vh;
-  width: 20vw;
+  min-width: 18vw;
   margin: 1rem 1rem;
   /* background-color: #fff; */
   border: 1px solid #bbb;

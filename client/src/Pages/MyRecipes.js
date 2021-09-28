@@ -56,7 +56,6 @@ const mapStateToProps = (state) => ({
 
 //Styled Components
 const StyledSection = styled.section`
-  height: 90vh;
   display: flex;
 
   .recipe-link {
