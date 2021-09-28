@@ -32,7 +32,10 @@ const MyRecipes = ({
             {recipes.map((recipe) => (
               <div>
                 <Link className="recipe-link" to={`/recipes/${recipe._id}`}>
-                  <MyRecipesCard />
+                  <MyRecipesCard
+                    title={recipe.title}
+                    description={recipe.description}
+                  />
                 </Link>
               </div>
             ))}
@@ -72,10 +75,13 @@ const StyledSection = styled.section`
     top: 0;
     width: 30%;
     z-index: -1;
+    opacity: 0.4;
   }
 
   .flex {
     display: flex;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
   }
 `;
 

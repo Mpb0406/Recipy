@@ -1,22 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import pizzaHeader from "../../img/pizza-header.png";
+import recipes from "../../reducers/recipes";
 
-const MyRecipesCard = () => {
+const MyRecipesCard = ({ title, description }) => {
   return (
     <StyledDiv>
       <img src={pizzaHeader} alt="" />
-      <div className="tags-container">
-        <div className="tag">pizza</div>
-        <div className="tag">italian</div>
+      <div className="bottom-card">
+        <div className="title-desc">
+          <h3 className="recipeTitle">{title}</h3>
+          <p className="recipeDescription">{description}</p>
+        </div>
+        <div className="tags-container">
+          <i className="far fa-thumbs-up likes" style={{ color: "#777" }}>
+            <span>12 likes </span>
+            <span>•</span>
+          </i>
+          <div className="tag">pizza</div>
+          <div className="tag">italian</div>
+        </div>
       </div>
-      <h3 className="recipeTitle">Pizza Recipe</h3>
-      <p className="recipeDescription">
-        This is a recipe for NY-Style Pizza in a home oven
-      </p>
-      <i className="far fa-thumbs-up likes">
-        <span>12 likes</span>
-      </i>
     </StyledDiv>
   );
 };
@@ -24,11 +28,12 @@ const MyRecipesCard = () => {
 //Styled Components
 const StyledDiv = styled.div`
   height: 50vh;
-  width: 18vw;
-  margin: 1rem 0.5rem;
+  width: 20vw;
+  margin: 1rem 1rem;
   /* background-color: #fff; */
   border: 1px solid #bbb;
   border-radius: 0.5rem;
+
   img {
     height: 45%;
     width: 100%;
@@ -37,9 +42,18 @@ const StyledDiv = styled.div`
     border-top-right-radius: 0.5rem;
   }
 
+  .bottom-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-color: firebrick; */
+    height: 24vh;
+  }
+
   .tags-container {
     display: flex;
-    margin: 0 0.5rem;
+    margin: 0.5rem;
+    overflow: hidden;
 
     .tag {
       background-color: #3b7c0b;
@@ -64,11 +78,16 @@ const StyledDiv = styled.div`
   }
 
   .likes {
-    margin: 0.75rem 0.5rem;
+    margin-right: 0.75rem;
     font-size: 1.3rem;
+    overflow: hidden;
+
+    i {
+      color: #888;
+    }
 
     span {
-      color: #343036;
+      color: #777;
       font-family: "Poppins", sans-serif;
       font-size: 1rem;
       font-weight: 500;
