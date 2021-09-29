@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import pizzaHeader from "../img/pizza-header.png";
+import def from "../img/default.png";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOneRecipe } from "../actions/recipes";

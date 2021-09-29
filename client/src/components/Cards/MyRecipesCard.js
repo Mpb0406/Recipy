@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import pizzaHeader from "../../img/pizza-header.png";
+import def from "../../img/default.png";
 import recipes from "../../reducers/recipes";
 
 const MyRecipesCard = ({ title, description }) => {
   return (
     <StyledDiv>
-      <img src={pizzaHeader} alt="" />
+      <img src={def} alt="" />
       <div className="bottom-card">
         <div className="title-desc">
           <h3 className="recipeTitle">{title}</h3>
@@ -28,7 +29,7 @@ const MyRecipesCard = ({ title, description }) => {
 //Styled Components
 const StyledDiv = styled.div`
   height: 50vh;
-  min-width: 18vw;
+  width: 18vw;
   margin: 1rem 1rem;
   /* background-color: #fff; */
   border: 1px solid #bbb;

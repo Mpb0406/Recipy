@@ -20,7 +20,7 @@ const MyRecipes = ({
     <Loading />
   ) : (
     <StyledSection>
-      <div>
+      <div className="container">
         <h1 className="form-title">
           My <span>Recipes</span>
         </h1>
@@ -57,6 +57,10 @@ const mapStateToProps = (state) => ({
 //Styled Components
 const StyledSection = styled.section`
   display: flex;
+
+  .container {
+    margin-bottom: 5rem;
+  }
 
   .recipe-link {
     text-decoration: none;
