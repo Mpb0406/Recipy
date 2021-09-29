@@ -4,7 +4,7 @@ import pizzaHeader from "../../img/pizza-header.png";
 import def from "../../img/default.png";
 import recipes from "../../reducers/recipes";
 
-const MyRecipesCard = ({ title, description }) => {
+const MyRecipesCard = ({ title, description, tags, likes }) => {
   return (
     <StyledDiv>
       <img src={def} alt="" />
@@ -15,11 +15,14 @@ const MyRecipesCard = ({ title, description }) => {
         </div>
         <div className="tags-container">
           <i className="far fa-thumbs-up likes" style={{ color: "#777" }}>
-            <span>12 likes </span>
-            <span>•</span>
+            <span>{likes.length} likes </span>
+            {tags.length > 0 && <span>•</span>}
           </i>
-          <div className="tag">pizza</div>
-          <div className="tag">italian</div>
+          <div className="tag-wrapper">
+            {tags.map((tag) => (
+              <div className="tag">{tag}</div>
+            ))}
+          </div>
         </div>
       </div>
     </StyledDiv>
@@ -55,6 +58,12 @@ const StyledDiv = styled.div`
     display: flex;
     margin: 0.5rem;
     overflow: hidden;
+
+    .tag-wrapper {
+      max-width: 50%;
+      overflow: hidden;
+      display: flex;
+    }
 
     .tag {
       background-color: #3b7c0b;

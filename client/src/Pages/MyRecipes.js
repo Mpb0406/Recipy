@@ -30,11 +30,13 @@ const MyRecipes = ({
         ) : (
           <div className="flex">
             {recipes.map((recipe) => (
-              <div>
+              <div className="card-container">
                 <Link className="recipe-link" to={`/recipes/${recipe._id}`}>
                   <MyRecipesCard
                     title={recipe.title}
                     description={recipe.description}
+                    tags={recipe.tags}
+                    likes={recipe.likes}
                   />
                 </Link>
               </div>
@@ -62,6 +64,9 @@ const StyledSection = styled.section`
     margin-bottom: 5rem;
   }
 
+  .card-container {
+  }
+
   .recipe-link {
     text-decoration: none;
 
@@ -83,7 +88,7 @@ const StyledSection = styled.section`
 
   .flex {
     display: flex;
-    margin-bottom: 3rem;
+    margin: 0 2rem 3rem;
     flex-wrap: wrap;
   }
 `;

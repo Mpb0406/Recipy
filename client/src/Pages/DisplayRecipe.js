@@ -27,6 +27,10 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
             <h1>{recipe.title}</h1>
             <p>{recipe.description}</p>
           </div>
+          <div className="recipe-actions">
+            <span className="edit-recipe">Edit</span>
+            <span className="delete-recipe">Delete</span>
+          </div>
           <div className="interactions">
             <div className="time-container">
               <i className="far fa-clock"></i>
@@ -85,14 +89,6 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
                 </p>
               </div>
             ))}
-            {/* <div className="full-ingredient">
-              <p>
-                4 oz low-moisture shredded mozzarella <br />
-                <span className="optional">
-                  optionally: part-skim mozzarella
-                </span>
-              </p>
-            </div> */}
           </div>
         </div>
         <div className="procedures">
@@ -162,12 +158,34 @@ const StyledDiv = styled.div`
         margin-bottom: 2rem;
       }
 
+      .recipe-actions {
+
+        .edit-recipe, .delete-recipe {
+          font-weight: 600;
+          margin: 0 1rem 0 0;
+          font-size: 1.1rem;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        /* .edit-recipe {
+          color: #343036;
+        } */
+
+        .delete-recipe {
+          color: firebrick;
+        }
+      }
+
       .interactions {
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 55vw;
-        margin-top: 5.2rem;
+        margin-top: 3rem;
 
         i {
           margin-right: 0.5rem;
