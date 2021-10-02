@@ -42,11 +42,6 @@ export default function (state = initialState, action) {
         recipe: payload,
         loading: false,
       };
-    case CLEAR_RECIPE:
-      return {
-        ...state,
-        recipe: null,
-      };
     default:
       return state;
   }

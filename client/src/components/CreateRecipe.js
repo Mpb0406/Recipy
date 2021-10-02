@@ -38,7 +38,6 @@ const CreateRecipe = ({ addRecipe, history }) => {
       procedures: steps,
       tags: tag,
     });
-    console.log(tag);
   }, [ings, steps, tag]);
 
   const { title, description, serves, preptime, cooktime } = formData;

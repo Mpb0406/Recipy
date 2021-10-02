@@ -6,9 +6,7 @@ import { produce } from "immer";
 import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
 import { addRecipe, getOneRecipe } from "../actions/recipes";
-import recipes from "../reducers/recipes";
 import Loading from "./Loading";
-import { CLEAR_RECIPE } from "../actions/types";
 
 const EditRecipe = ({
   addRecipe,
@@ -26,6 +24,9 @@ const EditRecipe = ({
     procedures: [],
     tags: [],
   });
+
+  const { title, description, serves, preptime, cooktime, ingredients } =
+    formData;
 
   const [ings, setIngs] = useState([]);
 
@@ -57,17 +58,15 @@ const EditRecipe = ({
     });
   }, [loading]);
 
-  useEffect(() => {
-    setFormData({
-      ...formData,
-      ingredients: ings,
-      procedures: steps,
-      tags: tag,
-    });
-    console.log(tag);
-  }, [ings, steps, tag]);
-
-  const { title, description, serves, preptime, cooktime } = formData;
+  // useEffect(() => {
+  //   setFormData({
+  //     ...formData,
+  //     ingredients: ings,
+  //     procedures: steps,
+  //     tags: tag,
+  //   });
+  //   console.log(tag);
+  // }, [ings, steps, tag]);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -156,7 +155,29 @@ const EditRecipe = ({
 
         <h2 className="ingredient-header">Add Ingredients</h2>
 
-        <div>
+        {ings.map((item, idx) => {
+          return (
+            <div className="ingredient">
+              <input
+                type="text"
+                value={formData.ingredients[idx].amount}
+                className="text-input amount"
+              />
+              <select
+                placeholder="Unit"
+                className="text-input unit"
+                value={formData.ingredients[idx].unit}
+              >
+                <option value="tbsp">Tbsp</option>
+                <option value="tsp">Tsp</option>
+                <option value="oz">Oz</option>
+                <option value="cup">Cup</option>
+              </select>
+            </div>
+          );
+        })}
+
+        {/* <div>
           {ings.map((ing, idx) => {
             return (
               <div className="ingredient" key={ing.id}>
@@ -243,7 +264,7 @@ const EditRecipe = ({
               </div>
             );
           })}
-        </div>
+        </div> */}
 
         <div
           className="add-ingredient"
