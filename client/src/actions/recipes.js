@@ -1,6 +1,7 @@
 import {
   ADD_RECIPE,
   CLEAR_RECIPE,
+  GET_ALL_RECIPES,
   GET_RECIPE,
   GET_RECIPES,
   RECIPE_ERROR,
@@ -8,7 +9,7 @@ import {
 import axios from "axios";
 import { displayAlert } from "./alert";
 
-// Get All Recipes
+// Get All User Recipes
 export const getRecipes = () => async (dispatch) => {
   try {
     const res = await axios.get("/api/recipes/myrecipes");
@@ -32,6 +33,23 @@ export const getOneRecipe = (recipeID) => async (dispatch) => {
 
     dispatch({
       type: GET_RECIPE,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: RECIPE_ERROR,
+      payload: { msg: err.response },
+    });
+  }
+};
+
+// Get All DB Recipes
+export const allRecipes = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/recipes/recipesfeed");
+
+    dispatch({
+      type: GET_ALL_RECIPES,
       payload: res.data,
     });
   } catch (err) {

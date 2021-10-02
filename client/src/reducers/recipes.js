@@ -1,6 +1,7 @@
 import {
   ADD_RECIPE,
   CLEAR_RECIPE,
+  GET_ALL_RECIPES,
   GET_RECIPE,
   GET_RECIPES,
   RECIPE_ERROR,
@@ -24,6 +25,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case GET_RECIPES:
+    case GET_ALL_RECIPES:
       return {
         ...state,
         recipe: null,

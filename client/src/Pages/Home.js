@@ -5,12 +5,13 @@ import HeroText from "../components/HeroText";
 import Categories from "../components/Categories";
 import CTA from "../components/CTA";
 import { connect } from "react-redux";
+import RecipeFeed from "../components/RecipeFeed";
 
 const Home = ({ auth: { isAuthenticated } }) => {
   return (
     <div>
       {isAuthenticated ? (
-        <h1>Recipe Feed</h1>
+        <RecipeFeed />
       ) : (
         <StyledMain>
           <HeroText />
