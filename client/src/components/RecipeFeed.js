@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { allRecipes } from "../actions/recipes";
 import MyRecipesCard from "./Cards/MyRecipesCard";
-import recipes from "../reducers/recipes";
 
 const RecipeFeed = ({ allRecipes, recipes: { recipes } }) => {
   useEffect(() => {
