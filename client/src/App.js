@@ -7,6 +7,7 @@ import SignUp from "./Pages/SignUp";
 import Alert from "./components/Alert";
 import Footer from "./components/Footer";
 import CreateRecipe from "./components/CreateRecipe";
+import EditRecipe from "./components/EditRecipe";
 import setAuthToken from "./utils/setAuthToken";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
@@ -40,6 +41,11 @@ function App() {
             <PrivateRoute path="/myrecipes" component={MyRecipes} />
             <PrivateRoute path="/create-recipe" component={CreateRecipe} />
             <PrivateRoute path="/recipes/:id" exact component={DisplayRecipe} />
+            <PrivateRoute
+              path="/recipes/edit-recipe/:id"
+              exact
+              component={EditRecipe}
+            />
           </Switch>
         </Router>
         <Footer />

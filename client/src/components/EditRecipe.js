@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { MainButton } from "../Styles";
 import { produce } from "immer";
@@ -6,8 +7,15 @@ import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
 import { addRecipe, getOneRecipe } from "../actions/recipes";
 import recipes from "../reducers/recipes";
+import Loading from "./Loading";
+import { CLEAR_RECIPE } from "../actions/types";
 
-const EditRecipe = ({ addRecipe, history }) => {
+const EditRecipe = ({
+  addRecipe,
+  getOneRecipe,
+  history,
+  recipe: { loading, recipe },
+}) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -32,13 +40,22 @@ const EditRecipe = ({ addRecipe, history }) => {
     }
   };
 
+  const { id } = useParams();
+
   useEffect(() => {
-    getOneRecipe();
+    getOneRecipe(id);
 
     setFormData({
-      title: loading || !recipes.title ? "" : recipe.title,
+      title: loading || !recipe.title ? "" : recipe.title,
+      description: loading || !recipe.description ? "" : recipe.description,
+      serves: loading || !recipe.serves ? "" : recipe.serves,
+      preptime: loading || !recipe.preptime ? "" : recipe.preptime,
+      cooktime: loading || !recipe.cooktime ? "" : recipe.cooktime,
+      ingredients: loading || !recipe.ingredients ? "" : recipe.ingredients,
+      procedures: loading || !recipe.procedures ? "" : recipe.procedures,
+      tags: loading || !recipe.tags ? "" : recipe.tags,
     });
-  }, []);
+  }, [loading]);
 
   useEffect(() => {
     setFormData({
@@ -68,7 +85,9 @@ const EditRecipe = ({ addRecipe, history }) => {
 
   // Console.logs
   console.log(formData);
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <>
       <h1 className="form-title">
         Create Your <span>Recipe</span>
@@ -358,6 +377,10 @@ const EditRecipe = ({ addRecipe, history }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  recipe: state.recipes,
+});
+
 //Styled Components
 
 const StyledForm = styled.form`
@@ -554,4 +577,6 @@ const StyledForm = styled.form`
     background-color: transparent;
   }
 `;
-export default connect(null, { addRecipe, getOneRecipe })(EditRecipe);
+export default connect(mapStateToProps, { addRecipe, getOneRecipe })(
+  EditRecipe
+);

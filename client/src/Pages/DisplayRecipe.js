@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import pizzaHeader from "../img/pizza-header.png";
 import def from "../img/default.png";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOneRecipe } from "../actions/recipes";
 import Loading from "../components/Loading";
@@ -28,7 +28,9 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
             <p>{recipe.description}</p>
           </div>
           <div className="recipe-actions">
-            <span className="edit-recipe">Edit</span>
+            <Link to={`/recipes/edit-recipe/${recipe._id}`}>
+              <span className="edit-recipe">Edit</span>
+            </Link>
             <span className="delete-recipe">Delete</span>
           </div>
           <div className="interactions">
