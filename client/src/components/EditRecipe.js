@@ -5,12 +5,13 @@ import { MainButton } from "../Styles";
 import { produce } from "immer";
 import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
-import { addRecipe, getOneRecipe } from "../actions/recipes";
+import { addRecipe, getOneRecipe, updateRecipe } from "../actions/recipes";
 import Loading from "./Loading";
 
 const EditRecipe = ({
   addRecipe,
   getOneRecipe,
+  updateRecipe,
   history,
   recipe: { loading, recipe },
 }) => {
@@ -28,11 +29,11 @@ const EditRecipe = ({
   const { title, description, serves, preptime, cooktime, ingredients } =
     formData;
 
-  const [ings, setIngs] = useState([]);
+  const [ings, setIngs] = useState([...recipe.ingredients]);
 
-  const [steps, setSteps] = useState([]);
+  const [steps, setSteps] = useState([...recipe.procedures]);
 
-  const [tag, setTags] = useState([]);
+  const [tag, setTags] = useState([...recipe.tags]);
   const createTag = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -52,11 +53,11 @@ const EditRecipe = ({
       serves: loading || !recipe.serves ? "" : recipe.serves,
       preptime: loading || !recipe.preptime ? "" : recipe.preptime,
       cooktime: loading || !recipe.cooktime ? "" : recipe.cooktime,
-      ingredients: loading || !recipe.ingredients ? "" : recipe.ingredients,
-      procedures: loading || !recipe.procedures ? "" : recipe.procedures,
-      tags: loading || !recipe.tags ? "" : recipe.tags,
+      ingredients: loading || !recipe.ingredients ? "" : ings,
+      procedures: loading || !recipe.procedures ? "" : steps,
+      tags: loading || !recipe.tags ? "" : tag,
     });
-  }, [loading]);
+  }, [loading, ings, steps, tag]);
 
   // useEffect(() => {
   //   setFormData({
@@ -79,11 +80,11 @@ const EditRecipe = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addRecipe(formData, history);
+    updateRecipe(formData, id, history);
   };
 
   // Console.logs
-  console.log(formData);
+
   return loading ? (
     <Loading />
   ) : (
@@ -155,7 +156,7 @@ const EditRecipe = ({
 
         <h2 className="ingredient-header">Add Ingredients</h2>
 
-        {ings.map((item, idx) => {
+        {/* {ings.map((item, idx) => {
           return (
             <div className="ingredient">
               <input
@@ -175,9 +176,9 @@ const EditRecipe = ({
               </select>
             </div>
           );
-        })}
+        })} */}
 
-        {/* <div>
+        <div>
           {ings.map((ing, idx) => {
             return (
               <div className="ingredient" key={ing.id}>
@@ -256,15 +257,16 @@ const EditRecipe = ({
                 <i
                   className="fas fa-times"
                   onClick={() => {
-                    setIngs((currentIngredient) =>
-                      currentIngredient.filter((x) => x.id !== ing.id)
-                    );
+                    setIngs([
+                      (currentIngredient) =>
+                        currentIngredient.filter((x) => x.id !== ing.id),
+                    ]);
                   }}
                 ></i>
               </div>
             );
           })}
-        </div> */}
+        </div>
 
         <div
           className="add-ingredient"
@@ -328,9 +330,10 @@ const EditRecipe = ({
               <i
                 className="fas fa-times"
                 onClick={() => {
-                  setSteps((currentStep) =>
-                    currentStep.filter((x) => x.id !== step.id)
-                  );
+                  setSteps([
+                    (currentStep) =>
+                      currentStep.filter((x) => x.id !== step.id),
+                  ]);
                 }}
               ></i>
             </div>
@@ -598,6 +601,8 @@ const StyledForm = styled.form`
     background-color: transparent;
   }
 `;
-export default connect(mapStateToProps, { addRecipe, getOneRecipe })(
-  EditRecipe
-);
+export default connect(mapStateToProps, {
+  addRecipe,
+  getOneRecipe,
+  updateRecipe,
+})(EditRecipe);

@@ -5,6 +5,7 @@ import {
   GET_RECIPE,
   GET_RECIPES,
   RECIPE_ERROR,
+  UPDATE_RECIPE,
 } from "../actions/types";
 
 const initialState = {
@@ -43,6 +44,11 @@ export default function (state = initialState, action) {
         ...state,
         recipe: payload,
         loading: false,
+      };
+    case UPDATE_RECIPE:
+      return {
+        ...state,
+        recipe: payload,
       };
     default:
       return state;

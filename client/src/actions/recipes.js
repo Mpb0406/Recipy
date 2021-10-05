@@ -5,9 +5,11 @@ import {
   GET_RECIPE,
   GET_RECIPES,
   RECIPE_ERROR,
+  UPDATE_RECIPE,
 } from "./types";
 import axios from "axios";
 import { displayAlert } from "./alert";
+import { useParams } from "react-router-dom";
 
 // Get All User Recipes
 export const getRecipes = () => async (dispatch) => {
@@ -86,6 +88,30 @@ export const addRecipe = (formData, history) => async (dispatch) => {
       errors.forEach((error) => dispatch(displayAlert(error.msg, "danger")));
     }
 
+    dispatch({
+      type: RECIPE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const updateRecipe = (formData, id, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put(`/api/recipes/${id}`, formData, config);
+
+    dispatch({
+      type: UPDATE_RECIPE,
+      payload: res.data,
+    });
+
+    history.push("/myrecipes");
+  } catch (err) {
     dispatch({
       type: RECIPE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
