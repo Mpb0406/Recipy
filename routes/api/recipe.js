@@ -165,7 +165,7 @@ router.put("/:id", auth, async (req, res) => {
   try {
     if (recipe) {
       updatedRecipe = await Recipe.findOneAndUpdate(
-        { user: req.user.id },
+        { user: req.user.id, _id: req.params.id },
         { $set: recipeFields },
         { new: true, useFindAndModify: false }
       );
@@ -179,7 +179,7 @@ router.put("/:id", auth, async (req, res) => {
     updatedRecipe = await Recipe.findOneAndUpdate(
       { user: req.user.id, _id: req.params.id },
       { $set: recipeFields },
-      { new: true, useFindAndModify: false }
+      { new: true }
     );
   }
   res.send(updatedRecipe);
