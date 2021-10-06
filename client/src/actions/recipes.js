@@ -4,6 +4,7 @@ import {
   GET_ALL_RECIPES,
   GET_RECIPE,
   GET_RECIPES,
+  LIKE_RECIPE,
   RECIPE_ERROR,
   UPDATE_RECIPE,
 } from "./types";
@@ -115,6 +116,27 @@ export const updateRecipe = (formData, id, history) => async (dispatch) => {
     dispatch({
       type: RECIPE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const likeRecipe = (id) => async (dispatch) => {
+  try {
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
+
+    const res = await axios.put(`api/recipes/like/${id}`);
+
+    dispatch({
+      type: LIKE_RECIPE,
+      payload: { id, likes: res.data },
+    });
+  } catch (err) {
+    dispatch({
+      type: RECIPE_ERROR,
     });
   }
 };

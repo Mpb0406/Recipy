@@ -7,12 +7,21 @@ import { connect } from "react-redux";
 import { getOneRecipe } from "../actions/recipes";
 import Loading from "../components/Loading";
 import man from "../img/man.jpg";
+import { likeRecipe } from "../actions/recipes";
 
-const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
+const DisplayRecipe = ({
+  getOneRecipe,
+  recipe: { recipe, loading },
+  likeRecipe,
+}) => {
   const { id } = useParams();
   useEffect(() => {
     getOneRecipe(id);
   }, []);
+
+  const likeOrUnlike = () => {
+    likeRecipe(id);
+  };
   return recipe === null ? (
     <Loading />
   ) : (
@@ -44,7 +53,7 @@ const DisplayRecipe = ({ getOneRecipe, recipe: { recipe, loading } }) => {
             <i className="far fa-bookmark bookmark">
               <span>Bookmark</span>
             </i>
-            <i className="far fa-thumbs-up like">
+            <i className="far fa-thumbs-up like" onClick={() => likeOrUnlike()}>
               <span>Like</span>{" "}
             </i>
           </div>
@@ -462,4 +471,6 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default connect(mapStateToProps, { getOneRecipe })(DisplayRecipe);
+export default connect(mapStateToProps, { getOneRecipe, likeRecipe })(
+  DisplayRecipe
+);
