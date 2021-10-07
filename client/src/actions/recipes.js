@@ -128,11 +128,11 @@ export const likeRecipe = (id) => async (dispatch) => {
     //   },
     // };
 
-    const res = await axios.put(`api/recipes/like/${id}`);
+    const res = await axios.put(`/api/recipes/like/${id}`);
 
     dispatch({
       type: LIKE_RECIPE,
-      payload: { id, likes: res.data },
+      payload: res.data,
     });
   } catch (err) {
     dispatch({

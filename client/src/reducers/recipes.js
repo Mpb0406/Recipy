@@ -47,10 +47,13 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case UPDATE_RECIPE:
-    case LIKE_RECIPE:
       return {
         ...state,
         recipe: payload,
+      };
+    case LIKE_RECIPE:
+      return {
+        ...state,
       };
     default:
       return state;

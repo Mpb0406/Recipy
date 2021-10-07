@@ -53,7 +53,10 @@ const DisplayRecipe = ({
             <i className="far fa-bookmark bookmark">
               <span>Bookmark</span>
             </i>
-            <i className="far fa-thumbs-up like" onClick={() => likeOrUnlike()}>
+            <i
+              className="far fa-thumbs-up like"
+              onClick={(e) => likeRecipe(id)}
+            >
               <span>Like</span>{" "}
             </i>
           </div>
