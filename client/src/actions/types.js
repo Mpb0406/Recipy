@@ -15,3 +15,4 @@ export const CLEAR_RECIPE = "CLEAR_RECIPE";
 export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
 export const UPDATE_RECIPE = "UPDATE_RECIPE";
 export const LIKE_RECIPE = "LIKE_RECIPE";
+export const UNLIKE_RECIPE = "UNLIKE_RECIPE";

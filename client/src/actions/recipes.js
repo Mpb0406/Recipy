@@ -6,6 +6,7 @@ import {
   GET_RECIPES,
   LIKE_RECIPE,
   RECIPE_ERROR,
+  UNLIKE_RECIPE,
   UPDATE_RECIPE,
 } from "./types";
 import axios from "axios";
@@ -122,16 +123,25 @@ export const updateRecipe = (formData, id, history) => async (dispatch) => {
 
 export const likeRecipe = (id) => async (dispatch) => {
   try {
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-
     const res = await axios.put(`/api/recipes/like/${id}`);
 
     dispatch({
       type: LIKE_RECIPE,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: RECIPE_ERROR,
+    });
+  }
+};
+
+export const unlikeRecipe = (id) => async (dispatch) => {
+  try {
+    const res = await axios(`/api/recipes/unlike/${id}`);
+
+    dispatch({
+      type: UNLIKE_RECIPE,
       payload: res.data,
     });
   } catch (err) {

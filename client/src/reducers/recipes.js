@@ -6,6 +6,7 @@ import {
   GET_RECIPES,
   LIKE_RECIPE,
   RECIPE_ERROR,
+  UNLIKE_RECIPE,
   UPDATE_RECIPE,
 } from "../actions/types";
 
@@ -52,6 +53,7 @@ export default function (state = initialState, action) {
         recipe: payload,
       };
     case LIKE_RECIPE:
+    case UNLIKE_RECIPE:
       return {
         ...state,
       };

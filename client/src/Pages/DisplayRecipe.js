@@ -8,11 +8,14 @@ import { getOneRecipe } from "../actions/recipes";
 import Loading from "../components/Loading";
 import man from "../img/man.jpg";
 import { likeRecipe } from "../actions/recipes";
+import { unlikeRecipe } from "../actions/recipes";
 
 const DisplayRecipe = ({
   getOneRecipe,
   recipe: { recipe, loading },
   likeRecipe,
+  unlikeRecipe,
+  auth: { user },
 }) => {
   const { id } = useParams();
   useEffect(() => {
@@ -125,6 +128,7 @@ const DisplayRecipe = ({
 
 const mapStateToProps = (state) => ({
   recipe: state.recipes,
+  auth: state.auth,
 });
 
 // Styled Components
@@ -474,6 +478,8 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default connect(mapStateToProps, { getOneRecipe, likeRecipe })(
-  DisplayRecipe
-);
+export default connect(mapStateToProps, {
+  getOneRecipe,
+  likeRecipe,
+  unlikeRecipe,
+})(DisplayRecipe);
