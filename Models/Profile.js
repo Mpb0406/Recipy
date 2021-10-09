@@ -6,6 +6,26 @@ const profileSchema = mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "user",
   },
+  avatar: {
+    type: String,
+  },
+  bio: {
+    type: String,
+  },
+  social: {
+    instagram: {
+      type: String,
+    },
+    twitter: {
+      type: String,
+    },
+    facebook: {
+      type: String,
+    },
+    youtube: {
+      type: String,
+    },
+  },
   bookmarked: [
     {
       recipe: {
@@ -30,6 +50,10 @@ const profileSchema = mongoose.Schema({
       },
     },
   ],
+  date: {
+    type: Date,
+    defualt: Date.now,
+  },
 });
 
 module.exports = Profile = mongoose.model("profile", profileSchema);
