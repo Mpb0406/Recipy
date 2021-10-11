@@ -46,4 +46,23 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
+//@route    PUT api/profile/bookmark/:id
+//@desc     Bookmark a Recipe
+//@access   Private
+router.put("/bookmark/:id", auth, async (req, res) => {
+  const profile = await Profile.findOne({ user: req.user.id });
+
+  if (
+    profile.bookmarks.filter(
+      (bookmark) => bookmark._id.toString() === req.params.id
+    ).length > 0
+  ) {
+    return res.status(400).json({ msg: "Recipe already bookmarked" });
+  }
+
+  profile.bookmarks.push({ _id: req.params.id });
+  await profile.save();
+  res.json(profile.bookmarks);
+});
+
 module.exports = router;

@@ -26,7 +26,7 @@ const profileSchema = mongoose.Schema({
       type: String,
     },
   },
-  bookmarked: [
+  bookmarks: [
     {
       recipe: {
         type: Schema.Types.ObjectId,
