@@ -50,6 +50,9 @@ router.post("/", auth, async (req, res) => {
 //@desc     Bookmark a Recipe
 //@access   Private
 router.put("/bookmark/:id", auth, async (req, res) => {
+  //Find Recipe
+  const recipe = await Recipe.findOne({ _id: req.params.id });
+
   const profile = await Profile.findOne({ user: req.user.id });
 
   if (
@@ -60,7 +63,7 @@ router.put("/bookmark/:id", auth, async (req, res) => {
     return res.status(400).json({ msg: "Recipe already bookmarked" });
   }
 
-  profile.bookmarks.push({ _id: req.params.id });
+  profile.bookmarks.push({ _id: recipe._id, user: recipe.user._id });
   await profile.save();
   res.json(profile.bookmarks);
 });

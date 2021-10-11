@@ -32,6 +32,10 @@ const profileSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "recipes",
       },
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users",
+      },
     },
   ],
   following: [
