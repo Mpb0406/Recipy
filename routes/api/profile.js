@@ -94,4 +94,32 @@ router.put("/remove-bookmark/:id", auth, async (req, res) => {
   res.json(profile.bookmarks);
 });
 
+//@route    PUT api/profile/follow/:id
+//@desc     Follow a User
+//@access   Private
+router.put("/follow/:id", auth, async (req, res) => {
+  //Get User to Follow
+  const user = await User.findById({ _id: req.params.id }).select([
+    "id",
+    "name",
+  ]);
+
+  //Get My Profile
+  const me = await Profile.findOne({ user: req.user.id });
+
+  //Check if User is Already Followed
+  if (me.following.filter((follow) => follow.id === req.params.id).length > 0) {
+    return res.status(400).json({ msg: "You are already following this user" });
+  }
+
+  //Push User Onto Profile.Following
+
+  res.json();
+});
+
+//@route    PUT api/profile/unfollow/:id
+//@desc     Unfollow a User
+//@access   Private
+router.put("/unfollow/:id", auth, async (req, res) => {});
+
 module.exports = router;
