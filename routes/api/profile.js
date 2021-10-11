@@ -68,4 +68,30 @@ router.put("/bookmark/:id", auth, async (req, res) => {
   res.json(profile.bookmarks);
 });
 
+//@route    PUT api/profile/remove-bookmark/:id
+//@desc     Remove a Bookmarked Recipe
+//@access   Private
+router.put("/remove-bookmark/:id", auth, async (req, res) => {
+  const profile = await Profile.findOne({ user: req.user.id });
+
+  //   Check if Recipe Has Been Bookmarked
+  if (
+    profile.bookmarks.filter(
+      (bookmark) => bookmark.id.toString() === req.params.id
+    ).length === 0
+  ) {
+    return res.status(400).json({ msg: "Recipe has not yet been bookmarked" });
+  }
+
+  //Get Remove Index
+  const removeIndex = profile.bookmarks
+    .map((bookmark) => bookmark.id.toString())
+    .indexOf(req.params.id);
+
+  profile.bookmarks.splice(removeIndex, 1);
+
+  await profile.save();
+  res.json(profile.bookmarks);
+});
+
 module.exports = router;
