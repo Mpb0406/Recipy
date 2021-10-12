@@ -44,6 +44,9 @@ const profileSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "users",
       },
+      name: {
+        type: String,
+      },
     },
   ],
   followers: [
@@ -51,6 +54,9 @@ const profileSchema = mongoose.Schema({
       user: {
         type: Schema.Types.ObjectId,
         ref: "users",
+      },
+      name: {
+        type: String,
       },
     },
   ],

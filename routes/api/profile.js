@@ -99,13 +99,12 @@ router.put("/remove-bookmark/:id", auth, async (req, res) => {
 //@access   Private
 router.put("/follow/:id", auth, async (req, res) => {
   //Get User to Follow
-  const user = await User.findById({ _id: req.params.id }).select([
-    "id",
-    "name",
-  ]);
+  const user = await User.findById({ _id: req.params.id }).select("name");
+  const userProfile = await Profile.findOne({ user: req.params.id });
 
   //Get My Profile
   const me = await Profile.findOne({ user: req.user.id });
+  const myName = await User.findById({ _id: req.user.id }).select("name");
 
   //Check if User is Already Followed
   if (me.following.filter((follow) => follow.id === req.params.id).length > 0) {
@@ -113,8 +112,14 @@ router.put("/follow/:id", auth, async (req, res) => {
   }
 
   //Push User Onto Profile.Following
+  me.following.push(user);
 
-  res.json();
+  //Push Me Onto User's Followers
+  userProfile.followers.push(myName);
+
+  await me.save();
+  await userProfile.save();
+  res.json(me.following);
 });
 
 //@route    PUT api/profile/unfollow/:id
