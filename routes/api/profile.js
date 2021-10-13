@@ -111,6 +111,11 @@ router.put("/follow/:id", auth, async (req, res) => {
     return res.status(400).json({ msg: "You are already following this user" });
   }
 
+  try {
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
   //Push User Onto Profile.Following
   me.following.push(user);
 
@@ -125,6 +130,47 @@ router.put("/follow/:id", auth, async (req, res) => {
 //@route    PUT api/profile/unfollow/:id
 //@desc     Unfollow a User
 //@access   Private
-router.put("/unfollow/:id", auth, async (req, res) => {});
+router.put("/unfollow/:id", auth, async (req, res) => {
+  //Get My Profile and User
+  const myProfile = await Profile.findOne({ user: req.user.id });
+  const me = await User.findById({ _id: req.user.id }).select("-password");
+
+  //Get User Profile and User Info
+  const userProfile = await Profile.findOne({ user: req.params.id });
+  const user = await User.findById({ _id: req.params.id }).select("-password");
+
+  //Check if User is Followed
+  if (
+    myProfile.following.filter((follow) => follow.id === req.params.id)
+      .length === 0
+  ) {
+    return res.send("You are not following this user");
+  }
+
+  try {
+    //Get Remove Index
+    const removeIndex = myProfile.following
+      .map((follow) => follow.id.toString())
+      .indexOf(req.params.id);
+
+    //Splice Out User From My Following Array Using removeIndex
+    myProfile.following.splice(removeIndex, 1);
+    await myProfile.save();
+
+    //Remove Me from User's Followers
+    const removeMyself = userProfile.followers
+      .map((follower) => follower.id.toString())
+      .indexOf(req.user.id);
+
+    //Splice Myself Out of User's Followers Using removeMyself
+    userProfile.followers.splice(removeMyself, 1);
+    await userProfile.save();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+
+  res.json(myProfile.following);
+});
 
 module.exports = router;
