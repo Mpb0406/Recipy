@@ -35,7 +35,7 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
       </li>
       <li>
         <img className="nav-icon" src={userNavIcon} alt="" />
-        <StyledAnchor href="/myrecipes">Profile</StyledAnchor>
+        <StyledAnchor href="/myprofile">Profile</StyledAnchor>
       </li>
       <li>
         <img className="nav-icon" src={logoutNavIcon} alt="" />
