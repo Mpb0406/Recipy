@@ -13,12 +13,12 @@ router.get("/", auth, async (req, res) => {
     if (!myProfile) {
       return res.send("You do not have a profile. Please create one.");
     }
+
+    res.json(myProfile);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
-
-  res.json(myProfile);
 });
 
 //@route    POST api/profile

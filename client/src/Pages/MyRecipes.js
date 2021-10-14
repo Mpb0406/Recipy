@@ -7,14 +7,17 @@ import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import DisplayRecipe from "./DisplayRecipe";
 import MyRecipesCard from "../components/Cards/MyRecipesCard";
+import { getProfile } from "../actions/profile";
 
 const MyRecipes = ({
   recipes: { recipes, loading },
   getRecipes,
+  getProfile,
   getOneRecipe,
 }) => {
   useEffect(() => {
     getRecipes();
+    getProfile();
   });
   return recipes.length === 0 && loading ? (
     <Loading />
@@ -98,4 +101,4 @@ const StyledSection = styled.section`
 `;
 
 // Import Recipes State - If User Has Recipes Render Them, Else Render 'You Do Not Have Recipes'
-export default connect(mapStateToProps, { getRecipes })(MyRecipes);
+export default connect(mapStateToProps, { getRecipes, getProfile })(MyRecipes);
