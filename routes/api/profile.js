@@ -3,6 +3,24 @@ const router = express.Router();
 const Profile = require("../../Models/Profile");
 const auth = require("../../middleware/auth");
 
+//@route    GET api/profile
+//@desc     Get My Profile
+//@access   Private
+router.get("/", auth, async (req, res) => {
+  try {
+    const myProfile = await Profile.findOne({ user: req.user.id });
+
+    if (!myProfile) {
+      return res.send("You do not have a profile. Please create one.");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+
+  res.json(myProfile);
+});
+
 //@route    POST api/profile
 //@desc     Create or Edit New User Profile
 //@access   Private
@@ -65,7 +83,7 @@ router.put("/bookmark/:id", auth, async (req, res) => {
 
   profile.bookmarks.push({ _id: recipe._id, user: recipe.user._id });
   await profile.save();
-  res.json(profile.bookmarks);
+  res.json(profile);
 });
 
 //@route    PUT api/profile/remove-bookmark/:id
@@ -91,7 +109,7 @@ router.put("/remove-bookmark/:id", auth, async (req, res) => {
   profile.bookmarks.splice(removeIndex, 1);
 
   await profile.save();
-  res.json(profile.bookmarks);
+  res.json(profile);
 });
 
 //@route    PUT api/profile/follow/:id
@@ -124,7 +142,7 @@ router.put("/follow/:id", auth, async (req, res) => {
 
   await me.save();
   await userProfile.save();
-  res.json(me.following);
+  res.json(me);
 });
 
 //@route    PUT api/profile/unfollow/:id
@@ -170,7 +188,7 @@ router.put("/unfollow/:id", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 
-  res.json(myProfile.following);
+  res.json(myProfile);
 });
 
 module.exports = router;

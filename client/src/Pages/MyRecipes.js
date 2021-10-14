@@ -26,7 +26,7 @@ const MyRecipes = ({
         </h1>
 
         {recipes.length === 0 ? (
-          <p>You don't have any recipes yet...</p>
+          <p className="no-recipes">You don't have any recipes yet...</p>
         ) : (
           <div className="flex">
             {recipes.map((recipe) => (
@@ -90,6 +90,10 @@ const StyledSection = styled.section`
     display: flex;
     margin: 0 2rem 3rem;
     flex-wrap: wrap;
+  }
+
+  .no-recipes {
+    margin: 2rem 3rem 3rem;
   }
 `;
 
