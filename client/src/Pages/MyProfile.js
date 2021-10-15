@@ -8,13 +8,7 @@ const MyProfile = () => {
         <div className="avatar-container"></div>
         <h3>Mike Bolloskis</h3>
       </section>
-      <div className="bio-container">
-        <h4>Bio:</h4>
-        <p>
-          This is my bio and this is where I write a short description about
-          myself
-        </p>
-      </div>
+
       <div className="follower-container">
         <div className="bookmarks">
           <p>12</p>
@@ -28,6 +22,13 @@ const MyProfile = () => {
           <p>12</p>
           <span>Following</span>
         </div>
+      </div>
+      <div className="bio-container">
+        <h4>Bio:</h4>
+        <p>
+          This is my bio and this is where I write a short description about
+          myself
+        </p>
       </div>
     </StyledDiv>
   );
@@ -54,6 +55,9 @@ const StyledDiv = styled.div`
     background: #fff;
     border-radius: 0.5rem;
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   }
 `;
 
