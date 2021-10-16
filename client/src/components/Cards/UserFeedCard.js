@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import man from "../../img/man.jpg";
 
-const RecipeFeedCard = () => {
+const UserFeedCard = () => {
   return (
     <StyledMain>
       <div className="avatar">
@@ -45,7 +45,7 @@ const StyledMain = styled.main`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 
   .avatar {
     height: 11rem;
@@ -122,4 +122,4 @@ const StyledMain = styled.main`
   }
 `;
 
-export default RecipeFeedCard;
+export default UserFeedCard;

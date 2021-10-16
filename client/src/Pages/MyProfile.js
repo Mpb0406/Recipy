@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import man from "../img/man.jpg";
 import kitchen from "../img/kitchen.jpg";
-import RecipeFeedCard from "../components/Cards/RecipeFeedCard";
+import UserFeedCard from "../components/Cards/UserFeedCard";
 
 const MyProfile = () => {
   return (
@@ -47,10 +47,10 @@ const MyProfile = () => {
           My <span>Bookmarks</span>
         </h3>
         <div className="feed">
-          <RecipeFeedCard />
-          <RecipeFeedCard />
-          <RecipeFeedCard />
-          <RecipeFeedCard />
+          <UserFeedCard />
+          <UserFeedCard />
+          <UserFeedCard />
+          <UserFeedCard />
         </div>
       </section>
     </StyledDiv>
@@ -131,7 +131,7 @@ const StyledDiv = styled.div`
     align-items: center;
     justify-content: space-around;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    margin: 5rem auto 2rem;
+    margin: 3rem auto 2rem;
 
     .bookmarks,
     .followers,
