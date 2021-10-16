@@ -3,6 +3,7 @@ import styled from "styled-components";
 import man from "../img/man.jpg";
 import kitchen from "../img/kitchen.jpg";
 import UserFeedCard from "../components/Cards/UserFeedCard";
+import RecipeFeedCard from "../components/Cards/RecipeFeedCard";
 
 const MyProfile = () => {
   return (
@@ -34,7 +35,9 @@ const MyProfile = () => {
           </div>
         </div>
         <div className="bio-container">
-          <h4>Bio:</h4>
+          <h4>
+            My <span>Bio:</span>{" "}
+          </h4>
           <p>
             This is my bio and this is where I write a short description about
             myself and things and stuff and things and stuff and things and
@@ -48,9 +51,7 @@ const MyProfile = () => {
         </h3>
         <div className="feed">
           <UserFeedCard />
-          <UserFeedCard />
-          <UserFeedCard />
-          <UserFeedCard />
+          <RecipeFeedCard />
         </div>
       </section>
     </StyledDiv>
@@ -182,10 +183,12 @@ const StyledDiv = styled.div`
 
     h4 {
       font-size: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     p {
       font-size: 1.1rem;
+      color: #757575;
     }
   }
 
