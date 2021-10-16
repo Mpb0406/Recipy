@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import man from "../img/man.jpg";
 import kitchen from "../img/kitchen.jpg";
+import RecipeFeedCard from "../components/Cards/RecipeFeedCard";
 
 const MyProfile = () => {
   return (
@@ -45,6 +46,12 @@ const MyProfile = () => {
         <h3 className="content-title">
           My <span>Bookmarks</span>
         </h3>
+        <div className="feed">
+          <RecipeFeedCard />
+          <RecipeFeedCard />
+          <RecipeFeedCard />
+          <RecipeFeedCard />
+        </div>
       </section>
     </StyledDiv>
   );
@@ -119,7 +126,7 @@ const StyledDiv = styled.div`
     height: 5rem;
     width: 50%;
     background: #fff;
-    border-radius: 0.5rem;
+    /* border-radius: 0.5rem; */
     display: flex;
     align-items: center;
     justify-content: space-around;
