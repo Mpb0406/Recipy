@@ -67,7 +67,14 @@ const MyProfile = () => {
       </main>
       <section className="content-container">
         <h3 className="content-title">
-          My <span>Bookmarks</span>
+          My{" "}
+          <span>
+            {toggleDisplay === "bookmarks"
+              ? "Bookmarks"
+              : toggleDisplay === "followers"
+              ? "Followers"
+              : "Following"}
+          </span>
         </h3>
         <div className="feed">
           {toggleDisplay === "bookmarks" ? (
@@ -207,7 +214,7 @@ const StyledDiv = styled.div`
     margin: 0 10rem 2rem;
 
     h4 {
-      font-size: 1.5rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
 
@@ -220,7 +227,7 @@ const StyledDiv = styled.div`
   .content-container {
     margin: 2rem 10rem 2rem;
     .content-title {
-      font-size: 1.5rem;
+      font-size: 2rem;
     }
   }
 `;

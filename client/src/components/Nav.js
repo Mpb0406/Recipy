@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import recipylogo from "../img/recipylogo.png";
 import recipeNavIcon from "../img/recipe-nav-icon.png";
@@ -9,10 +9,17 @@ import { connect } from "react-redux";
 import { logout } from "../actions/auth";
 
 const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const location = useLocation();
+  console.log(location.pathname);
   const guestLinks = (
     <>
       <li>
-        <StyledAnchor href="/" className="active">
+        <StyledAnchor
+          href="/"
+          className={
+            location.pathname === "/myrecipes" ? "active" : "notactive"
+          }
+        >
           Home
         </StyledAnchor>
       </li>
@@ -29,13 +36,21 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
     <div className="navContainer">
       <li>
         <img className="nav-icon" src={recipeNavIcon} alt="" />
-        <StyledAnchor className="active" href="/myrecipes">
+        <StyledAnchor
+          className={location.pathname === "/myrecipes" ? "active" : ""}
+          href="/myrecipes"
+        >
           My Recipes
         </StyledAnchor>
       </li>
       <li>
         <img className="nav-icon" src={userNavIcon} alt="" />
-        <StyledAnchor href="/myprofile">Profile</StyledAnchor>
+        <StyledAnchor
+          className={location.pathname === "/myprofile" ? "active" : ""}
+          href="/myprofile"
+        >
+          Profile
+        </StyledAnchor>
       </li>
       <li>
         <img className="nav-icon" src={logoutNavIcon} alt="" />

@@ -9,7 +9,12 @@ import Footer from "./components/Footer";
 import CreateRecipe from "./components/CreateRecipe";
 import EditRecipe from "./components/EditRecipe";
 import setAuthToken from "./utils/setAuthToken";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 // Redux
 import { Provider } from "react-redux";
@@ -32,8 +37,9 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <GlobalStyle />
-        <Nav />
         <Router>
+          <Nav />
+
           <Alert />
           <Switch>
             <Route path="/" exact component={Home} />

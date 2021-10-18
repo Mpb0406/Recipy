@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { getRecipes } from "../actions/recipes";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
-import DisplayRecipe from "./DisplayRecipe";
 import MyRecipesCard from "../components/Cards/MyRecipesCard";
 import { getProfile } from "../actions/profile";
 
