@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import man from "../img/man.jpg";
 import kitchen from "../img/kitchen.jpg";
 import UserFeedCard from "../components/Cards/UserFeedCard";
 import RecipeFeedCard from "../components/Cards/RecipeFeedCard";
 
+//Create Local State to Toggle Active Classes for Bookmarks, Followers, and Following
+
 const MyProfile = () => {
+  const [toggleDisplay, setToggleDisplay] = useState("bookmarks");
+
+  console.log(toggleDisplay);
   return (
     <StyledDiv>
       <section className="header">
@@ -21,15 +26,30 @@ const MyProfile = () => {
       </section>
       <main className="main-section">
         <div className="follower-container">
-          <div className="bookmarks active">
+          <div
+            onClick={() => setToggleDisplay("bookmarks")}
+            className={`bookmarks ${
+              toggleDisplay === "bookmarks" ? "active" : ""
+            }`}
+          >
             <p>12</p>
             <span>Bookmarks</span>
           </div>
-          <div className="followers">
+          <div
+            onClick={() => setToggleDisplay("followers")}
+            className={`followers ${
+              toggleDisplay === "followers" ? "active" : ""
+            }`}
+          >
             <p>32</p>
             <span>Followers</span>
           </div>
-          <div className="following">
+          <div
+            onClick={() => setToggleDisplay("following")}
+            className={`following ${
+              toggleDisplay === "following" ? "active" : ""
+            }`}
+          >
             <p>18</p>
             <span>Following</span>
           </div>
@@ -50,8 +70,13 @@ const MyProfile = () => {
           My <span>Bookmarks</span>
         </h3>
         <div className="feed">
-          <UserFeedCard />
-          <RecipeFeedCard />
+          {toggleDisplay === "bookmarks" ? (
+            <RecipeFeedCard />
+          ) : toggleDisplay === "followers" ? (
+            <UserFeedCard />
+          ) : (
+            <UserFeedCard />
+          )}
         </div>
       </section>
     </StyledDiv>
