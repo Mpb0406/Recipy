@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { allRecipes } from "../actions/recipes";
 import MyRecipesCard from "./Cards/MyRecipesCard";
+import RecipeFeedCard from "./Cards/RecipeFeedCard";
 
 const RecipeFeed = ({ allRecipes, recipes: { recipes } }) => {
   useEffect(() => {
@@ -16,7 +17,7 @@ const RecipeFeed = ({ allRecipes, recipes: { recipes } }) => {
       </h1>
       <div className="flex-recipes">
         {recipes.map((recipe) => (
-          <MyRecipesCard
+          <RecipeFeedCard
             title={recipe.title}
             description={recipe.description}
             tags={recipe.tags}
@@ -36,10 +37,11 @@ const mapStateToProps = (state) => ({
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   .flex-recipes {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     flex-wrap: wrap;
   }
 `;

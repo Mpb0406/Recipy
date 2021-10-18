@@ -85,6 +85,7 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   height: 10vh;
   margin: 0 3rem;
+  position: static;
 `;
 
 const NavItems = styled.ul`

@@ -5,30 +5,38 @@ import pizzaAvatar from "../../img/pizza-avatar.jpg";
 const RecipeFeedCard = () => {
   return (
     <StyledMain>
-      <div className="avatar">
-        <img src={pizzaAvatar} alt="" />
-      </div>
-      <div className="recipe-container">
+      <div className="top-container">
+        <div className="avatar">
+          <img src={pizzaAvatar} alt="" />
+        </div>
+
         <div className="recipe-info">
-          <h3>NY-Style Pizza</h3>
-          <p>
-            This is a recipe for NY-Style pizza made in a home oven and it is
-            really easy to make
-          </p>
+          <h3 className="title">NY-Style Pizza</h3>
+          <p className="user">Mike Bolloskis</p>
+          <div className="time-tags">
+            <p className="time">5 days ago</p>
+            <div className="tag-container">
+              <div className="tag">pizza</div>
+              <div className="tag">italian</div>
+              <div className="tag">dinner</div>
+            </div>
+          </div>
         </div>
-        <div className="tag-container">
-          <div className="tag">pizza</div>
-          <div className="tag">italian</div>
-          <div className="tag">dinner</div>
-        </div>
-        <div className="like-container">
-          <i className="far fa-thumbs-up likes">
-            <span>12 Likes</span>
-          </i>
-          <i className="fas fa-thumbs-down unlike">
-            <span>Unlike</span>
-          </i>
-        </div>
+      </div>
+      <p className="description">
+        This is a recipe for NY-Style pizza made in a home oven and it is really
+        easy to make
+      </p>
+      <div className="interactions">
+        <i className="far fa-thumbs-up likes">
+          <span>Like</span>
+        </i>
+        <i className="far fa-bookmark bookmarks">
+          <span>Bookmark</span>
+        </i>
+        <i className="fas fa-user-plus">
+          <span>Follow</span>
+        </i>
       </div>
     </StyledMain>
   );
@@ -37,18 +45,33 @@ const RecipeFeedCard = () => {
 //Styled Components
 const StyledMain = styled.main`
   background: #fff;
-  height: 35vh;
+  height: 14.5rem;
   width: 85%;
-  /* border-radius: 0.8rem; */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
   margin: 1.5rem 0;
 
+  .top-container {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 1rem auto;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 110%;
+      width: 100%;
+      height: 1px;
+      background: #999999;
+    }
+  }
+
   .avatar {
-    height: 11rem;
-    width: 11rem;
+    height: 6rem;
+    width: 6rem;
     border-radius: 50%;
     background: #fff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
@@ -57,40 +80,50 @@ const StyledMain = styled.main`
     justify-content: center;
     align-items: center;
     border: 5px solid #3b7c0b;
+    margin-right: 1rem;
 
     img {
       object-fit: cover;
-      height: 11rem;
+      height: 7rem;
     }
-  }
-
-  .recipe-container {
-    margin: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 70%;
   }
 
   .recipe-info {
-    width: 100%;
+    width: 85%;
 
-    h3 {
+    .title {
       font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 2rem;
     }
 
-    p {
-      font-size: 1.1rem;
+    .user {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #3b7c0b;
     }
+
+    .time {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #858585;
+      line-height: 2.5rem;
+    }
+  }
+
+  .time-tags {
+    display: flex;
+    align-items: center;
   }
 
   .tag-container {
     display: flex;
-    width: 100%;
-    margin-top: 0.5rem;
+    align-items: center;
+    width: 50%;
+    margin-left: 1rem;
 
     .tag {
-      padding: 0.2rem 0.5rem;
+      padding: 0.15rem 0.5rem;
       margin: 0 0.25rem;
       background: green;
       border-radius: 3rem;
@@ -100,26 +133,57 @@ const StyledMain = styled.main`
     }
   }
 
-  .like-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 70%;
-    margin: 2rem 0 0;
+  .description {
+    width: 95%;
+    margin: 0.5rem auto 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+  }
 
-    span {
-      font-family: "Poppins", sans-serif;
-      font-weight: 500;
-      font-size: 1.2rem;
-      margin-left: 0.5rem;
-      color: #343036;
+  .interactions {
+    width: 98%;
+    margin: 0.5rem auto 0;
+    background: #ccdced;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      height: 2rem;
+      width: 1px;
+      background: #959595;
     }
 
-    .likes,
-    .unlike {
-      font-size: 1.2rem;
-      color: #343036;
+    &::before {
+      top: 50%;
+      left: 33%;
+      transform: translate(-33%, -50%);
+    }
+
+    &::after {
+      top: 50%;
+      right: 33%;
+      transform: translate(33%, -50%);
+    }
+
+    i {
+      padding: 0.5rem 9%;
       cursor: pointer;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+
+      span {
+        margin-left: 0.5rem;
+        color: black;
+        font-weight: 500;
+        font-size: 1.1rem;
+        font-family: "Poppins", sans-serif;
+      }
     }
   }
 `;
