@@ -138,7 +138,7 @@ export const likeRecipe = (id) => async (dispatch) => {
 
 export const unlikeRecipe = (id) => async (dispatch) => {
   try {
-    const res = await axios(`/api/recipes/unlike/${id}`);
+    const res = await axios.put(`/api/recipes/unlike/${id}`);
 
     dispatch({
       type: UNLIKE_RECIPE,

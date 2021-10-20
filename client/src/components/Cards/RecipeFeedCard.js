@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import pizzaAvatar from "../../img/pizza-avatar.jpg";
 
-const RecipeFeedCard = () => {
+const RecipeFeedCard = ({ title, description, tags, likes }) => {
   return (
     <StyledMain>
       <div className="top-container">
@@ -11,7 +11,7 @@ const RecipeFeedCard = () => {
         </div>
 
         <div className="recipe-info">
-          <h3 className="title">NY-Style Pizza</h3>
+          <h3 className="title">{title}</h3>
           <p className="user">Mike Bolloskis</p>
           <div className="time-tags">
             <p className="time">5 days ago</p>
@@ -23,13 +23,10 @@ const RecipeFeedCard = () => {
           </div>
         </div>
       </div>
-      <p className="description">
-        This is a recipe for NY-Style pizza made in a home oven and it is really
-        easy to make
-      </p>
+      <p className="description">{description || `this is a description`}</p>
       <div className="interactions">
         <i className="far fa-thumbs-up likes">
-          <span>Like</span>
+          <span>{` Likes`}</span>
         </i>
         <i className="far fa-bookmark bookmarks">
           <span>Bookmark</span>
@@ -46,7 +43,7 @@ const RecipeFeedCard = () => {
 const StyledMain = styled.main`
   background: #fff;
   height: 14.5rem;
-  width: 85%;
+  width: 80%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
@@ -143,7 +140,7 @@ const StyledMain = styled.main`
   .interactions {
     width: 98%;
     margin: 0.5rem auto 0;
-    background: #ccdced;
+    background: #ccdced77;
     display: flex;
     justify-content: space-around;
     align-items: center;

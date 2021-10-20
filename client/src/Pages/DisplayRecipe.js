@@ -7,8 +7,7 @@ import { connect } from "react-redux";
 import { getOneRecipe } from "../actions/recipes";
 import Loading from "../components/Loading";
 import man from "../img/man.jpg";
-import { likeRecipe } from "../actions/recipes";
-import { unlikeRecipe } from "../actions/recipes";
+import { likeRecipe, unlikeRecipe } from "../actions/recipes";
 
 const DisplayRecipe = ({
   getOneRecipe,
@@ -25,6 +24,7 @@ const DisplayRecipe = ({
   const likeOrUnlike = () => {
     likeRecipe(id);
   };
+
   return recipe === null ? (
     <Loading />
   ) : (
@@ -56,9 +56,10 @@ const DisplayRecipe = ({
             <i className="far fa-bookmark bookmark">
               <span>Bookmark</span>
             </i>
+
             <i
-              className="far fa-thumbs-up like"
-              onClick={(e) => likeRecipe(id)}
+              className=" fas fa-thumbs-up like"
+              onClick={() => likeOrUnlike(id)}
             >
               <span>Like</span>{" "}
             </i>

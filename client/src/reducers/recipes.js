@@ -55,6 +55,7 @@ export default function (state = initialState, action) {
     case UNLIKE_RECIPE:
       return {
         ...state,
+        recipe: payload,
       };
     default:
       return state;
