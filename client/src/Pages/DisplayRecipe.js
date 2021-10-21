@@ -19,6 +19,7 @@ const DisplayRecipe = ({
   const { id } = useParams();
   useEffect(() => {
     getOneRecipe(id);
+    window.scrollTo(0, 0);
   }, []);
 
   return recipe === null ? (
