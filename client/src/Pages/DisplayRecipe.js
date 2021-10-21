@@ -21,10 +21,6 @@ const DisplayRecipe = ({
     getOneRecipe(id);
   }, []);
 
-  const likeOrUnlike = () => {
-    likeRecipe(id);
-  };
-
   return recipe === null ? (
     <Loading />
   ) : (
@@ -58,10 +54,22 @@ const DisplayRecipe = ({
             </i>
 
             <i
-              className=" fas fa-thumbs-up like"
-              onClick={() => likeOrUnlike(id)}
+              className={`${
+                recipe.likes.filter((like) => like.user === user._id).length > 0
+                  ? "fas"
+                  : "far"
+              } fa-thumbs-up like`}
+              onClick={
+                recipe.likes.filter((like) => like.user === user._id).length ===
+                0
+                  ? () => likeRecipe(id)
+                  : () => unlikeRecipe(id)
+              }
             >
-              <span>Like</span>{" "}
+              <span>
+                {recipe.likes.length}{" "}
+                {recipe.likes.length === 1 ? "Like" : "Likes"}
+              </span>{" "}
             </i>
           </div>
         </div>
