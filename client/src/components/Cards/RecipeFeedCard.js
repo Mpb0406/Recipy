@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import pizzaAvatar from "../../img/pizza-avatar.jpg";
 
-const RecipeFeedCard = ({ title, description, tags, likes }) => {
+const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
   return (
     <StyledMain>
       <div className="top-container">
@@ -11,7 +12,9 @@ const RecipeFeedCard = ({ title, description, tags, likes }) => {
         </div>
 
         <div className="recipe-info">
-          <h3 className="title">{title}</h3>
+          <Link to={`/recipes/${id}`}>
+            <h3 className="title">{title}</h3>
+          </Link>
           <p className="user">Mike Bolloskis</p>
           <div className="time-tags">
             <p className="time">5 days ago</p>

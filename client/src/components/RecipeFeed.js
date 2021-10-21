@@ -22,6 +22,7 @@ const RecipeFeed = ({ allRecipes, recipes: { recipes } }) => {
             description={recipe.description}
             tags={recipe.tags}
             likes={recipe.likes}
+            id={recipe._id}
           />
         ))}
       </div>
