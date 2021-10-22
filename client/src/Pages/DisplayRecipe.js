@@ -17,12 +17,15 @@ const DisplayRecipe = ({
   unlikeRecipe,
   bookmarkRecipe,
   auth: { user },
+  profile: { profile },
 }) => {
   const { id } = useParams();
   useEffect(() => {
     getOneRecipe(id);
     window.scrollTo(0, 0);
   }, []);
+
+  console.log(profile);
 
   return recipe === null ? (
     <Loading />
@@ -53,8 +56,13 @@ const DisplayRecipe = ({
               </div>
             </div>
             <i
-              className="far fa-bookmark bookmark"
-              onClick={bookmarkRecipe(id)}
+              className={`${
+                profile.bookmarks.filter((bookmark) => bookmark._id === id)
+                  .length > 0
+                  ? "fas"
+                  : "far"
+              } fa-bookmark bookmark`}
+              onClick={() => bookmarkRecipe(id)}
             >
               <span>Bookmark</span>
             </i>
@@ -144,6 +152,7 @@ const DisplayRecipe = ({
 const mapStateToProps = (state) => ({
   recipe: state.recipes,
   auth: state.auth,
+  profile: state.profile,
 });
 
 // Styled Components
