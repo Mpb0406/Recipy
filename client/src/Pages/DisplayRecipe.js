@@ -8,24 +8,23 @@ import { getOneRecipe } from "../actions/recipes";
 import Loading from "../components/Loading";
 import man from "../img/man.jpg";
 import { likeRecipe, unlikeRecipe } from "../actions/recipes";
-import { bookmarkRecipe } from "../actions/profile";
+import { bookmarkRecipe, removeBookmark } from "../actions/profile";
 
 const DisplayRecipe = ({
   getOneRecipe,
-  recipe: { recipe, loading },
+  recipe: { recipe },
   likeRecipe,
   unlikeRecipe,
   bookmarkRecipe,
+  removeBookmark,
   auth: { user },
-  profile: { profile },
+  profile: { profile, loading },
 }) => {
   const { id } = useParams();
   useEffect(() => {
     getOneRecipe(id);
     window.scrollTo(0, 0);
-  }, []);
-
-  console.log(profile);
+  }, [profile]);
 
   return recipe === null ? (
     <Loading />
@@ -62,7 +61,12 @@ const DisplayRecipe = ({
                   ? "fas"
                   : "far"
               } fa-bookmark bookmark`}
-              onClick={() => bookmarkRecipe(id)}
+              onClick={
+                profile.bookmarks.filter((bookmark) => bookmark._id === id)
+                  .length === 0
+                  ? () => bookmarkRecipe(id)
+                  : () => removeBookmark(id)
+              }
             >
               <span>Bookmark</span>
             </i>
@@ -507,4 +511,5 @@ export default connect(mapStateToProps, {
   likeRecipe,
   unlikeRecipe,
   bookmarkRecipe,
+  removeBookmark,
 })(DisplayRecipe);

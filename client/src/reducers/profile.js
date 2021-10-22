@@ -1,4 +1,8 @@
-import { BOOKMARK_RECIPE, GET_PROFILE } from "../actions/types";
+import {
+  BOOKMARK_RECIPE,
+  GET_PROFILE,
+  REMOVE_BOOKMARK,
+} from "../actions/types";
 
 const initialState = {
   profile: null,
@@ -17,9 +21,11 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case BOOKMARK_RECIPE:
+    case REMOVE_BOOKMARK:
       return {
         ...state,
         profile: { ...state.profile, bookmarks: payload },
+        loading: false,
       };
     default:
       return state;

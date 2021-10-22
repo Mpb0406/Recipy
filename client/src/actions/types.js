@@ -18,3 +18,4 @@ export const LIKE_RECIPE = "LIKE_RECIPE";
 export const UNLIKE_RECIPE = "UNLIKE_RECIPE";
 export const GET_PROFILE = "GET_PROFILE";
 export const BOOKMARK_RECIPE = "BOOKMARK_RECIPE";
+export const REMOVE_BOOKMARK = "REMOVE_BOOKMARK";
