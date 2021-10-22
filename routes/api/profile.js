@@ -83,7 +83,7 @@ router.put("/bookmark/:id", auth, async (req, res) => {
 
   profile.bookmarks.push({ _id: recipe._id, user: recipe.user._id });
   await profile.save();
-  res.json(profile);
+  res.json(profile.bookmarks);
 });
 
 //@route    PUT api/profile/remove-bookmark/:id

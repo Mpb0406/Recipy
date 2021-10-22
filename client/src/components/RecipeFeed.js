@@ -12,7 +12,7 @@ const RecipeFeed = ({ allRecipes, recipes: { recipes } }) => {
   console.log(recipes);
   return (
     <StyledDiv>
-      <h1 className="title">
+      <h1 className="feed-title">
         Recipe <span>Feed</span>
       </h1>
       <div className="flex-recipes">
@@ -38,6 +38,10 @@ const mapStateToProps = (state) => ({
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
+
+  .feed-title {
+    text-align: center;
+  }
 
   .flex-recipes {
     display: flex;

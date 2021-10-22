@@ -8,12 +8,14 @@ import { getOneRecipe } from "../actions/recipes";
 import Loading from "../components/Loading";
 import man from "../img/man.jpg";
 import { likeRecipe, unlikeRecipe } from "../actions/recipes";
+import { bookmarkRecipe } from "../actions/profile";
 
 const DisplayRecipe = ({
   getOneRecipe,
   recipe: { recipe, loading },
   likeRecipe,
   unlikeRecipe,
+  bookmarkRecipe,
   auth: { user },
 }) => {
   const { id } = useParams();
@@ -50,7 +52,10 @@ const DisplayRecipe = ({
                 <p>Cook: {recipe.cooktime} min</p>
               </div>
             </div>
-            <i className="far fa-bookmark bookmark">
+            <i
+              className="far fa-bookmark bookmark"
+              onClick={bookmarkRecipe(id)}
+            >
               <span>Bookmark</span>
             </i>
 
@@ -492,4 +497,5 @@ export default connect(mapStateToProps, {
   getOneRecipe,
   likeRecipe,
   unlikeRecipe,
+  bookmarkRecipe,
 })(DisplayRecipe);
