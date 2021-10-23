@@ -37,7 +37,7 @@ const DisplayRecipe = ({
     window.scrollTo(0, 0);
   }, []);
 
-  return !isAuthenticated || recipe === null ? (
+  return !isAuthenticated || recipe === null || profile === null ? (
     <Loading />
   ) : (
     <StyledDiv>
