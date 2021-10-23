@@ -8,7 +8,7 @@ import { getOneRecipe } from "../actions/recipes";
 import Loading from "../components/Loading";
 import man from "../img/man.jpg";
 import { likeRecipe, unlikeRecipe } from "../actions/recipes";
-import { bookmarkRecipe, removeBookmark } from "../actions/profile";
+import { bookmarkRecipe, removeBookmark, followUser } from "../actions/profile";
 
 const DisplayRecipe = ({
   getOneRecipe,
@@ -17,6 +17,7 @@ const DisplayRecipe = ({
   unlikeRecipe,
   bookmarkRecipe,
   removeBookmark,
+  followUser,
   auth: { user },
   profile: { profile, loading },
 }) => {
@@ -97,7 +98,10 @@ const DisplayRecipe = ({
 
             {user._id != recipe.user && (
               <div className="follow-user">
-                <i className="fas fa-user-plus follow">
+                <i
+                  className="fas fa-user-plus follow"
+                  onClick={() => followUser(recipe.user)}
+                >
                   <span>Follow</span>
                 </i>
               </div>
@@ -525,4 +529,5 @@ export default connect(mapStateToProps, {
   unlikeRecipe,
   bookmarkRecipe,
   removeBookmark,
+  followUser,
 })(DisplayRecipe);

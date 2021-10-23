@@ -21,7 +21,7 @@ const Home = ({ auth: { isAuthenticated } }) => {
         </StyledMain>
       )}
 
-      <Categories />
+      {/* <Categories /> */}
       <CTA />
     </StyledFeed>
   );

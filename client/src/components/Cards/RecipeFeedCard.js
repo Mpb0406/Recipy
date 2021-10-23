@@ -13,7 +13,7 @@ const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
 
         <div className="recipe-info">
           <Link to={`/recipes/${id}`}>
-            <h3 className="title">Recipe Title</h3>
+            <h3 className="title">{title}</h3>
           </Link>
           <p className="user">Mike Bolloskis</p>
           <div className="time-tags">

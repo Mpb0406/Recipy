@@ -1,5 +1,10 @@
 import axios from "axios";
-import { BOOKMARK_RECIPE, GET_PROFILE, REMOVE_BOOKMARK } from "./types";
+import {
+  BOOKMARK_RECIPE,
+  FOLLOW_USER,
+  GET_PROFILE,
+  REMOVE_BOOKMARK,
+} from "./types";
 
 export const getProfile = () => async (dispatch) => {
   try {
@@ -33,6 +38,19 @@ export const removeBookmark = (id) => async (dispatch) => {
 
     dispatch({
       type: REMOVE_BOOKMARK,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const followUser = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/profile/follow/${id}`);
+
+    dispatch({
+      type: FOLLOW_USER,
       payload: res.data,
     });
   } catch (err) {

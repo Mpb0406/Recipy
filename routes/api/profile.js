@@ -142,7 +142,7 @@ router.put("/follow/:id", auth, async (req, res) => {
 
   await me.save();
   await userProfile.save();
-  res.json(me);
+  res.json(me.following);
 });
 
 //@route    PUT api/profile/unfollow/:id
