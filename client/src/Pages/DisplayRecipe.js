@@ -94,6 +94,14 @@ const DisplayRecipe = ({
                 {recipe.likes.length === 1 ? "Like" : "Likes"}
               </span>{" "}
             </i>
+
+            {user._id != recipe.user && (
+              <div className="follow-user">
+                <i className="fas fa-user-plus">
+                  <span>Follow</span>
+                </i>
+              </div>
+            )}
           </div>
         </div>
         <div className="profile-pic">
