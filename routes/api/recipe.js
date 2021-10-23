@@ -97,7 +97,6 @@ router.get("/myrecipes/:id", auth, async (req, res) => {
   try {
     const userRecipe = await Recipe.findById(req.params.id);
     if (!userRecipe) res.status(400).send("Recipe Not Found");
-
     res.send(userRecipe);
   } catch (err) {
     console.error(err);

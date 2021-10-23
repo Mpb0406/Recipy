@@ -24,20 +24,20 @@ const DisplayRecipe = ({
   bookmarkRecipe,
   removeBookmark,
   followUser,
-  auth: { user },
-  profile: { profile, loading },
+  auth: { user, isAuthenticated },
+  profile: { profile },
 }) => {
   const { id } = useParams();
 
   useEffect(() => {
     getProfile();
+    getOneRecipe(id);
   });
   useEffect(() => {
-    getOneRecipe(id);
     window.scrollTo(0, 0);
   }, []);
 
-  return recipe === null ? (
+  return !isAuthenticated || recipe === null ? (
     <Loading />
   ) : (
     <StyledDiv>

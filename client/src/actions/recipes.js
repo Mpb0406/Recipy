@@ -1,6 +1,5 @@
 import {
   ADD_RECIPE,
-  CLEAR_RECIPE,
   GET_ALL_RECIPES,
   GET_RECIPE,
   GET_RECIPES,
@@ -11,7 +10,6 @@ import {
 } from "./types";
 import axios from "axios";
 import { displayAlert } from "./alert";
-import { useParams } from "react-router-dom";
 
 // Get All User Recipes
 export const getRecipes = () => async (dispatch) => {

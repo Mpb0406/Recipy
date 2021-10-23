@@ -10,7 +10,6 @@ import { logout } from "../actions/auth";
 
 const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
   const location = useLocation();
-  console.log(location.pathname);
   const guestLinks = (
     <>
       <li>
