@@ -46,11 +46,12 @@ const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
 const StyledMain = styled.main`
   background: #fff;
   height: 15.5rem;
-  width: 80%;
+  width: 85%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  margin: 1.5rem 0;
+  justify-content: space-between;
+  margin: 1.5rem auto;
 
   .top-container {
     display: flex;
@@ -143,7 +144,7 @@ const StyledMain = styled.main`
 
   .interactions {
     width: 98%;
-    margin: 0.5rem auto 0;
+    margin: 0.5rem auto 0.5rem;
     background: #ccdced77;
     display: flex;
     justify-content: space-around;
@@ -172,7 +173,7 @@ const StyledMain = styled.main`
     }
 
     i {
-      padding: 0.5rem 9%;
+      padding: 0.5rem 1rem;
       cursor: pointer;
       font-size: 1.5rem;
       display: flex;

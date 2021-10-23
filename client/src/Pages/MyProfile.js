@@ -78,7 +78,9 @@ const MyProfile = () => {
         </h3>
         <div className="feed">
           {toggleDisplay === "bookmarks" ? (
-            <RecipeFeedCard />
+            <>
+              <RecipeFeedCard />
+            </>
           ) : toggleDisplay === "followers" ? (
             <UserFeedCard />
           ) : (
@@ -226,8 +228,16 @@ const StyledDiv = styled.div`
 
   .content-container {
     margin: 2rem 10rem 2rem;
+
     .content-title {
       font-size: 2rem;
+    }
+
+    .feed {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
     }
   }
 `;

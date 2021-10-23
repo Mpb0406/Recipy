@@ -34,7 +34,7 @@ const mapStateToProps = (state) => ({
 //Styled Components
 const StyledFeed = styled.div`
   .feed-container {
-    width: 80%;
+    width: 70%;
     margin: auto;
   }
 `;
