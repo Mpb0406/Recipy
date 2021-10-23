@@ -24,7 +24,7 @@ const DisplayRecipe = ({
   useEffect(() => {
     getOneRecipe(id);
     window.scrollTo(0, 0);
-  }, [profile]);
+  }, []);
 
   return recipe === null ? (
     <Loading />
@@ -40,12 +40,16 @@ const DisplayRecipe = ({
             <h1>{recipe.title}</h1>
             <p>{recipe.description}</p>
           </div>
-          <div className="recipe-actions">
-            <Link to={`/recipes/edit-recipe/${recipe._id}`}>
-              <span className="edit-recipe">Edit</span>
-            </Link>
-            <span className="delete-recipe">Delete</span>
-          </div>
+
+          {recipe.user === user._id && (
+            <div className="recipe-actions">
+              <Link to={`/recipes/edit-recipe/${recipe._id}`}>
+                <span className="edit-recipe">Edit</span>
+              </Link>
+              <span className="delete-recipe">Delete</span>
+            </div>
+          )}
+
           <div className="interactions">
             <div className="time-container">
               <i className="far fa-clock"></i>
@@ -54,6 +58,7 @@ const DisplayRecipe = ({
                 <p>Cook: {recipe.cooktime} min</p>
               </div>
             </div>
+
             <i
               className={`${
                 profile.bookmarks.filter((bookmark) => bookmark._id === id)

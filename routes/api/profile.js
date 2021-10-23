@@ -109,7 +109,7 @@ router.put("/remove-bookmark/:id", auth, async (req, res) => {
   profile.bookmarks.splice(removeIndex, 1);
 
   await profile.save();
-  res.json(profile);
+  res.json(profile.bookmarks);
 });
 
 //@route    PUT api/profile/follow/:id
