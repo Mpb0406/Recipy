@@ -8,9 +8,15 @@ import { getOneRecipe } from "../actions/recipes";
 import Loading from "../components/Loading";
 import man from "../img/man.jpg";
 import { likeRecipe, unlikeRecipe } from "../actions/recipes";
-import { bookmarkRecipe, removeBookmark, followUser } from "../actions/profile";
+import {
+  getProfile,
+  bookmarkRecipe,
+  removeBookmark,
+  followUser,
+} from "../actions/profile";
 
 const DisplayRecipe = ({
+  getProfile,
   getOneRecipe,
   recipe: { recipe },
   likeRecipe,
@@ -22,6 +28,10 @@ const DisplayRecipe = ({
   profile: { profile, loading },
 }) => {
   const { id } = useParams();
+
+  useEffect(() => {
+    getProfile();
+  });
   useEffect(() => {
     getOneRecipe(id);
     window.scrollTo(0, 0);
@@ -60,7 +70,7 @@ const DisplayRecipe = ({
               </div>
             </div>
 
-            {/* <i
+            <i
               className={`${
                 profile.bookmarks.filter((bookmark) => bookmark._id === id)
                   .length > 0
@@ -75,7 +85,7 @@ const DisplayRecipe = ({
               }
             >
               <span>Bookmark</span>
-            </i> */}
+            </i>
 
             <i
               className={`${
@@ -524,6 +534,7 @@ const StyledDiv = styled.div`
 `;
 
 export default connect(mapStateToProps, {
+  getProfile,
   getOneRecipe,
   likeRecipe,
   unlikeRecipe,
