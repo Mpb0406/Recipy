@@ -59,7 +59,7 @@ const DisplayRecipe = ({
               </div>
             </div>
 
-            <i
+            {/* <i
               className={`${
                 profile.bookmarks.filter((bookmark) => bookmark._id === id)
                   .length > 0
@@ -74,7 +74,7 @@ const DisplayRecipe = ({
               }
             >
               <span>Bookmark</span>
-            </i>
+            </i> */}
 
             <i
               className={`${
@@ -97,7 +97,7 @@ const DisplayRecipe = ({
 
             {user._id != recipe.user && (
               <div className="follow-user">
-                <i className="fas fa-user-plus">
+                <i className="fas fa-user-plus follow">
                   <span>Follow</span>
                 </i>
               </div>
@@ -263,7 +263,7 @@ const StyledDiv = styled.div`
           color: #343036;
         }
 
-        .bookmark, .like {
+        .bookmark, .like, .follow {
           transition: all 0.3s ease;
           cursor: pointer;
           &:hover {

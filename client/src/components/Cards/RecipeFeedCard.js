@@ -13,7 +13,7 @@ const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
 
         <div className="recipe-info">
           <Link to={`/recipes/${id}`}>
-            <h3 className="title">{title}</h3>
+            <h3 className="title">Recipe Title</h3>
           </Link>
           <p className="user">Mike Bolloskis</p>
           <div className="time-tags">
@@ -45,7 +45,7 @@ const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
 //Styled Components
 const StyledMain = styled.main`
   background: #fff;
-  height: 14.5rem;
+  height: 15.5rem;
   width: 80%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -107,20 +107,21 @@ const StyledMain = styled.main`
       font-size: 0.8rem;
       font-weight: 600;
       color: #858585;
-      line-height: 2.5rem;
+      line-height: 1rem;
     }
   }
 
   .time-tags {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .tag-container {
     display: flex;
     align-items: center;
     width: 50%;
-    margin-left: 1rem;
+    margin-top: 1rem;
 
     .tag {
       padding: 0.15rem 0.5rem;

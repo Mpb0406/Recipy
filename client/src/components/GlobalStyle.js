@@ -39,6 +39,15 @@ const GlobalStyle = createGlobalStyle`
         font-weight: 500;
     }
 
+    a {
+        text-decoration: none;
+        color: #343036;
+        transition: all 0.3s ease;
+        &:hover {
+            color: #3B7C0B;
+        }
+    }
+
     .nav-icon {
         height: 1.5rem;
         margin-right: 0.5rem;
@@ -110,6 +119,8 @@ const GlobalStyle = createGlobalStyle`
             background-color: #343036;
         }
     }
+
+    
 
 `;
 

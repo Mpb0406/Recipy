@@ -9,9 +9,11 @@ import RecipeFeed from "../components/RecipeFeed";
 
 const Home = ({ auth: { isAuthenticated } }) => {
   return (
-    <div>
+    <StyledFeed>
       {isAuthenticated ? (
-        <RecipeFeed />
+        <div className="feed-container">
+          <RecipeFeed />
+        </div>
       ) : (
         <StyledMain>
           <HeroText />
@@ -21,13 +23,21 @@ const Home = ({ auth: { isAuthenticated } }) => {
 
       <Categories />
       <CTA />
-    </div>
+    </StyledFeed>
   );
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
+
+//Styled Components
+const StyledFeed = styled.div`
+  .feed-container {
+    width: 80%;
+    margin: auto;
+  }
+`;
 
 const StyledMain = styled.main`
   display: flex;

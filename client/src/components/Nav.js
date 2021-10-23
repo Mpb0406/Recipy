@@ -37,7 +37,7 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li>
         <img className="nav-icon" src={recipeNavIcon} alt="" />
         <StyledAnchor
-          className={location.pathname === "/myrecipes" ? "active" : ""}
+          className={location.pathname === "/myrecipes" && "active"}
           href="/myrecipes"
         >
           My Recipes
@@ -46,7 +46,7 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li>
         <img className="nav-icon" src={userNavIcon} alt="" />
         <StyledAnchor
-          className={location.pathname === "/myprofile" ? "active" : ""}
+          className={location.pathname === "/myprofile" && "active"}
           href="/myprofile"
         >
           Profile
