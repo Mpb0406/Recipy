@@ -6,10 +6,11 @@ import UserFeedCard from "../components/Cards/UserFeedCard";
 import RecipeFeedCard from "../components/Cards/RecipeFeedCard";
 import { connect } from "react-redux";
 import { getProfile } from "../actions/profile";
+import Loading from "../components/Loading";
 
 //Create Local State to Toggle Active Classes for Bookmarks, Followers, and Following
 
-const MyProfile = ({ getProfile }) => {
+const MyProfile = ({ getProfile, profile: { profile } }) => {
   const [toggleDisplay, setToggleDisplay] = useState("bookmarks");
 
   useEffect(() => {
@@ -17,7 +18,9 @@ const MyProfile = ({ getProfile }) => {
   }, []);
   // console.log();
 
-  return (
+  return profile === null ? (
+    <Loading />
+  ) : (
     <StyledDiv>
       <section className="header">
         <div className="img-container">
@@ -85,7 +88,9 @@ const MyProfile = ({ getProfile }) => {
         <div className="feed">
           {toggleDisplay === "bookmarks" ? (
             <>
-              <RecipeFeedCard />
+              {profile.bookmarks.map((bookmark) => (
+                <RecipeFeedCard />
+              ))}
             </>
           ) : toggleDisplay === "followers" ? (
             <UserFeedCard />
