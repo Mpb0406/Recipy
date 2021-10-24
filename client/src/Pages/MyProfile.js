@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import man from "../img/man.jpg";
 import kitchen from "../img/kitchen.jpg";
 import UserFeedCard from "../components/Cards/UserFeedCard";
 import RecipeFeedCard from "../components/Cards/RecipeFeedCard";
+import { connect } from "react-redux";
+import { getProfile } from "../actions/profile";
 
 //Create Local State to Toggle Active Classes for Bookmarks, Followers, and Following
 
-const MyProfile = () => {
+const MyProfile = ({ getProfile }) => {
   const [toggleDisplay, setToggleDisplay] = useState("bookmarks");
 
-  console.log(toggleDisplay);
+  useEffect(() => {
+    getProfile();
+  }, []);
+  // console.log();
+
   return (
     <StyledDiv>
       <section className="header">
@@ -91,6 +97,10 @@ const MyProfile = () => {
     </StyledDiv>
   );
 };
+
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
 
 //Styled Components
 const StyledDiv = styled.div`
@@ -242,4 +252,4 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default MyProfile;
+export default connect(mapStateToProps, { getProfile })(MyProfile);
