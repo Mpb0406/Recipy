@@ -233,6 +233,8 @@ const StyledDiv = styled.div`
     .flex-container-1 {
       margin: 0 3rem;
       height: 85%;
+      display: flex;
+      flex-direction: column;
 
       .title-desc {
         margin-bottom: 2rem;
@@ -250,10 +252,6 @@ const StyledDiv = styled.div`
             text-decoration: underline;
           }
         }
-
-        /* .edit-recipe {
-          color: #343036;
-        } */
 
         .delete-recipe {
           color: firebrick;

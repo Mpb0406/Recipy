@@ -94,6 +94,7 @@ const MyProfile = ({ getProfile, profile: { profile } }) => {
                   description={bookmark.description}
                   tags={bookmark.tags}
                   likes={bookmark.likes}
+                  id={bookmark._id}
                 />
               ))}
             </>

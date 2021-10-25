@@ -87,7 +87,7 @@ router.put("/bookmark/:id", auth, async (req, res) => {
     title: recipe.title,
     description: recipe.description,
     tags: recipe.tags,
-    likes: recipe.likes.length,
+    likes: recipe.likes,
   });
   await profile.save();
   res.json(profile.bookmarks);

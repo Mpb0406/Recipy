@@ -4,7 +4,14 @@ import styled from "styled-components";
 import def from "../../img/default.png";
 import { connect } from "react-redux";
 
-const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
+const RecipeFeedCard = ({
+  profile: { profile },
+  title,
+  description,
+  tags,
+  likes,
+  id,
+}) => {
   return (
     <StyledMain>
       <div className="top-container">
@@ -29,9 +36,11 @@ const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
       </div>
       <p className="description">{description}</p>
       <div className="interactions">
-        <i className="far fa-thumbs-up likes">
+        {/* //far is empty fas is filled */}
+
+        <i className={`far fa-thumbs-up likes`}>
           <span>
-            {likes} {likes === 1 ? "Like" : "Likes"}
+            {likes.length} {likes.length === 1 ? "Like" : "Likes"}
           </span>
         </i>
         <i className="far fa-bookmark bookmarks">
@@ -44,6 +53,10 @@ const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
     </StyledMain>
   );
 };
+
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
 
 //Styled Components
 const StyledMain = styled.main`
@@ -181,6 +194,10 @@ const StyledMain = styled.main`
       font-size: 1.5rem;
       display: flex;
       align-items: center;
+      &:hover {
+        font-weight: 600;
+        color: #3b7c0b;
+      }
 
       span {
         margin-left: 0.5rem;
@@ -193,4 +210,4 @@ const StyledMain = styled.main`
   }
 `;
 
-export default connect(null)(RecipeFeedCard);
+export default connect(mapStateToProps)(RecipeFeedCard);

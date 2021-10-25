@@ -45,9 +45,14 @@ const profileSchema = mongoose.Schema({
       tags: {
         type: [String],
       },
-      likes: {
-        type: Number,
-      },
+      likes: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: "users",
+          },
+        },
+      ],
     },
   ],
   following: [
