@@ -2,8 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import pizzaAvatar from "../../img/pizza-avatar.jpg";
+import { connect } from "react-redux";
+import { getOneRecipe } from "../../actions/recipes";
 
-const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
+const RecipeFeedCard = ({
+  getOneRecipe,
+  recipeId,
+  title,
+  description,
+  tags,
+  likes,
+  id,
+}) => {
   return (
     <StyledMain>
       <div className="top-container">
@@ -13,7 +23,7 @@ const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
 
         <div className="recipe-info">
           <Link to={`/recipes/${id}`}>
-            <h3 className="title">{title}</h3>
+            <h3 className="title">{recipeId ? "Works" : title}</h3>
           </Link>
           <p className="user">Mike Bolloskis</p>
           <div className="time-tags">
@@ -190,4 +200,4 @@ const StyledMain = styled.main`
   }
 `;
 
-export default RecipeFeedCard;
+export default connect(null, { getOneRecipe })(RecipeFeedCard);

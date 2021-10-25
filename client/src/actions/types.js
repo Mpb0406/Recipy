@@ -20,3 +20,4 @@ export const GET_PROFILE = "GET_PROFILE";
 export const BOOKMARK_RECIPE = "BOOKMARK_RECIPE";
 export const REMOVE_BOOKMARK = "REMOVE_BOOKMARK";
 export const FOLLOW_USER = "FOLLOW_USER";
+export const GET_BOOKMARKS = "GET_BOOKMARKS";

@@ -3,6 +3,7 @@ import {
   GET_PROFILE,
   REMOVE_BOOKMARK,
   FOLLOW_USER,
+  GET_BOOKMARKS,
 } from "../actions/types";
 
 const initialState = {
@@ -33,6 +34,11 @@ export default function (state = initialState, action) {
         ...state,
         profile: { ...state.profile, following: payload },
         loading: false,
+      };
+    case GET_BOOKMARKS:
+      return {
+        ...state,
+        profile: { ...state.profile, bookmarks: payload },
       };
     default:
       return state;

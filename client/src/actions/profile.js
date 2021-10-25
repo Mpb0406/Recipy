@@ -4,6 +4,7 @@ import {
   FOLLOW_USER,
   GET_PROFILE,
   REMOVE_BOOKMARK,
+  GET_BOOKMARKS,
 } from "./types";
 
 export const getProfile = () => async (dispatch) => {
@@ -57,3 +58,16 @@ export const followUser = (id) => async (dispatch) => {
     console.error(err);
   }
 };
+
+export const getBookmarkedRecipes =
+  ([id]) =>
+  async (dispatch) => {
+    const recipes = await id.map((recipe) =>
+      axios.get(`/api/recipes/myrecipes/${recipe}`)
+    );
+
+    dispatch({
+      type: GET_BOOKMARKS,
+      payload: recipes,
+    });
+  };
