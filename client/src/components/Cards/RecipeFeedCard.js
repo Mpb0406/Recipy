@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import pizzaAvatar from "../../img/pizza-avatar.jpg";
+import def from "../../img/default.png";
 import { connect } from "react-redux";
 
 const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
@@ -9,7 +9,7 @@ const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
     <StyledMain>
       <div className="top-container">
         <div className="avatar">
-          <img src={pizzaAvatar} alt="" />
+          <img src={def} alt="" />
         </div>
 
         <div className="recipe-info">

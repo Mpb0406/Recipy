@@ -4,28 +4,33 @@ import { connect } from "react-redux";
 import { allRecipes } from "../actions/recipes";
 import MyRecipesCard from "./Cards/MyRecipesCard";
 import RecipeFeedCard from "./Cards/RecipeFeedCard";
+import Loading from "./Loading";
 
 const RecipeFeed = ({ allRecipes, recipes: { recipes } }) => {
   useEffect(() => {
     allRecipes();
   }, []);
-  console.log(recipes);
   return (
     <StyledDiv>
       <h1 className="feed-title">
         Recipe <span>Feed</span>
       </h1>
-      <div className="flex-recipes">
-        {recipes.map((recipe) => (
-          <RecipeFeedCard
-            title={recipe.title}
-            description={recipe.description}
-            tags={recipe.tags}
-            likes={recipe.likes}
-            id={recipe._id}
-          />
-        ))}
-      </div>
+
+      {recipes.length < 1 ? (
+        <Loading />
+      ) : (
+        <div className="flex-recipes">
+          {recipes.map((recipe) => (
+            <RecipeFeedCard
+              title={recipe.title}
+              description={recipe.description}
+              tags={recipe.tags}
+              likes={recipe.likes.length}
+              id={recipe._id}
+            />
+          ))}
+        </div>
+      )}
     </StyledDiv>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import pizzaHeader from "../img/pizza-header.png";
-import def from "../img/default.png";
+import kitchenHeader from "../img/kitchen-header.jpg";
 import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOneRecipe } from "../actions/recipes";
@@ -42,7 +42,7 @@ const DisplayRecipe = ({
   ) : (
     <StyledDiv>
       <div className="header-container">
-        <img src={pizzaHeader} alt="" />
+        <img src={kitchenHeader} alt="" />
         <div className="darken"></div>
       </div>
       <div className="title-card">
@@ -193,11 +193,19 @@ const StyledDiv = styled.div`
     width: 100%;
     height: 60vh;
     overflow: hidden;
-    object-fit: cover;
     position: relative;
+    display: flex;
+    
+    img {
+      width: 100%;
+      align-self: flex-end;
+      margin-bottom: 1rem;
+    }
+
+    
 
     .darken {
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.5);
       height: 100%;
       width: 100%;
       position: absolute;

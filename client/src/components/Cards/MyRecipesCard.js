@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import pizzaHeader from "../../img/pizza-header.png";
 import def from "../../img/default.png";
-import recipes from "../../reducers/recipes";
 
 const MyRecipesCard = ({ title, description, tags, likes }) => {
   return (
