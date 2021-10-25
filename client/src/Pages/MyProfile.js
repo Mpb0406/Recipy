@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import man from "../img/man.jpg";
+import defaultUser from "../img/default-user.png";
 import kitchen from "../img/kitchen.jpg";
 import UserFeedCard from "../components/Cards/UserFeedCard";
 import RecipeFeedCard from "../components/Cards/RecipeFeedCard";
@@ -28,7 +29,7 @@ const MyProfile = ({ getProfile, profile: { profile } }) => {
         </div>
 
         <div className="avatar-container">
-          <img src={man} alt="" />
+          <img src={defaultUser} alt="" />
         </div>
         <h3 className="username">Mike Bolloskis</h3>
       </section>
@@ -160,7 +161,7 @@ const StyledDiv = styled.div`
     z-index: 2;
 
     img {
-      width: 10rem;
+      width: 14rem;
       object-fit: cover;
     }
   }

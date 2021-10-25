@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import pizzaHeader from "../img/pizza-header.png";
 import kitchenHeader from "../img/kitchen-header.jpg";
+import defaultUser from "../img/default-user.png";
 import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOneRecipe } from "../actions/recipes";
 import Loading from "../components/Loading";
-import man from "../img/man.jpg";
 import { likeRecipe, unlikeRecipe } from "../actions/recipes";
 import {
   getProfile,
@@ -119,7 +118,7 @@ const DisplayRecipe = ({
           </div>
         </div>
         <div className="profile-pic">
-          <img src={man} alt="" />
+          <img src={defaultUser} alt="" />
           <h3>Mike Bolloskis</h3>
         </div>
       </div>
@@ -312,6 +311,7 @@ const StyledDiv = styled.div`
     flex-direction: column;
     align-items: center;
     margin-right: 3rem;
+    z-index: 5;
     img {
       width: 12rem;
       height: 12rem;
