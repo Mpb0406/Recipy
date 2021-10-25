@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import def from "../../img/default.png";
 import { connect } from "react-redux";
+import Loading from "../Loading";
 
 const RecipeFeedCard = ({
   profile: { profile },
-  title,
-  description,
-  tags,
+  auth: { user, isAuthenticated },
   likes,
   id,
 }) => {
-  return (
+  const [recipe, setRecipe] = useState({
+    title: "",
+    description: "",
+    tags: [],
+    likes: [],
+  });
+
+  useEffect(async () => {
+    let res = await axios.get(`/api/recipes/myrecipes/${id}`);
+    setRecipe({
+      title: res.data.title,
+      description: res.data.description,
+      tags: res.data.tags,
+      likes: res.data.likes,
+    });
+  }, []);
+
+  console.log(recipe.likes);
+  return !isAuthenticated ? (
+    <Loading />
+  ) : (
     <StyledMain>
       <div className="top-container">
         <div className="avatar">
@@ -21,26 +41,32 @@ const RecipeFeedCard = ({
 
         <div className="recipe-info">
           <Link to={`/recipes/${id}`}>
-            <h3 className="title">{title}</h3>
+            <h3 className="title">{recipe.title}</h3>
           </Link>
           <p className="user">Mike Bolloskis</p>
           <div className="time-tags">
             <p className="time">5 days ago</p>
             <div className="tag-container">
-              {tags.map((tag) => (
+              {recipe.tags.map((tag) => (
                 <div className="tag">{tag}</div>
               ))}
             </div>
           </div>
         </div>
       </div>
-      <p className="description">{description}</p>
+      <p className="description">{recipe.description}</p>
       <div className="interactions">
         {/* //far is empty fas is filled */}
 
-        <i className={`far fa-thumbs-up likes`}>
+        <i
+          className={`${
+            recipe.likes.filter((like) => like.user === user._id).length === 0
+              ? "far"
+              : "fas"
+          } fa-thumbs-up likes`}
+        >
           <span>
-            {likes.length} {likes.length === 1 ? "Like" : "Likes"}
+            {recipe.likes.length} {recipe.likes.length === 1 ? "Like" : "Likes"}
           </span>
         </i>
         <i className="far fa-bookmark bookmarks">
@@ -56,6 +82,7 @@ const RecipeFeedCard = ({
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
+  auth: state.auth,
 });
 
 //Styled Components

@@ -41,7 +41,7 @@ const MyProfile = ({ getProfile, profile: { profile } }) => {
               toggleDisplay === "bookmarks" ? "active" : ""
             }`}
           >
-            <p>12</p>
+            <p>{profile.bookmarks.length}</p>
             <span>Bookmarks</span>
           </div>
           <div
@@ -50,7 +50,7 @@ const MyProfile = ({ getProfile, profile: { profile } }) => {
               toggleDisplay === "followers" ? "active" : ""
             }`}
           >
-            <p>32</p>
+            <p>{profile.followers.length}</p>
             <span>Followers</span>
           </div>
           <div
@@ -59,7 +59,7 @@ const MyProfile = ({ getProfile, profile: { profile } }) => {
               toggleDisplay === "following" ? "active" : ""
             }`}
           >
-            <p>18</p>
+            <p>{profile.following.length}</p>
             <span>Following</span>
           </div>
         </div>

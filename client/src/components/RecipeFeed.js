@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { allRecipes } from "../actions/recipes";
-import MyRecipesCard from "./Cards/MyRecipesCard";
 import RecipeFeedCard from "./Cards/RecipeFeedCard";
 import Loading from "./Loading";
 
@@ -21,13 +20,7 @@ const RecipeFeed = ({ allRecipes, recipes: { recipes } }) => {
       ) : (
         <div className="flex-recipes">
           {recipes.map((recipe) => (
-            <RecipeFeedCard
-              title={recipe.title}
-              description={recipe.description}
-              tags={recipe.tags}
-              likes={recipe.likes.length}
-              id={recipe._id}
-            />
+            <RecipeFeedCard likes={recipe.likes} id={recipe._id} />
           ))}
         </div>
       )}
