@@ -36,6 +36,18 @@ const profileSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "users",
       },
+      title: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+      tags: {
+        type: [String],
+      },
+      likes: {
+        type: Number,
+      },
     },
   ],
   following: [

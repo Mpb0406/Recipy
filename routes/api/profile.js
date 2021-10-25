@@ -81,7 +81,14 @@ router.put("/bookmark/:id", auth, async (req, res) => {
     return res.status(400).json({ msg: "Recipe already bookmarked" });
   }
 
-  profile.bookmarks.push({ _id: recipe._id, user: recipe.user._id });
+  profile.bookmarks.push({
+    _id: recipe._id,
+    user: recipe.user._id,
+    title: recipe.title,
+    description: recipe.description,
+    tags: recipe.tags,
+    likes: recipe.likes.length,
+  });
   await profile.save();
   res.json(profile.bookmarks);
 });
