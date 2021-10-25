@@ -7,11 +7,10 @@ import RecipeFeedCard from "../components/Cards/RecipeFeedCard";
 import { connect } from "react-redux";
 import { getProfile } from "../actions/profile";
 import Loading from "../components/Loading";
-import { getOneRecipe } from "../actions/recipes";
 
 //Create Local State to Toggle Active Classes for Bookmarks, Followers, and Following
 
-const MyProfile = ({ getProfile, getOneRecipe, profile: { profile } }) => {
+const MyProfile = ({ getProfile, profile: { profile } }) => {
   const [toggleDisplay, setToggleDisplay] = useState("bookmarks");
 
   useEffect(() => {
@@ -89,7 +88,12 @@ const MyProfile = ({ getProfile, getOneRecipe, profile: { profile } }) => {
           {toggleDisplay === "bookmarks" ? (
             <>
               {profile.bookmarks.map((bookmark) => (
-                <RecipeFeedCard recipeId={bookmark._id} />
+                <RecipeFeedCard
+                  title={bookmark.title}
+                  description={bookmark.description}
+                  tags={bookmark.tags}
+                  likes={bookmark.likes}
+                />
               ))}
             </>
           ) : toggleDisplay === "followers" ? (
@@ -257,6 +261,4 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default connect(mapStateToProps, { getProfile, getOneRecipe })(
-  MyProfile
-);
+export default connect(mapStateToProps, { getProfile })(MyProfile);

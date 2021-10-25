@@ -4,7 +4,7 @@ import styled from "styled-components";
 import pizzaAvatar from "../../img/pizza-avatar.jpg";
 import { connect } from "react-redux";
 
-const RecipeFeedCard = ({ recipeId, title, description, tags, likes, id }) => {
+const RecipeFeedCard = ({ title, description, tags, likes, id }) => {
   return (
     <StyledMain>
       <div className="top-container">
@@ -14,23 +14,25 @@ const RecipeFeedCard = ({ recipeId, title, description, tags, likes, id }) => {
 
         <div className="recipe-info">
           <Link to={`/recipes/${id}`}>
-            <h3 className="title">{recipeId ? "Works" : title}</h3>
+            <h3 className="title">{title}</h3>
           </Link>
           <p className="user">Mike Bolloskis</p>
           <div className="time-tags">
             <p className="time">5 days ago</p>
             <div className="tag-container">
-              <div className="tag">pizza</div>
-              <div className="tag">italian</div>
-              <div className="tag">dinner</div>
+              {tags.map((tag) => (
+                <div className="tag">{tag}</div>
+              ))}
             </div>
           </div>
         </div>
       </div>
-      <p className="description">{description || `this is a description`}</p>
+      <p className="description">{description}</p>
       <div className="interactions">
         <i className="far fa-thumbs-up likes">
-          <span>{` Likes`}</span>
+          <span>
+            {likes} {likes === 1 ? "Like" : "Likes"}
+          </span>
         </i>
         <i className="far fa-bookmark bookmarks">
           <span>Bookmark</span>
