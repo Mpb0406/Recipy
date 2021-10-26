@@ -5,12 +5,14 @@ import styled from "styled-components";
 import def from "../../img/default.png";
 import { connect } from "react-redux";
 import Loading from "../Loading";
+import { likeRecipe, unlikeRecipe } from "../../actions/recipes";
 
 const RecipeFeedCard = ({
   profile: { profile },
   auth: { user, isAuthenticated },
-  likes,
   id,
+  likeRecipe,
+  unlikeRecipe,
 }) => {
   const [recipe, setRecipe] = useState({
     title: "",
@@ -27,7 +29,7 @@ const RecipeFeedCard = ({
       tags: res.data.tags,
       likes: res.data.likes,
     });
-  }, []);
+  });
 
   console.log(recipe.likes);
   return !isAuthenticated ? (
@@ -56,14 +58,17 @@ const RecipeFeedCard = ({
       </div>
       <p className="description">{recipe.description}</p>
       <div className="interactions">
-        {/* //far is empty fas is filled */}
-
         <i
           className={`${
             recipe.likes.filter((like) => like.user === user._id).length === 0
               ? "far"
               : "fas"
           } fa-thumbs-up likes`}
+          onClick={
+            recipe.likes.filter((like) => like.user === user._id).length === 0
+              ? () => likeRecipe(id)
+              : () => unlikeRecipe(id)
+          }
         >
           <span>
             {recipe.likes.length} {recipe.likes.length === 1 ? "Like" : "Likes"}
@@ -237,4 +242,6 @@ const StyledMain = styled.main`
   }
 `;
 
-export default connect(mapStateToProps)(RecipeFeedCard);
+export default connect(mapStateToProps, { likeRecipe, unlikeRecipe })(
+  RecipeFeedCard
+);
