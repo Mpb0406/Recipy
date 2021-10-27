@@ -23,6 +23,7 @@ const RecipeFeedCard = ({
     tags: [],
     likes: [],
     id: "",
+    user: "",
   });
 
   useEffect(async () => {
@@ -33,10 +34,11 @@ const RecipeFeedCard = ({
       tags: res.data.tags,
       likes: res.data.likes,
       id: res.data._id,
+      user: res.data.user,
     });
   });
 
-  console.log(recipe.id);
+  console.log(profile.following.filter((follow) => follow._id === recipe.user));
   return !isAuthenticated ? (
     <Loading />
   ) : (
@@ -95,8 +97,20 @@ const RecipeFeedCard = ({
         >
           <span>Bookmark</span>
         </i>
-        <i className="fas fa-user-plus">
-          <span>Follow</span>
+        <i
+          className={`${
+            profile.following.filter((follow) => follow._id === recipe.user)
+              .length === 0
+              ? "fas fa-user-plus"
+              : "fas fa-user-minus"
+          }`}
+        >
+          <span>{`${
+            profile.following.filter((follow) => follow._id === recipe.user)
+              .length === 0
+              ? "Follow"
+              : "Unfollow"
+          }`}</span>
         </i>
       </div>
     </StyledMain>
