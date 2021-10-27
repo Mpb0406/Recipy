@@ -6,6 +6,7 @@ import def from "../../img/default.png";
 import { connect } from "react-redux";
 import Loading from "../Loading";
 import { likeRecipe, unlikeRecipe } from "../../actions/recipes";
+import { bookmarkRecipe, removeBookmark } from "../../actions/profile";
 
 const RecipeFeedCard = ({
   profile: { profile },
@@ -13,12 +14,15 @@ const RecipeFeedCard = ({
   id,
   likeRecipe,
   unlikeRecipe,
+  bookmarkRecipe,
+  removeBookmark,
 }) => {
   const [recipe, setRecipe] = useState({
     title: "",
     description: "",
     tags: [],
     likes: [],
+    id: "",
   });
 
   useEffect(async () => {
@@ -28,10 +32,11 @@ const RecipeFeedCard = ({
       description: res.data.description,
       tags: res.data.tags,
       likes: res.data.likes,
+      id: res.data._id,
     });
   });
 
-  console.log(recipe.likes);
+  console.log(recipe.id);
   return !isAuthenticated ? (
     <Loading />
   ) : (
@@ -74,7 +79,20 @@ const RecipeFeedCard = ({
             {recipe.likes.length} {recipe.likes.length === 1 ? "Like" : "Likes"}
           </span>
         </i>
-        <i className="far fa-bookmark bookmarks">
+        <i
+          className={`${
+            profile.bookmarks.filter((bookmark) => bookmark._id === recipe.id)
+              .length === 0
+              ? "far"
+              : "fas"
+          } fa-bookmark bookmarks`}
+          onClick={
+            profile.bookmarks.filter((bookmark) => bookmark._id === recipe.id)
+              .length === 0
+              ? () => bookmarkRecipe(id)
+              : () => removeBookmark(id)
+          }
+        >
           <span>Bookmark</span>
         </i>
         <i className="fas fa-user-plus">
@@ -242,6 +260,9 @@ const StyledMain = styled.main`
   }
 `;
 
-export default connect(mapStateToProps, { likeRecipe, unlikeRecipe })(
-  RecipeFeedCard
-);
+export default connect(mapStateToProps, {
+  likeRecipe,
+  unlikeRecipe,
+  bookmarkRecipe,
+  removeBookmark,
+})(RecipeFeedCard);

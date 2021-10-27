@@ -2,12 +2,19 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { allRecipes } from "../actions/recipes";
+import { getProfile } from "../actions/profile";
 import RecipeFeedCard from "./Cards/RecipeFeedCard";
 import Loading from "./Loading";
 
-const RecipeFeed = ({ allRecipes, recipes: { recipes } }) => {
+const RecipeFeed = ({
+  allRecipes,
+  recipes: { recipes },
+  profile: { profile },
+  getProfile,
+}) => {
   useEffect(() => {
     allRecipes();
+    getProfile();
   }, []);
   return (
     <StyledDiv>
@@ -15,7 +22,7 @@ const RecipeFeed = ({ allRecipes, recipes: { recipes } }) => {
         Recipe <span>Feed</span>
       </h1>
 
-      {recipes.length < 1 ? (
+      {recipes.length < 1 || profile === null ? (
         <Loading />
       ) : (
         <div className="flex-recipes">
@@ -30,6 +37,7 @@ const RecipeFeed = ({ allRecipes, recipes: { recipes } }) => {
 
 const mapStateToProps = (state) => ({
   recipes: state.recipes,
+  profile: state.profile,
 });
 
 //Styled Components
@@ -49,4 +57,4 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default connect(mapStateToProps, { allRecipes })(RecipeFeed);
+export default connect(mapStateToProps, { allRecipes, getProfile })(RecipeFeed);
