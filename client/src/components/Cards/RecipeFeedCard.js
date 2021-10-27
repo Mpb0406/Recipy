@@ -6,7 +6,11 @@ import def from "../../img/default.png";
 import { connect } from "react-redux";
 import Loading from "../Loading";
 import { likeRecipe, unlikeRecipe } from "../../actions/recipes";
-import { bookmarkRecipe, removeBookmark } from "../../actions/profile";
+import {
+  bookmarkRecipe,
+  removeBookmark,
+  followUser,
+} from "../../actions/profile";
 
 const RecipeFeedCard = ({
   profile: { profile },
@@ -16,6 +20,7 @@ const RecipeFeedCard = ({
   unlikeRecipe,
   bookmarkRecipe,
   removeBookmark,
+  followUser,
 }) => {
   const [recipe, setRecipe] = useState({
     title: "",
@@ -104,6 +109,7 @@ const RecipeFeedCard = ({
               ? "fas fa-user-plus"
               : "fas fa-user-minus"
           }`}
+          onClick={() => followUser(recipe.user)}
         >
           <span>{`${
             profile.following.filter((follow) => follow._id === recipe.user)
@@ -279,4 +285,5 @@ export default connect(mapStateToProps, {
   unlikeRecipe,
   bookmarkRecipe,
   removeBookmark,
+  followUser,
 })(RecipeFeedCard);

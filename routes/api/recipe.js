@@ -23,6 +23,7 @@ router.post(
 
     // Destructure all elements in model
     const {
+      name,
       title,
       description,
       ingredients,
@@ -36,7 +37,10 @@ router.post(
 
     // Build a recipe object with all elements available in request
     const recipeFields = {};
+    const username = await User.findById({ _id: req.user.id });
     recipeFields.user = req.user.id;
+
+    if (username) recipeFields.name = username.name;
     if (title) recipeFields.title = title;
     if (description) recipeFields.description = description;
     if (ingredients) recipeFields.ingredients = ingredients;
