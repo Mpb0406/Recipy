@@ -5,6 +5,7 @@ import {
   GET_PROFILE,
   REMOVE_BOOKMARK,
   GET_BOOKMARKS,
+  UNFOLLOW_USER,
 } from "./types";
 
 export const getProfile = () => async (dispatch) => {
@@ -52,6 +53,19 @@ export const followUser = (id) => async (dispatch) => {
 
     dispatch({
       type: FOLLOW_USER,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const unfollowUser = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/profile/unfollow/${id}`);
+
+    dispatch({
+      type: UNFOLLOW_USER,
       payload: res.data,
     });
   } catch (err) {

@@ -10,6 +10,7 @@ import {
   bookmarkRecipe,
   removeBookmark,
   followUser,
+  unfollowUser,
 } from "../../actions/profile";
 
 const RecipeFeedCard = ({
@@ -21,6 +22,7 @@ const RecipeFeedCard = ({
   bookmarkRecipe,
   removeBookmark,
   followUser,
+  unfollowUser,
 }) => {
   const [recipe, setRecipe] = useState({
     title: "",
@@ -29,6 +31,7 @@ const RecipeFeedCard = ({
     likes: [],
     id: "",
     user: "",
+    userID: "",
   });
 
   useEffect(async () => {
@@ -39,11 +42,11 @@ const RecipeFeedCard = ({
       tags: res.data.tags,
       likes: res.data.likes,
       id: res.data._id,
-      user: res.data.user,
+      user: res.data.name,
+      userID: res.data.user,
     });
   });
 
-  console.log(profile.following.filter((follow) => follow._id === recipe.user));
   return !isAuthenticated ? (
     <Loading />
   ) : (
@@ -57,7 +60,7 @@ const RecipeFeedCard = ({
           <Link to={`/recipes/${id}`}>
             <h3 className="title">{recipe.title}</h3>
           </Link>
-          <p className="user">Mike Bolloskis</p>
+          <p className="user">{recipe.user}</p>
           <div className="time-tags">
             <p className="time">5 days ago</p>
             <div className="tag-container">
@@ -104,12 +107,17 @@ const RecipeFeedCard = ({
         </i>
         <i
           className={`${
-            profile.following.filter((follow) => follow._id === recipe.user)
+            profile.following.filter((follow) => follow._id === recipe.userID)
               .length === 0
               ? "fas fa-user-plus"
               : "fas fa-user-minus"
           }`}
-          onClick={() => followUser(recipe.user)}
+          onClick={
+            profile.following.filter((follow) => follow._id === recipe.userID)
+              .length === 0
+              ? () => followUser(recipe.userID)
+              : () => unfollowUser(recipe.userID)
+          }
         >
           <span>{`${
             profile.following.filter((follow) => follow._id === recipe.user)
@@ -286,4 +294,5 @@ export default connect(mapStateToProps, {
   bookmarkRecipe,
   removeBookmark,
   followUser,
+  unfollowUser,
 })(RecipeFeedCard);

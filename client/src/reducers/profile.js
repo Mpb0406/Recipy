@@ -4,6 +4,7 @@ import {
   REMOVE_BOOKMARK,
   FOLLOW_USER,
   GET_BOOKMARKS,
+  UNFOLLOW_USER,
 } from "../actions/types";
 
 const initialState = {
@@ -30,6 +31,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case FOLLOW_USER:
+    case UNFOLLOW_USER:
       return {
         ...state,
         profile: { ...state.profile, following: payload },

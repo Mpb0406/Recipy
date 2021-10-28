@@ -195,7 +195,7 @@ router.put("/unfollow/:id", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 
-  res.json(myProfile);
+  res.json(myProfile.following);
 });
 
 module.exports = router;

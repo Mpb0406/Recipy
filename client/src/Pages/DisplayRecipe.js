@@ -119,7 +119,7 @@ const DisplayRecipe = ({
         </div>
         <div className="profile-pic">
           <img src={defaultUser} alt="" />
-          <h3>Mike Bolloskis</h3>
+          <h3>{recipe.name}</h3>
         </div>
       </div>
       <div className="arrow-container">
