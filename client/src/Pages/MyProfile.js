@@ -101,7 +101,7 @@ const MyProfile = ({ getProfile, profile: { profile } }) => {
           ) : toggleDisplay === "followers" ? (
             <UserFeedCard />
           ) : (
-            <UserFeedCard />
+            profile.following.map((follow) => <UserFeedCard />)
           )}
         </div>
       </section>

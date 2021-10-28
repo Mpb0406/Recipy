@@ -35,7 +35,7 @@ const mapStateToProps = (state) => ({
 const StyledFeed = styled.div`
   .feed-container {
     width: 70%;
-    margin: auto;
+    margin: 0 auto 10rem;
   }
 `;
 
