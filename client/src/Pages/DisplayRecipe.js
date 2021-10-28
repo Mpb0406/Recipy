@@ -12,6 +12,7 @@ import {
   bookmarkRecipe,
   removeBookmark,
   followUser,
+  unfollowUser,
 } from "../actions/profile";
 
 const DisplayRecipe = ({
@@ -23,6 +24,7 @@ const DisplayRecipe = ({
   bookmarkRecipe,
   removeBookmark,
   followUser,
+  unfollowUser,
   auth: { user, isAuthenticated },
   profile: { profile },
 }) => {
@@ -108,10 +110,28 @@ const DisplayRecipe = ({
             {user._id != recipe.user && (
               <div className="follow-user">
                 <i
-                  className="fas fa-user-plus follow"
-                  onClick={() => followUser(recipe.user)}
+                  className={`${
+                    profile.following.filter(
+                      (follow) => follow._id === recipe.user
+                    ).length === 0
+                      ? "fas fa-user-plus follow"
+                      : "fas fa-user-minus follow"
+                  }`}
+                  onClick={
+                    profile.following.filter(
+                      (follow) => follow._id === recipe.user
+                    ).length === 0
+                      ? () => followUser(recipe.user)
+                      : () => unfollowUser(recipe.user)
+                  }
                 >
-                  <span>Follow</span>
+                  <span>{`${
+                    profile.following.filter(
+                      (follow) => follow._id === recipe.user
+                    ).length === 0
+                      ? "Follow"
+                      : "Unfollow"
+                  }`}</span>
                 </i>
               </div>
             )}
@@ -547,4 +567,5 @@ export default connect(mapStateToProps, {
   bookmarkRecipe,
   removeBookmark,
   followUser,
+  unfollowUser,
 })(DisplayRecipe);
