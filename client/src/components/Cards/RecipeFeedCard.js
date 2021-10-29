@@ -120,7 +120,7 @@ const RecipeFeedCard = ({
           }
         >
           <span>{`${
-            profile.following.filter((follow) => follow._id === recipe.user)
+            profile.following.filter((follow) => follow._id === recipe.userID)
               .length === 0
               ? "Follow"
               : "Unfollow"
