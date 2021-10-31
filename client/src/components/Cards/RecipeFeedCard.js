@@ -12,6 +12,7 @@ import {
   followUser,
   unfollowUser,
 } from "../../actions/profile";
+import Moment from "react-moment";
 
 const RecipeFeedCard = ({
   profile: { profile },
@@ -32,6 +33,7 @@ const RecipeFeedCard = ({
     id: "",
     user: "",
     userID: "",
+    date: "",
   });
 
   useEffect(async () => {
@@ -44,6 +46,7 @@ const RecipeFeedCard = ({
       id: res.data._id,
       user: res.data.name,
       userID: res.data.user,
+      date: res.data.date,
     });
   });
 
@@ -62,7 +65,9 @@ const RecipeFeedCard = ({
           </Link>
           <p className="user">{recipe.user}</p>
           <div className="time-tags">
-            <p className="time">5 days ago</p>
+            <Moment className="time" format="MM/DD/YYYY">
+              {recipe.date}
+            </Moment>
             <div className="tag-container">
               {recipe.tags.map((tag) => (
                 <div className="tag">{tag}</div>
@@ -210,6 +215,11 @@ const StyledMain = styled.main`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .date {
+    background: firebrick;
+    margin-bottom: 0;
   }
 
   .tag-container {
