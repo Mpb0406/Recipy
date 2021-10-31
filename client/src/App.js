@@ -18,6 +18,7 @@ import { loadUser } from "./actions/auth";
 import MyRecipes from "./Pages/MyRecipes";
 import MyProfile from "./Pages/MyProfile";
 import DisplayRecipe from "./Pages/DisplayRecipe";
+import CreateProfile from "./Pages/CreateProfile";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -48,6 +49,11 @@ function App() {
               path="/recipes/edit-recipe/:id"
               exact
               component={EditRecipe}
+            />
+            <PrivateRoute
+              path="/createprofile"
+              exact
+              component={CreateProfile}
             />
           </Switch>
         </Router>

@@ -32,7 +32,7 @@ const SignUp = ({ displayAlert, register, isAuthenticated }) => {
 
   if (isAuthenticated) {
     setTimeout(() => {
-      return <Redirect to="/" />;
+      return <Redirect to="/createprofile" />;
     }, 5000);
   }
 
