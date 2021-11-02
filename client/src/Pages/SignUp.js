@@ -18,7 +18,6 @@ const SignUp = ({ displayAlert, register, isAuthenticated }) => {
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  console.log(formData);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -30,13 +29,9 @@ const SignUp = ({ displayAlert, register, isAuthenticated }) => {
     }
   };
 
-  if (isAuthenticated) {
-    setTimeout(() => {
-      return <Redirect to="/createprofile" />;
-    }, 5000);
-  }
-
-  return (
+  return isAuthenticated ? (
+    <Redirect to="/createprofile" />
+  ) : (
     <StyledDiv>
       <h1>Create An Account</h1>
       <StyledForm onSubmit={(e) => onSubmit(e)}>
