@@ -9,16 +9,20 @@ const UserFeedCard = () => {
         <div className="avatar">
           <img src={defaultUser} alt="" />
         </div>
-        <div className="user-info">
-          <h3>Mike Bolloskis</h3>
-          <div className="follows">
-            <span>Followers: 12</span>
-            <span>Following: 11</span>
+
+        <div className="flex">
+          <div className="user-info">
+            <h3 className="name">Mike Bolloskis</h3>
+            <p className="date">Member since: 4/6/2021</p>
+            <div className="follows">
+              <span>Followers: 12</span>
+              <span>Following: 11</span>
+            </div>
           </div>
-          <span>Member since: 1/1/2021</span>
+          <span className="follow-button">Follow</span>
         </div>
-        <span className="follow">Follow</span>
       </div>
+
       <div className="bio">
         <p>This is my bio. This is a small paragraph about me.</p>
       </div>
@@ -34,8 +38,8 @@ const StyledMain = styled.main`
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  justify-content: space-around;
+  align-items: flex-start;
+  justify-content: space-between;
   margin: 1.5rem 0;
 
   .top-container {
@@ -75,17 +79,49 @@ const StyledMain = styled.main`
   }
 
   .user-info {
+    .date {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #969696;
+    }
+
+    .name {
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #3b7c0b;
+      }
+    }
   }
 
-  .follow {
-    align-self: flex-start;
+  .follows {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-weight: 500;
+      margin: 0.5rem 0.8rem 0 0;
+    }
   }
 
   .bio {
-    margin: 0 2rem;
+    margin: 0 2rem 3rem;
     p {
       font-size: 1rem;
     }
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+  }
+
+  .follow-button {
+    cursor: pointer;
+    font-weight: 600;
   }
 `;
 
