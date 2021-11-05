@@ -51,7 +51,7 @@ const StyledMain = styled.main`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
 
   .top-container {
     display: flex;
