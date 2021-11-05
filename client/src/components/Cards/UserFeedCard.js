@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import defaultUser from "../../img/default-user.png";
+import { connect } from "react-redux";
+import axios from "axios";
 
-const UserFeedCard = () => {
+const UserFeedCard = ({ id, profile: { profile } }) => {
+  useEffect(async () => {
+    //Create New Route to get User Info by User ID
+    let res = await axios.get("/api/.....");
+  }, []);
+
   return (
     <StyledMain>
       <div className="top-container">
@@ -29,6 +36,10 @@ const UserFeedCard = () => {
     </StyledMain>
   );
 };
+
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
 
 //Styled Components
 const StyledMain = styled.main`
@@ -125,4 +136,4 @@ const StyledMain = styled.main`
   }
 `;
 
-export default UserFeedCard;
+export default connect(mapStateToProps)(UserFeedCard);
