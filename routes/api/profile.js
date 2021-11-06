@@ -198,4 +198,22 @@ router.put("/unfollow/:id", auth, async (req, res) => {
   res.json(myProfile.following);
 });
 
+//@route    PUT api/profile/:id
+//@desc     Unfollow a User
+//@access   Private
+router.get("/:id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.params.id });
+
+    if (!profile) {
+      res.send("Profile Not Found");
+    }
+
+    res.json(profile);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;

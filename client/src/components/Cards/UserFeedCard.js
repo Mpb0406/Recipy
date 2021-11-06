@@ -22,8 +22,12 @@ const UserFeedCard = ({ id, profile: { profile } }) => {
             <h3 className="name">Mike Bolloskis</h3>
             <p className="date">Member since: 4/6/2021</p>
             <div className="follows">
-              <span>Followers: 12</span>
-              <span>Following: 11</span>
+              <span>
+                12 <p>Followers</p>{" "}
+              </span>
+              <span>
+                11 <p>Following</p>{" "}
+              </span>
             </div>
           </div>
           <span className="follow-button">Follow</span>
@@ -112,8 +116,16 @@ const StyledMain = styled.main`
     align-items: center;
 
     span {
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 1rem;
       margin: 0.5rem 0.8rem 0 0;
+      color: black;
+
+      p {
+        display: inline;
+        color: #3b7c0b;
+        font-size: 1rem;
+      }
     }
   }
 
