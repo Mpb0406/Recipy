@@ -1,13 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import defaultUser from "../../img/default-user.png";
 import { connect } from "react-redux";
 import axios from "axios";
 
 const UserFeedCard = ({ id, profile: { profile } }) => {
+  const [user, setUser] = useState({
+    name: "",
+    followers: "",
+    following: "",
+    bio: "",
+  });
+
   useEffect(async () => {
-    //Create New Route to get User Info by User ID
-    let res = await axios.get("/api/.....");
+    let res = await axios.get(`/api/profile/${id}`);
+    setUser({
+      name: res.data.name,
+      followers: res.data.followers.length,
+      following: res.data.following.length,
+    });
   }, []);
 
   return (
