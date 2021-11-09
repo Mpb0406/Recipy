@@ -27,12 +27,15 @@ router.get("/", auth, async (req, res) => {
 router.post("/", auth, async (req, res) => {
   //Destructure each item from req.body
   const { avatar, bio, instagram, twitter, facebook, youtube } = req.body;
+  const user = await User.findById({ _id: req.user.id });
 
   //Build Profile Object
   const profileFields = {};
   profileFields.user = req.user.id;
   if (avatar) profileFields.avatar = avatar;
   if (bio) profileFields.bio = bio;
+  profileFields.name = user.name;
+  profileFields.memberSince = user.date;
 
   //Build Social Media Object
   profileFields.social = {};

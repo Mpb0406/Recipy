@@ -9,6 +9,9 @@ const profileSchema = mongoose.Schema({
   name: {
     type: String,
   },
+  memberSince: {
+    type: Date,
+  },
   avatar: {
     type: String,
   },

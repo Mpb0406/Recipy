@@ -30,14 +30,14 @@ const UserFeedCard = ({ id, profile: { profile } }) => {
 
         <div className="flex">
           <div className="user-info">
-            <h3 className="name">Mike Bolloskis</h3>
+            <h3 className="name">{user.name}</h3>
             <p className="date">Member since: 4/6/2021</p>
             <div className="follows">
               <span>
-                12 <p>Followers</p>{" "}
+                {user.followers} <p>Followers</p>{" "}
               </span>
               <span>
-                11 <p>Following</p>{" "}
+                {user.following} <p>Following</p>{" "}
               </span>
             </div>
           </div>
