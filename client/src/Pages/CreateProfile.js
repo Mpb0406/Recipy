@@ -29,6 +29,13 @@ const Createprofile = () => {
           placeholder="Bio..."
         ></textarea>
       </div>
+      <div className="add-socials">
+        <h3>Add your socials</h3>
+        <i className="fab fa-facebook"></i>
+        <i className="fab fa-instagram"></i>
+        <i className="fab fa-twitter"></i>
+        <i className="fab fa-youtube"></i>
+      </div>
       <MainButton>Submit</MainButton>
     </StyledForm>
   );
