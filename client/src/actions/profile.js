@@ -6,6 +6,7 @@ import {
   REMOVE_BOOKMARK,
   GET_BOOKMARKS,
   UNFOLLOW_USER,
+  CREATE_PROFILE,
 } from "./types";
 
 export const getProfile = () => async (dispatch) => {
@@ -85,3 +86,12 @@ export const getBookmarkedRecipes =
       payload: recipes,
     });
   };
+
+export const createProfile = (formData) => async (dispatch) => {
+  const res = await axios.post("/api/profile", formData);
+
+  dispatch({
+    type: CREATE_PROFILE,
+    payload: res.data,
+  });
+};

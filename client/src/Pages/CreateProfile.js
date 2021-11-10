@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { MainButton } from "../Styles";
+import { connect } from "react-redux";
+import { createProfile } from "../actions/profile";
 
-const Createprofile = () => {
+const Createprofile = ({ createProfile }) => {
+  const [formData, setFormData] = useState({
+    bio: "",
+    social: {
+      instagram: "",
+      twitter: "",
+      facebook: "",
+      youtube: "",
+    },
+  });
+
+  const { bio, instagram, twitter, facebook, youtube } = formData;
+
   return (
     <StyledForm>
       <h1 className="title">
@@ -82,4 +96,4 @@ const StyledForm = styled.form`
   }
 `;
 
-export default Createprofile;
+export default connect(null, createProfile)(Createprofile);
