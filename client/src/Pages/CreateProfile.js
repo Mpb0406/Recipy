@@ -17,7 +17,7 @@ const Createprofile = ({ createProfile }) => {
 
   const { bio, instagram, twitter, facebook, youtube } = formData;
 
-  const [toggleSocials, setToggleSocials] = useState("false");
+  const [toggleSocials, setToggleSocials] = useState(false);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
