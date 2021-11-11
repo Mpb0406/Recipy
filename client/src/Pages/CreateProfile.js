@@ -17,8 +17,19 @@ const Createprofile = ({ createProfile }) => {
 
   const { bio, instagram, twitter, facebook, youtube } = formData;
 
+  const [toggleSocials, setToggleSocials] = useState("false");
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  console.log(formData);
+
   return (
-    <StyledForm>
+    <StyledForm onSubmit={(e) => onSubmit(e)}>
       <h1 className="title">
         Create <span>Your Profile</span>{" "}
       </h1>
@@ -36,20 +47,37 @@ const Createprofile = ({ createProfile }) => {
       <div className="bio-section">
         <p>Tell us about yourself...</p>
         <textarea
-          name=""
+          name="bio"
           id=""
           cols="100"
           rows="5"
           placeholder="Bio..."
+          onChange={(e) => onChange(e)}
         ></textarea>
       </div>
-      <div className="add-socials">
-        <h3>Add your socials</h3>
-        <i className="fab fa-facebook"></i>
-        <i className="fab fa-instagram"></i>
-        <i className="fab fa-twitter"></i>
-        <i className="fab fa-youtube"></i>
-      </div>
+      <button
+        className="socials-button"
+        onClick={() => setToggleSocials(!toggleSocials)}
+      >
+        Add socials
+      </button>
+
+      {toggleSocials && (
+        <div className="add-socials">
+          <i className="fab fa-facebook social-icon"></i>
+          <input type="text" placeholder="Facebook" />
+
+          <i className="fab fa-instagram social-icon"></i>
+          <input type="text" placeholder="Instagram" />
+
+          <i className="fab fa-twitter social-icon"> </i>
+          <input type="text" placeholder="Twitter" />
+
+          <i className="fab fa-youtube social-icon"></i>
+          <input type="text" placeholder="Youtube" />
+        </div>
+      )}
+
       <MainButton>Submit</MainButton>
     </StyledForm>
   );
@@ -93,6 +121,35 @@ const StyledForm = styled.form`
   button {
     margin: 2rem;
     align-self: center;
+  }
+
+  .socials-button {
+    background: #3b7c0b;
+    color: #fff;
+    border: 2px solid #f0f7ff;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.5s ease;
+
+    &:hover {
+      background: none;
+      color: #3b7c0b;
+      border: 2px solid #3b7c0b;
+    }
+  }
+
+  .add-socials {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .social-icon {
+      font-size: 2rem;
+      margin-right: 0.5rem;
+    }
+
+    input {
+      margin-right: 0.5rem;
+    }
   }
 `;
 
