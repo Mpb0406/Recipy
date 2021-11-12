@@ -15,12 +15,18 @@ const Createprofile = ({ createProfile }) => {
     },
   });
 
-  const { bio, instagram, twitter, facebook, youtube } = formData;
+  const { bio } = formData;
+  const { instagram, twitter, facebook, youtube } = formData.social;
 
   const [toggleSocials, setToggleSocials] = useState(false);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChangeSocial = (e) =>
+    setFormData({
+      ...formData,
+      social: { ...formData.social, [e.target.name]: e.target.value },
+    });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -66,19 +72,39 @@ const Createprofile = ({ createProfile }) => {
         <div className="add-socials">
           <div className="social">
             <i className="fab fa-facebook social-icon"></i>
-            <input type="text" placeholder="Facebook" />
+            <input
+              type="text"
+              name="facebook"
+              onChange={(e) => onChangeSocial(e)}
+              placeholder="Facebook"
+            />
           </div>
           <div className="social">
             <i className="fab fa-instagram social-icon"></i>
-            <input type="text" placeholder="Instagram" />
+            <input
+              type="text"
+              name="instagram"
+              onChange={(e) => onChangeSocial(e)}
+              placeholder="Instagram"
+            />
           </div>
           <div className="social">
             <i className="fab fa-twitter social-icon"> </i>
-            <input type="text" placeholder="Twitter" />
+            <input
+              type="text"
+              name="twitter"
+              onChange={(e) => onChangeSocial(e)}
+              placeholder="Twitter"
+            />
           </div>
           <div className="social">
             <i className="fab fa-youtube social-icon"></i>
-            <input type="text" placeholder="Youtube" />
+            <input
+              type="text"
+              name="youtube"
+              onChange={(e) => onChangeSocial(e)}
+              placeholder="Youtube"
+            />
           </div>
         </div>
       )}
