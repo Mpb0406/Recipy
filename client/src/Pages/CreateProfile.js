@@ -64,17 +64,22 @@ const Createprofile = ({ createProfile }) => {
 
       {toggleSocials && (
         <div className="add-socials">
-          <i className="fab fa-facebook social-icon"></i>
-          <input type="text" placeholder="Facebook" />
-
-          <i className="fab fa-instagram social-icon"></i>
-          <input type="text" placeholder="Instagram" />
-
-          <i className="fab fa-twitter social-icon"> </i>
-          <input type="text" placeholder="Twitter" />
-
-          <i className="fab fa-youtube social-icon"></i>
-          <input type="text" placeholder="Youtube" />
+          <div className="social">
+            <i className="fab fa-facebook social-icon"></i>
+            <input type="text" placeholder="Facebook" />
+          </div>
+          <div className="social">
+            <i className="fab fa-instagram social-icon"></i>
+            <input type="text" placeholder="Instagram" />
+          </div>
+          <div className="social">
+            <i className="fab fa-twitter social-icon"> </i>
+            <input type="text" placeholder="Twitter" />
+          </div>
+          <div className="social">
+            <i className="fab fa-youtube social-icon"></i>
+            <input type="text" placeholder="Youtube" />
+          </div>
         </div>
       )}
 
@@ -140,15 +145,26 @@ const StyledForm = styled.form`
 
   .add-socials {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+    .social {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 1rem;
+    }
+
     .social-icon {
       font-size: 2rem;
-      margin-right: 0.5rem;
+      margin-right: 1rem;
     }
 
     input {
-      margin-right: 0.5rem;
+      margin: 0 0.5rem;
+      padding: 0.25rem;
+      font-size: 1rem;
     }
   }
 `;
