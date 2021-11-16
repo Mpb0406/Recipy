@@ -88,10 +88,20 @@ export const getBookmarkedRecipes =
   };
 
 export const createProfile = (formData) => async (dispatch) => {
-  const res = await axios.post("/api/profile", formData);
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
 
-  dispatch({
-    type: CREATE_PROFILE,
-    payload: res.data,
-  });
+    const res = await axios.post("/api/profile", formData, config);
+
+    dispatch({
+      type: CREATE_PROFILE,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };

@@ -15,9 +15,6 @@ const Createprofile = ({ createProfile }) => {
     },
   });
 
-  const { bio } = formData;
-  const { instagram, twitter, facebook, youtube } = formData.social;
-
   const [toggleSocials, setToggleSocials] = useState(false);
 
   const onChange = (e) =>
@@ -28,8 +25,9 @@ const Createprofile = ({ createProfile }) => {
       social: { ...formData.social, [e.target.name]: e.target.value },
     });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    createProfile(formData);
   };
 
   console.log(formData);
@@ -195,4 +193,4 @@ const StyledForm = styled.form`
   }
 `;
 
-export default connect(null, createProfile)(Createprofile);
+export default connect(null, { createProfile })(Createprofile);

@@ -32,7 +32,7 @@ router.post("/", auth, async (req, res) => {
   //Build Profile Object
   const profileFields = {};
   profileFields.user = req.user.id;
-  if (avatar) profileFields.avatar = avatar;
+  profileFields.avatar = user.email;
   if (bio) profileFields.bio = bio;
   profileFields.name = user.name;
   profileFields.memberSince = user.date;

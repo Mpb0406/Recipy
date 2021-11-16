@@ -5,6 +5,7 @@ import {
   FOLLOW_USER,
   GET_BOOKMARKS,
   UNFOLLOW_USER,
+  CREATE_PROFILE,
 } from "../actions/types";
 
 const initialState = {
@@ -18,6 +19,7 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case GET_PROFILE:
+    case CREATE_PROFILE:
       return {
         ...state,
         profile: payload,
