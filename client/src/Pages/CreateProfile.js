@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MainButton } from "../Styles";
 import { connect } from "react-redux";
 import { createProfile } from "../actions/profile";
+import Gravatar from "react-gravatar";
 
 const Createprofile = ({ createProfile }) => {
   const [formData, setFormData] = useState({
@@ -35,16 +36,21 @@ const Createprofile = ({ createProfile }) => {
   return (
     <StyledForm onSubmit={(e) => onSubmit(e)}>
       <h1 className="title">
-        Create <span>Your Profile</span>{" "}
+        Update <span>Your Profile</span>{" "}
       </h1>
 
       <div className="profile-pic">
-        <div className="picture-container">
+        {/* <div className="picture-container">
           <i className="fas fa-user"></i>
-        </div>
+        </div> */}
+        <Gravatar
+          size={150}
+          className="picture-container"
+          email="mpb0406@gmail.com"
+        />
         <div className="file-upload">
-          <p>Add a profile picture</p>
-          <input type="file" />
+          <i className="fas fa-camera"></i>
+          <p>Change profile picture</p>
         </div>
       </div>
 
@@ -143,9 +149,21 @@ const StyledForm = styled.form`
         font-size: 5rem;
       }
     }
-  }
-  p {
-    margin-bottom: 0.5rem;
+    .file-upload {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+
+      p {
+        margin-left: 0.5rem;
+      }
+
+      &:hover {
+        color: #3b7c0b;
+      }
+    }
   }
   button {
     margin: 2rem;
