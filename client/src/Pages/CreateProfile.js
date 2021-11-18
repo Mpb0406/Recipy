@@ -4,8 +4,9 @@ import { MainButton } from "../Styles";
 import { connect } from "react-redux";
 import { createProfile } from "../actions/profile";
 import Gravatar from "react-gravatar";
+import Loading from "../components/Loading";
 
-const Createprofile = ({ createProfile }) => {
+const Createprofile = ({ createProfile, profile: { profile } }) => {
   const [formData, setFormData] = useState({
     bio: "",
     social: {
@@ -33,24 +34,35 @@ const Createprofile = ({ createProfile }) => {
 
   console.log(formData);
 
-  return (
+  return profile === null ? (
+    <Loading />
+  ) : (
     <StyledForm onSubmit={(e) => onSubmit(e)}>
       <h1 className="title">
         Update <span>Your Profile</span>{" "}
       </h1>
 
       <div className="profile-pic">
-        {/* <div className="picture-container">
-          <i className="fas fa-user"></i>
-        </div> */}
         <Gravatar
           size={150}
           className="picture-container"
-          email="mpb0406@gmail.com"
+          email={profile.avatar}
         />
         <div className="file-upload">
-          <i className="fas fa-camera"></i>
-          <p>Change profile picture</p>
+          <div className="gravatar-actions">
+            <div className="change-pic">
+              <i className="fas fa-camera"></i>
+              <p>Change profile picture</p>
+            </div>
+            <label className="instructions">
+              <ol>
+                <li>Login or create account</li>
+                <li>Click Update Gravatar</li>
+                <li>Follow instructions</li>
+                <li>Changes may take 24hrs</li>
+              </ol>
+            </label>
+          </div>
         </div>
       </div>
 
@@ -110,6 +122,15 @@ const Createprofile = ({ createProfile }) => {
               placeholder="Youtube"
             />
           </div>
+          <div className="social">
+            <i className="fab fa-tiktok social-icon"></i>
+            <input
+              type="text"
+              name="tiktok"
+              onChange={(e) => onChangeSocial(e)}
+              placeholder="TikTok"
+            />
+          </div>
         </div>
       )}
 
@@ -117,6 +138,10 @@ const Createprofile = ({ createProfile }) => {
     </StyledForm>
   );
 };
+
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
 
 // Styled Components
 const StyledForm = styled.form`
@@ -149,22 +174,32 @@ const StyledForm = styled.form`
         font-size: 5rem;
       }
     }
+
     .file-upload {
-      display: flex;
-      align-items: center;
       cursor: pointer;
       font-size: 1.1rem;
       transition: color 0.3s ease;
 
+      .change-pic {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+
+        &:hover {
+          color: #3b7c0b;
+        }
+      }
+
+      ol {
+        margin-left: 1rem;
+      }
+
       p {
         margin-left: 0.5rem;
       }
-
-      &:hover {
-        color: #3b7c0b;
-      }
     }
   }
+
   button {
     margin: 2rem;
     align-self: center;
@@ -211,4 +246,4 @@ const StyledForm = styled.form`
   }
 `;
 
-export default connect(null, { createProfile })(Createprofile);
+export default connect(mapStateToProps, { createProfile })(Createprofile);

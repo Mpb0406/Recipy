@@ -3,6 +3,7 @@ import styled from "styled-components";
 import defaultUser from "../../img/default-user.png";
 import { connect } from "react-redux";
 import axios from "axios";
+import Gravatar from "react-gravatar";
 
 const UserFeedCard = ({ id, profile: { profile } }) => {
   const [user, setUser] = useState({
@@ -25,13 +26,14 @@ const UserFeedCard = ({ id, profile: { profile } }) => {
     <StyledMain>
       <div className="top-container">
         <div className="avatar">
-          <img src={defaultUser} alt="" />
+          {/* <img src={defaultUser} alt="" /> */}
+          <Gravatar className="gravatar" size={85} email={profile.avatar} />
         </div>
 
         <div className="flex">
           <div className="user-info">
             <h3 className="name">{user.name}</h3>
-            <p className="date">Member since: 4/6/2021</p>
+            <p className="date">{profile.memberSince}</p>
             <div className="follows">
               <span>
                 {user.followers} <p>Followers</p>{" "}
@@ -102,6 +104,10 @@ const StyledMain = styled.main`
       object-fit: cover;
       width: 8.5rem;
     }
+  }
+
+  .gravatar {
+    border-radius: 50%;
   }
 
   .user-info {

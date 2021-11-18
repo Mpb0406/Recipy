@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import man from "../img/man.jpg";
 import defaultUser from "../img/default-user.png";
 import kitchen from "../img/kitchen.jpg";
 import UserFeedCard from "../components/Cards/UserFeedCard";
 import RecipeFeedCard from "../components/Cards/RecipeFeedCard";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { getProfile } from "../actions/profile";
 import Loading from "../components/Loading";
+import Gravatar from "react-gravatar";
 
 //Create Local State to Toggle Active Classes for Bookmarks, Followers, and Following
 
@@ -29,7 +30,7 @@ const MyProfile = ({ getProfile, profile: { profile } }) => {
         </div>
 
         <div className="avatar-container">
-          <img src={defaultUser} alt="" />
+          <Gravatar className="gravatar" size={150} email={profile.avatar} />
         </div>
         <h3 className="username">Mike Bolloskis</h3>
       </section>
@@ -72,6 +73,16 @@ const MyProfile = ({ getProfile, profile: { profile } }) => {
             myself and things and stuff and things and stuff and things and
             stuff and things and stuff and stuff and things
           </p>
+        </div>
+        <div className="socials">
+          <i className="fab fa-facebook"></i>
+          <i className="fab fa-instagram"></i>
+          <i className="fab fa-twitter"></i>
+          <i className="fab fa-youtube"></i>
+          <i className="fab fa-tiktok"></i>
+        </div>
+        <div className="edit-profile">
+          <Link to="/createprofile">Edit profile</Link>
         </div>
       </main>
       <section className="content-container">
@@ -149,8 +160,8 @@ const StyledDiv = styled.div`
   }
 
   .avatar-container {
-    height: 10rem;
-    width: 10rem;
+    height: 9rem;
+    width: 9rem;
     border-radius: 50%;
     background: #fff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
@@ -166,9 +177,13 @@ const StyledDiv = styled.div`
     z-index: 2;
 
     img {
-      width: 14rem;
+      width: 100%;
       object-fit: cover;
     }
+  }
+
+  .gravatar {
+    border-radius: 50%;
   }
 
   .username {
