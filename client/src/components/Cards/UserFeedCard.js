@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import defaultUser from "../../img/default-user.png";
 import { connect } from "react-redux";
 import axios from "axios";
 import Gravatar from "react-gravatar";
+import Moment from "react-moment";
 
 const UserFeedCard = ({ id, profile: { profile } }) => {
   const [user, setUser] = useState({
@@ -33,7 +33,9 @@ const UserFeedCard = ({ id, profile: { profile } }) => {
         <div className="flex">
           <div className="user-info">
             <h3 className="name">{user.name}</h3>
-            <p className="date">{profile.memberSince}</p>
+            <Moment className="time" format="MM/DD/YYYY">
+              {profile.memberSince}
+            </Moment>
             <div className="follows">
               <span>
                 {user.followers} <p>Followers</p>{" "}
@@ -126,6 +128,13 @@ const StyledMain = styled.main`
         color: #3b7c0b;
       }
     }
+  }
+
+  .time {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #858585;
+    line-height: 1rem;
   }
 
   .follows {
